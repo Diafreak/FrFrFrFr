@@ -31,9 +31,13 @@
             -->
         <? endif; ?><br>
         <input type="submit" name="submitLogin" value="Login"><br>
+    </form>
 
-        <button class="button toregistration">
-            <a href="?c=account&a=registration">Register</a>
+    <form method="get">
+        <input type="hidden" name="c" value="account" />
+        <input type="hidden" name="a" value="registration" />
+        <button type="submit" class="button">
+            Register
         </button>
     </form>
 </div>

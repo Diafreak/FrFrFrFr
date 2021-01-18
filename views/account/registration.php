@@ -46,9 +46,15 @@
             -->
         <? endif; ?><br>
         <input type="submit" name="submitRegistration" value="Register"><br>
-        <button class="button backtologin">
-            <a href="?c=account&a=login">Back to login</a>
+    </form>
+
+    <form method="get">
+        <input type="hidden" name="c" value="account" />
+        <input type="hidden" name="a" value="login" />
+        <button type="submit" class="button">
+            Back to Login
         </button>
     </form>
 </div>
+
 <?php endif; ?>

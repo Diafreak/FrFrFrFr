@@ -50,6 +50,7 @@ else { header('Location: index.php?c=errors&a=error404'); }
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/styles/style.css">
+    <!-- <link rel="stylesheet" href="assets/styles/html5reset.css"> -->
     <title>FrFrFrFr Frontpage</title>
 </head>
 
@@ -58,8 +59,6 @@ else { header('Location: index.php?c=errors&a=error404'); }
         // this method will render the view of the called action
         // for this the the file in the views directory will be included
         $controllerInstance->render();
-
-
     ?>
 </body>
 </html>

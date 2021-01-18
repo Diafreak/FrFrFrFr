@@ -3,12 +3,10 @@ body {
 }
 
 header {
-    background-color: #5331a3;
-    /*#7209B7
-    3a0ca3*/
+    background-color: #5331a3; /*#7209B7 | 3a0ca3*/
 }
 
-nav {
+header > nav {
     width: 100%;
 }
 
