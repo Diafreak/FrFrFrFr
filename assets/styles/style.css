@@ -3,7 +3,7 @@ body {
 }
 
 header {
-    background-color: #3a0ca3;
+    background-color: #5331a3;
     /*#7209B7
     3a0ca3*/
 }
@@ -31,7 +31,7 @@ nav ul li {
 
 nav ul li:not(.no-hover) a {
     color: #FFF;
-    padding: 15px 50px 15px 35px;
+    /*padding: 15px 50px 15px 35px;*/
     text-align: center;
     text-decoration: none;
 }
@@ -51,7 +51,7 @@ nav ul .no-hover a {
 }
 
 nav ul .no-hover:hover {
-    background-color: #3a0ca3;
+    background-color: #5331a3;
     /*#7209B7
     3a0ca3*/
 }
@@ -79,8 +79,8 @@ div ul {
 
 .content li {
     box-sizing: border-box;
-    border-bottom: 1px solid #3a0ca3;
-    border-right: 1px solid #3a0ca3;
+    border-bottom: 1px solid #5331a3;
+    border-right: 1px solid #5331a3;
     float: left;
     min-height: 514px;
     margin: 0 0 -1px;
@@ -110,18 +110,15 @@ div ul {
     margin: 12vh auto;
     color: white;
     text-align: center;
-    background-color: #3a0ca3;
-    /*3a0ca3*/
+    background-color: #5331a3; /*3a0ca3*/
     width: 363px;
     padding: 50px 0 70px;
     border-radius: 6px;
-    border: 2px solid #7209b7;
-    /*7209b7*/
 }
 
 .login-form input:not([type="checkbox" i]),
 .button {
-    border: 1px solid #dfebf2;
+    border: 1px solid #8a8a8a;
     border-radius: 4px;
     padding: 0 0 0 10px;
     width: 290px;
@@ -171,12 +168,11 @@ input#passwordconfirm {
     margin: 12vh auto;
     color: white;
     text-align: center;
-    background-color: #3a0ca3;
+    background-color: #5331a3;
     /*3a0ca3*/
     width: 363px;
     padding: 50px 0 70px;
     border-radius: 6px;
-    border: 2px solid #8c1dd6;
     /*7209b7*/
 }
 
