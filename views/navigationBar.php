@@ -10,22 +10,23 @@
                         <a href="?c=pages&a=home">
                             <img src=<?=IMAGESPATH . 'ferret.png'?> alt="Logo" width="80px" height="45px"></a>
                     </li>
-                    <li>
-                        <!-- NUR SCHRIFT IST KLICKBAR; ÄNDERN ZU -->
-                        <a href="?c=pages&a=home">HOME</a>
-                    </li>
-                    <li>
-                        <a href="?c=pages&a=about">ÜBER UNS</a>
-                    </li>
-                    <li>
-                        <a href="?c=pages&a=products">PRODUKTE</a>
-                    </li>
-                    <li>
-                        <a href="?c=pages&a=current">AKTUELLES</a>
-                    </li>
-                    <li>
-                        <a href="?c=pages&a=contact">KONTAKT</a>
-                    </li>
+
+                    <a href="?c=pages&a=home">
+                        <li>HOME</li>
+                    </a>
+                    <a href="?c=pages&a=about">
+                        <li>ÜBER UNS</li>
+                    </a>
+                    <a href="?c=pages&a=products">
+                        <li>PRODUKTE</li>
+                    </a>
+                    <a href="?c=pages&a=current">
+                        <li>AKTUELLES</li>
+                    </a>
+                    <a href="?c=pages&a=contact">
+                        <li>KONTAKT</li>
+                    </a>
+
                     <li class="no-hover">
                         <a href="?c=pages&a=shoppingCard">
                             <img src=<?=IMAGESPATH . 'Korb.png'?> alt="Warenkorb" width="25px" height="25px">
