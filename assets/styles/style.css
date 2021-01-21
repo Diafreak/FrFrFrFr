@@ -126,6 +126,16 @@ div ul {
     height: 35px;
 }
 
+
+.login-form-error input:not([type="checkbox" i]):not([type="submit" i])
+{
+    border: 1px solid red;
+    border-radius: 4px;
+    padding: 0 0 0 10px;
+    width: 290px;
+    height: 35px;
+}
+
 :focus {
     outline: none;
 }

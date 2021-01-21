@@ -1,4 +1,14 @@
+
+<? if (!isset($error)) : ?>
+<!-- KOMMENTIEREN -->
 <div class="login-form">
+
+<? else : ?>
+<!-- KOMMENTIEREN -->
+<div class="login-form login-form-error">
+
+<? endif; ?>
+
     <h1><?=$test?></h1>
 
     <form method="post">
@@ -12,24 +22,13 @@
         <?=isset($_POST['rememberMe']) ? 'checked' : '' ?>>
         <label for="check"> Angemeldet bleiben?</label>
         </div>
+
         <? if (isset($error)) : ?>
             <div style="color:red">
                 <?=$error?>
             </div>
-            <!-- Weiß nicht wie die Error definiert sind, aber es wird pauschal erstmal Username UND Passwort rot umrandet 
-                Problem war dass es nach dem Seite refreshen immernoch rot umrandet war, obwohl die Fehlermeldung nichtmalmehr da war.
-            <style>
-                .login-form input:not([type="checkbox" i]):not([type="submit" i]){
-                    
-                    border: 1px solid red;
-                    border-radius: 4px;
-                    padding: 0 0 0 10px;
-                    width: 290px;
-                    height: 35px;
-                }
-            </style>
-            -->
         <? endif; ?><br>
+
         <input type="submit" name="submitLogin" value="Login"><br>
     </form>
 
@@ -40,4 +39,5 @@
             Register
         </button>
     </form>
+
 </div>
