@@ -9,7 +9,7 @@ session_start();    //??? wohin ???
 $controllerName = $_GET['c'] ?? 'pages';
 $actionName     = $_GET['a'] ?? 'home';
 
-$controllerPath = __DIR__.'/controller/'.$controllerName.'_controller.php';
+$controllerPath = CONTROLLERSPATH.$controllerName.'_controller.php';
 
 
 //if a cookie is set: log in user automatically

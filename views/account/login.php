@@ -19,7 +19,7 @@
 
         <div class="rememberMe">
         <input type="checkbox" name="rememberMe" id="check"
-        <?=isset($_POST['rememberMe']) ? 'checked' : '' ?>>
+         <?=isset($_POST['rememberMe']) ? 'checked' : '' ?>>
         <label for="check"> Angemeldet bleiben?</label>
         </div>
 

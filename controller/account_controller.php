@@ -44,7 +44,7 @@ class AccountController extends Controller
         }
 
         // push to the variables to the view
-        $this->setParam('error', $errors);
+        $this->setParam('errors', $errors);
         $this->setParam('validRegistration', $validRegistration);
     }
 
