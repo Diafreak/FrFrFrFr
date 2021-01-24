@@ -53,8 +53,6 @@ class AccountController extends Controller
     public function actionLogin()
     {
         $this->setParam('test', 'Login');
-        //$this->setParam('error', '');
-
 
         //continue to login if user isn't logged in already
         if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false)
@@ -63,18 +61,18 @@ class AccountController extends Controller
             if (isset($_POST['submitLogin']))
             {
                 //check if both input-fields are not empty
-                if (!empty($_POST['username'])
+                if (!empty($_POST['email'])
                 &&  !empty($_POST['password']))
                 {
                     //get input from login-form
-                    $username = htmlspecialchars($_POST['username']);
+                    $email    = htmlspecialchars($_POST['email']);
                     $password = htmlspecialchars($_POST['password']);
 
-                    logIn($username, $password, false, $this->params['error']);
+                    logIn($email, $password, false, $this->params['errors']);
                 }
                 else
                 {
-                    $this->setParam('error', 'Alle Felder müssen ausgefüllt sein!');
+                    $this->setParam('errors', 'Alle Felder müssen ausgefüllt sein!');
                 }
             }
         }

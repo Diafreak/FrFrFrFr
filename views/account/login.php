@@ -1,5 +1,5 @@
 
-<? if (!isset($error)) : ?>
+<? if (!isset($errors)) : ?>
 <!-- KOMMENTIEREN -->
 <div class="login-form">
 
@@ -12,8 +12,8 @@
     <h1><?=$test?></h1>
 
     <form method="post">
-        <input type="string" name="username" id="username" placeholder="Username" autocapitalize="off"
-        value="<?= (isset($error) && $error !== '') && isset($_POST['username']) ? htmlspecialchars($_POST['username']) : '' ?>">
+        <input type="string" name="email" id="email" placeholder="Email" autocapitalize="off"
+        value="<?= (isset($errors) && $errors !== '') && isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
 
         <input type="password" name="password" id="password" placeholder="Password" autocapitalize="off">
 
@@ -23,9 +23,9 @@
         <label for="check"> Angemeldet bleiben?</label>
         </div>
 
-        <? if (isset($error)) : ?>
+        <? if (isset($errors)) : ?>
             <div style="color:red">
-                <?=$error?>
+                <?=$errors?>
             </div>
         <? endif; ?><br>
 

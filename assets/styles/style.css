@@ -38,9 +38,7 @@ header > nav > ul > a
 
 
 nav ul a:hover {
-    background-color: #4361ee;
-    /* #f72585
-    4361ee*/
+    background-color: #4361ee; /*#f72585*/
 }
 
 nav ul .no-hover {
@@ -52,9 +50,7 @@ nav ul .no-hover a {
 }
 
 nav ul .no-hover:hover {
-    background-color: #5331a3;
-    /*#7209B7
-    3a0ca3*/
+    background-color: #5331a3; /*#7209B7 | 3a0ca3*/
 }
 
 .content {
@@ -90,11 +86,13 @@ div ul {
     width: 33.333%;
 }
 
-.content li.rechts {
+.content li.rechts
+{
     border-right: none;
 }
 
-.produkt-tabelle .produkt-name a {
+.produkt-tabelle .produkt-name a
+{
     text-overflow: ellipsis;
     padding: 10px 0;
     white-space: nowrap;
@@ -107,7 +105,11 @@ div ul {
     font-weight: 500;
 }
 
-.login-form {
+
+
+.login-form,
+.registration-form
+{
     margin: 12vh auto;
     color: white;
     text-align: center;
@@ -117,8 +119,10 @@ div ul {
     border-radius: 6px;
 }
 
+
 .login-form input:not([type="checkbox" i]),
-.button {
+.button
+{
     border: 1px solid #8a8a8a;
     border-radius: 4px;
     padding: 0 0 0 10px;
@@ -127,7 +131,13 @@ div ul {
 }
 
 
-.login-form-error input:not([type="checkbox" i]):not([type="submit" i])
+.login-form input[type="checkbox" i]
+{
+    text-align: left;
+    margin: 10px;
+}
+
+.login-form-error input:not([type="checkbox" i]) :not([type="submit" i])
 {
     border: 1px solid red;
     border-radius: 4px;
@@ -140,23 +150,39 @@ div ul {
     outline: none;
 }
 
-.login-form input#firstname,
-input#lastname {
-    display: inline-block;
-    width: 38%;
-    margin-bottom: 5px;
+
+.login-form input#email,
+.registration-form input#password
+{
+    border-radius: 4px 4px 0px 0px;
 }
 
-.login-form input#username,
-input#passwordconfirm {
+.login-form input#password,
+.registration-form input#passwordconfirm,
+.registration-form input#email
+{
     margin-bottom: 5px;
+    border-radius: 0 0 4px 4px;
 }
+
+
+.registration-form input#firstname
+{
+    border-radius: 4px 0 0 0;
+}
+
+.registration-form input#lastname
+{
+    border-radius: 0 4px 0 0;
+}
+
 
 .login-form input[type="submit" i],
-.button {
+.registration-form input[type="submit" i],
+.button
+{
     margin: 10px 0 0;
     background-color: #4361ee;
-    /*4361ee*/
     color: white;
     border-style: none;
     border-radius: 22px;
@@ -165,30 +191,15 @@ input#passwordconfirm {
 }
 
 .login-form input[type="submit" i]:hover,
-.button:hover {
+.registration-form input[type="submit" i]:hover,
+.button:hover
+{
     background-color: #6780ec;
-    /*6780ec*/
 }
 
-.login-form input[type="checkbox" i] {
-    text-align: left;
-    margin: 10px;
-}
 
-.registration-form {
-    margin: 12vh auto;
-    color: white;
-    text-align: center;
-    background-color: #5331a3;
-    /*3a0ca3*/
-    width: 363px;
-    padding: 50px 0 70px;
-    border-radius: 6px;
-    /*7209b7*/
-}
-
-.registration-form input:not([type="checkbox" i]),
-.button {
+.registration-form input
+{
     border: 1px solid #dfebf2;
     border-radius: 4px;
     padding: 0 0 0 10px;
@@ -199,37 +210,22 @@ input#passwordconfirm {
 .registration-form input#firstname,
 input#lastname {
     display: inline-block;
-    width: 38%;
+    width: 37.9%;
+    margin-bottom: 3.5px;
+}
+
+.registration-form input#email
+{
+    margin-bottom: 10px;
+}
+
+.registration-form input#passwordconfirm
+{
     margin-bottom: 5px;
 }
 
-.registration-form input#username,
-input#passwordconfirm {
-    margin-bottom: 5px;
-}
 
-.registration-form input[type="submit" i],
-.button {
-    margin: 10px 0 0;
-    background-color: #4361ee;
-    /*4361ee*/
-    color: white;
-    border-style: none;
-    border-radius: 22px;
-    cursor: pointer;
-    text-decoration: none;
-}
 
-.registration-form input[type="submit" i]:hover,
-.button:hover {
-    background-color: #6780ec;
-    /*6780ec*/
-}
-
-.registration-form input[type="checkbox" i] {
-    text-align: left;
-    margin: 10px;
-}
 
 footer {
     width: 100%;

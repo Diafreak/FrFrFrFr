@@ -2,7 +2,7 @@
 
 require_once 'config/imports.php';
 
-
+session_save_path(SESSIONSPATH);
 session_start();    //??? wohin ???
 
 

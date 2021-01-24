@@ -9,7 +9,7 @@ function rememberMe($userID, $password_DB)
 }
 
 
-function logIn($username = '', $password = '', $rememberMe = false, &$error = '')
+function logIn($email = '', $password = '', $rememberMe = false, &$error = '')
 {
     $db = $GLOBALS['db'];
 
@@ -26,20 +26,20 @@ function logIn($username = '', $password = '', $rememberMe = false, &$error = ''
     }
     else
     {
-        $userID = getUserID($username, $db);
+        $userID = getUserID($email, $db);
     }
 
 
     try
     {
-        //get the user-information for the entered username from the database
+        //get the user-information for the entered email from the database
         $sqlUserData = "SELECT * FROM user WHERE id = {$userID};";
-        $userData    = $db->query($sqlUserData)->fetchAll();    // [0] => Array (['id'] => 1, ..., ['username'] => max)
+        $userData    = $db->query($sqlUserData)->fetchAll();    // [0] => Array (['id'] => 1, ..., ['email'] => max)
 
-        $userID_DB   = $userData[0]['id']           ?? '';    //= isset($userData[0]['username']) ? $userData[0]['username'] : ''; 
+        $userID_DB   = $userData[0]['id']           ?? '';    //= isset($userData[0]['email']) ? $userData[0]['email'] : ''; 
         $password_DB = $userData[0]['passwordHash'] ?? '';
 
-        //check if username and password match
+        //check if email and password match         //!!! CHANGE TO EMAIL??? !!!
         if ($userID   == $userID_DB
         &&  $password == $password_DB)
         {
@@ -77,10 +77,13 @@ function logOut()
 
 
 
-function getUserID($username, $db)
+function getUserID($email, $db)
 {
-    $sqlUserID = "SELECT * FROM user WHERE email = '{$username}';";
+    $sqlUserID = "SELECT id FROM user WHERE email = '{$email}';";
     $userData  = $db->query($sqlUserID)->fetchAll();
+
+
+    var_dump($userData);
 
     return $userData[0]['id'] ?? '';
 }
