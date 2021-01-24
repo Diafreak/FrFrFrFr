@@ -1,9 +1,10 @@
 <?php
 
 
-function register()
+function register($firstName, $lastName, $email, $password)
 {
-    
+
+    // $user = new User();
 }
 
 
@@ -24,7 +25,7 @@ function logIn($email = '', $password = '', $rememberMe = false, &$error = '')
     }
     else
     {
-        $userID = getUserID($email, $db);
+        $userID = getUserID($email);
     }
 
 

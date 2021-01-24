@@ -1,5 +1,6 @@
 <?php
 
+
 class AccountController extends Controller
 {
     public function actionRegistration()
@@ -17,43 +18,45 @@ class AccountController extends Controller
             $passwordConfirm = htmlspecialchars($_POST['passwordconfirm'] ?? null);
 
 
-            if($firstName === null || mb_strlen($firstName) < 2)    //2 durch schema - min ersetzten
+            if ($firstName === null || mb_strlen($firstName) < 2)    //2 durch schema - min ersetzten
             {
-                $errors['firstName'] = 'Vorname ist zu kurz, bitte mehr als 2 Zeichen.';
+                $errors['firstName'] = 'Vorname ist zu kurz, bitte mehr als 2 Zeichen.'; //2 durch schema - min ersetzten
             }
 
-            if($firstName === null || mb_strlen($firstName) < 2)
+            if ($lastName === null || mb_strlen($lastName) < 2)
             {
                 $errors['lastName'] = 'Nachnname ist zu kurz, bitte mehr als 2 Zeichen.';
             }
 
-            if($email === null || mb_strlen($email) < 2)
+            if ($email === null || mb_strlen($email) < 2)
             {
                 $errors['email'] = 'E-Mail ist zu kurz, bitte mehr als 2 Zeichen.';
             }
 
-            if($password === null || mb_strlen($password) < 8)
+            if ($password === null || mb_strlen($password) < 8)
             {
                 $errors['password'] = 'Passwort ist zu kurz, bitte mehr als 8 Zeichen.';
             }
 
-            if($password !== $passwordConfirm)
+            if ($password !== $passwordConfirm)
             {
                 $errors['passwordMatch'] = 'Passwörter stimmen nicht überein.';
             }
 
-
-            if(count($errors) === 0)
+            if (doesEmailExist($email))
             {
-                // TODO: save to database
-                if( true ) // fake true because no db connected yet
-                {
-                    $validRegistration = true;
-                }
+                $errors['emailTaken'] = "Email ist bereits vorhanden.";
+            }
+
+            if (count($errors) === 0)
+            {
+                echo("Success");
+                register($firstName, $lastName, $email, $password);
+                $validRegistration = true;
             }
         }
 
-        // push to the variables to the view
+        // push variables to the view
         $this->setParam('errors', $errors);
         $this->setParam('validRegistration', $validRegistration);
     }
@@ -111,5 +114,6 @@ class AccountController extends Controller
         }
     }
 }
+
 
 ?>
