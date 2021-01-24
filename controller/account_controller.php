@@ -10,16 +10,21 @@ class AccountController extends Controller
         // oh my good, we get data
         if(isset($_POST['submitRegistration']))
         {
-            $firstName       = $_POST['firstname'] ?? null;
-            $lastName        = $_POST['lastname'] ?? null;
-            $email           = $_POST['email'] ?? null;
-            $password        = $_POST['password'] ?? null;
-            $passwordConfirm = $_POST['passwordconfirm'] ?? null;
+            $firstName       = htmlspecialchars($_POST['firstname']       ?? null);
+            $lastName        = htmlspecialchars($_POST['lastname']        ?? null);
+            $email           = htmlspecialchars($_POST['email']           ?? null);
+            $password        = htmlspecialchars($_POST['password']        ?? null);
+            $passwordConfirm = htmlspecialchars($_POST['passwordconfirm'] ?? null);
 
+
+            if($firstName === null || mb_strlen($firstName) < 2)    //2 durch schema - min ersetzten
+            {
+                $errors['firstName'] = 'Vorname ist zu kurz, bitte mehr als 2 Zeichen.';
+            }
 
             if($firstName === null || mb_strlen($firstName) < 2)
             {
-                $errors['firstName'] = 'Name ist zu kurz, bitte mehr als 2 Zeichen.';
+                $errors['lastName'] = 'Nachnname ist zu kurz, bitte mehr als 2 Zeichen.';
             }
 
             if($email === null || mb_strlen($email) < 2)
@@ -32,13 +37,18 @@ class AccountController extends Controller
                 $errors['password'] = 'Passwort ist zu kurz, bitte mehr als 8 Zeichen.';
             }
 
+            if($password !== $passwordConfirm)
+            {
+                $errors['passwordMatch'] = 'Passwörter stimmen nicht überein.';
+            }
+
 
             if(count($errors) === 0)
             {
                 // TODO: save to database
                 if( true ) // fake true because no db connected yet
                 {
-                    $success = true;
+                    $validRegistration = true;
                 }
             }
         }
