@@ -7,7 +7,7 @@
 
                 <ul>
                     <li class="no-hover">
-                        <a href="?c=pages&a=home">
+                        <a href="?c=pages&a=home" type="no-hover">
                             <img src=<?=IMAGESPATH . 'ferret.png'?> alt="Logo" width="80px" height="45px"></a>
                     </li>
 
@@ -28,10 +28,10 @@
                     </a>
 
                     <li class="no-hover">
-                        <a href="?c=pages&a=shoppingCard">
+                        <a href="?c=pages&a=shoppingCard" type="no-hover">
                             <img src=<?=IMAGESPATH . 'Korb.png'?> alt="Warenkorb" width="25px" height="25px">
                         </a>
-                        <a href="?c=account&a=login">
+                        <a href="?c=account&a=login" type="no-hover">
                             <img src=<?=IMAGESPATH . 'user.png'?> alt="Login" width="25px" height="25px">
                         </a>
                     </li>
