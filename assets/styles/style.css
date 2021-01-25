@@ -1,8 +1,19 @@
 body
 {
     margin: 0;
+    min-height: 90vh;
+    margin-bottom: 10vh;
+    clear: both;
 }
 
+footer {
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+}
+
+
+/*    */
 header
 {
     background-color: #5331a3; /*#7209B7 | 3a0ca3*/
@@ -37,7 +48,7 @@ header > nav > ul > a
 }
 
 
-nav ul a:hover {
+nav ul a:hover:not([type="no-hover" i]) {
     background-color: #4361ee; /*#f72585*/
 }
 
@@ -52,6 +63,8 @@ nav ul .no-hover a {
 nav ul .no-hover:hover {
     background-color: #5331a3; /*#7209B7 | 3a0ca3*/
 }
+
+
 
 .content {
     padding-top: 10px;
@@ -137,6 +150,7 @@ div ul {
     margin: 10px;
 }
 
+/*  Bei einem Fehler werden die Eingabefelder rot umrandet, aber nicht der submit button oder das checkbox feld  */
 .login-form-error input:not([type="checkbox" i]) :not([type="submit" i])
 {
     border: 1px solid red;
@@ -227,11 +241,7 @@ input#lastname {
 
 
 
-footer {
-    width: 100%;
-    bottom: 0;
-    text-align: center;
-}
+
 
 .button a {
     color: white;
