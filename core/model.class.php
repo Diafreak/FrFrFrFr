@@ -27,7 +27,7 @@ abstract class Model
 
     // gets an associative array $newValues and inserts the gives values in the $values-array of the class,
     // but only if the key of $newValues exist in the $schema of the created class
-    public function __construct($newValues)
+    public function __construct($newValues = [])
     {
         try
         {
@@ -87,8 +87,8 @@ abstract class Model
         $valuesString  = "";
         $columnsString = "";
 
-        foreach($this->schema as $key => $schemaOptions)   //??? values nötig ???          //$key           = id, createdAt, updatedAt...
-        {                                                                                  //$schemaOptions = ["type"] => ... ["max"] => ...
+        foreach($this->schema as $key => $schemaOptions)          //$key = id, createdAt, updatedAt...
+        {
             $columnsString .=       $key . ', ';
             $valuesString  .= ':' . $key . ', ';
         }
@@ -176,6 +176,10 @@ abstract class Model
     }
 
 
+    public function getSchema()
+    {
+        return $this->schema;
+    }
 
     /*
     public static function find($whereStr = '1')

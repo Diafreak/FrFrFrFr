@@ -34,7 +34,7 @@ function logIn($email = '', $password = '', $rememberMe = false, &$error = '')
     {
         // get the user-information for the entered email from the database
         $sqlUserData = "SELECT * FROM user WHERE id = {$userID};";
-        $userData    = $db->query($sqlUserData)->fetchAll();                // [0] => Array (['id'] => 1, ..., ['email'] => max)
+        $userData    = $db->query($sqlUserData)->fetchAll();
 
         $userID_DB   = $userData[0]['id']           ?? '';                  //= isset($userData[0]['email']) ? $userData[0]['email'] : ''; 
         $password_DB = $userData[0]['passwordHash'] ?? '';
@@ -81,36 +81,103 @@ function logOut()
 
 function validateInputs($userInformation, &$errors)
 {
+    // extract the keys from $userInformation into individual variables
     extract($userInformation);
 
-    if ($firstName === null || mb_strlen($firstName) < 2)    //!!! 2 durch schema - min ersetzten !!!
+    // validate all inputs from the registration form
+    validateFirstName($firstName, $errors);
+    validateLastName( $lastName,  $errors);
+
+    checkEmailExistence($email, $errors);
+    validateEmail(      $email, $errors);
+
+    validatePassword($password, $errors);
+
+    validatePasswordConfirm($password, $passwordConfirm, $errors);
+}
+
+
+
+// ===============================
+// ===== EXTRACTED FUNCTIONS =====
+// ===============================
+
+function validateFirstName($firstName, &$errors)
+{
+    $user = new User();                                                             //??? Better solution ???
+    $minLength = $user->getSchema()['firstName']['min'];
+    $maxLength = $user->getSchema()['firstName']['max'];
+
+    if ($firstName === null || mb_strlen($firstName) < $minLength)
     {
-        $errors['firstName'] = 'Vorname muss mind. 2 Zeichen lang sein.'; //!!! 2 durch schema - min ersetzten !!!
+        $errors['firstName'] = "Vorname muss mind. $minLength Zeichen lang sein.";
+    }
+    else if (mb_strlen($firstName) > $maxLength)
+    {
+        $errors['firstName'] = "Vorname darf max. $maxLength Zeichen lang sein.";
     }
 
-    if ($lastName === null || mb_strlen($lastName) < 2)
+    unset($user);
+}
+
+
+function validateLastName($lastName, &$errors)
+{
+    $user = new User();                                                             //??? Better solution ???
+    $minLength = $user->getSchema()['lastName']['min'];
+    $maxLength = $user->getSchema()['lastName']['max'];
+
+    if ($lastName === null || mb_strlen($lastName) < $minLength)
     {
-        $errors['lastName'] = 'Nachnname muss mind. 2 Zeichen lang sein';
+        $errors['lastName'] = "Nachname muss mind. $minLength Zeichen lang sein.";
+    }
+    else if (mb_strlen($lastName) > $maxLength)
+    {
+        $errors['lastName'] = "Nachname darf max. $maxLength Zeichen lang sein.";
     }
 
-    if ($email === null || mb_strlen($email) < 2)                           //!!! Regex check for xxx@xxx.xx!!!
-    {
-        $errors['email'] = 'E-Mail ist zu kurz, bitte mehr als 2 Zeichen.';
-    }
+    unset($user);
+}
 
-    if ($password === null || mb_strlen($password) < 8)
-    {
-        $errors['password'] = 'Passwort muss mind. 8 Zeichen lang sein.';
-    }
 
-    if ($password !== $passwordConfirm)
-    {
-        $errors['passwordMatch'] = 'Passwörter stimmen nicht überein.';
-    }
-
+function checkEmailExistence($email, &$errors)
+{
     if (doesEmailExist($email))
     {
         $errors['emailTaken'] = "Email ist bereits vorhanden.";
+    }
+}
+
+
+function validateEmail($email, &$errors)
+{
+    $regexEmail = "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/";      //??? 4 doesn't work ???
+
+    // check if email has pattern of x@x.xx
+    if (!preg_match($regexEmail, $email))
+    {
+        $errors['email'] = 'Bitte eine valide Email-Adresse eingeben.';
+    }
+}
+
+
+function validatePassword($password, &$errors)
+{
+    $regexPassword = "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/";               // !!! NEED REGEX !!!
+
+    // check if password has: 
+    if (!preg_match($regexPassword, $password))
+    {
+        $errors['email'] = 'Bitte eine valide Email-Adresse eingeben.';
+    }
+}
+
+
+function validatePasswordConfirm($password, $passwordConfirm, &$errors)
+{
+    if ($password !== $passwordConfirm)
+    {
+        $errors['passwordMatch'] = 'Passwörter stimmen nicht überein.';
     }
 }
 
