@@ -17,7 +17,7 @@
                     <a href="?c=pages&a=about">
                         <li>ÜBER UNS</li>
                     </a>
-                    <a href="?c=pages&a=products">
+                    <a href="?c=shop&a=products">
                         <li>PRODUKTE</li>
                     </a>
                     <a href="?c=pages&a=current">
