@@ -1,4 +1,4 @@
-
+/* Allgemeines*/
 body
 {
     /* font-family: 'Average',  'Times New Roman'; */
@@ -23,7 +23,7 @@ footer {
 }
 
 
-/*    */
+/*Navigationsleisten Style*/
 header
 {
     background-color: #5331a3; /*#7209B7 | 3a0ca3*/
@@ -58,25 +58,30 @@ header > nav > ul > a
 }
 
 
-nav ul a:hover:not([type="no-hover" i]) {
+nav ul a:hover:not([type="no-hover" i]) 
+{
     background-color: #4361ee; /*#f72585*/
 }
 
-nav ul .no-hover {
+nav ul .no-hover 
+{
     cursor: context-menu;
 }
 
-nav ul .no-hover a {
+nav ul .no-hover a 
+{
     text-decoration: none;
 }
 
-nav ul .no-hover:hover {
+nav ul .no-hover:hover 
+{
     background-color: #5331a3; /*#7209B7 | 3a0ca3*/
 }
 
 
-
-.content {
+/*Hauptpart der Seite*/
+.content 
+{
     padding-top: 10px;
     padding-bottom: 10px;
     max-width: 1300px;
@@ -85,7 +90,8 @@ nav ul .no-hover:hover {
     margin: 0 auto;
 }
 
-div ul {
+div ul 
+{
     display: table;
     width: 100%;
     display: table;
@@ -97,7 +103,8 @@ div ul {
     table-layout: fixed;
 }
 
-.content li {
+.content li 
+{
     box-sizing: border-box;
     border-bottom: 1px solid #5331a3;
     border-right: 1px solid #5331a3;
@@ -129,9 +136,8 @@ div ul {
 }
 
 
-
-.login-form,
-.registration-form
+/*Allgemeine Form faktoren sowie Login details*/
+.user-form
 {
     margin: 15vh auto;
     color: white;
@@ -142,41 +148,7 @@ div ul {
     border-radius: 6px;
 }
 
-
-.login-form input:not([type="checkbox" i]),
-.button
-{
-    border: 1px solid #8a8a8a;
-    border-radius: 4px;
-    padding: 0 0 0 10px;
-    width: 290px;
-    height: 35px;
-}
-
-
-.login-form input[type="checkbox" i]
-{
-    text-align: left;
-    margin: 10px;
-}
-
-/*  Bei einem Fehler werden die Eingabefelder rot umrandet, aber nicht der submit button oder das checkbox feld  */
-.login-form-error input:not([type="checkbox" i]) :not([type="submit" i])
-{
-    border: 1px solid red;
-    border-radius: 4px;
-    padding: 0 0 0 10px;
-    width: 290px;
-    height: 35px;
-}
-
-:focus {
-    outline: none;
-}
-
-
-.login-form input#email,
-.registration-form input#password
+.user-form input#email, input#password
 {
     border-radius: 4px 4px 0px 0px;
 }
@@ -189,20 +161,7 @@ div ul {
     border-radius: 0 0 4px 4px;
 }
 
-
-.registration-form input#firstname
-{
-    border-radius: 4px 0 0 0;
-}
-
-.registration-form input#lastname
-{
-    border-radius: 0 4px 0 0;
-}
-
-
-.login-form input[type="submit" i],
-.registration-form input[type="submit" i],
+.user-form input[type="submit" i],
 .button
 {
     margin: 10px 0 0;
@@ -213,14 +172,74 @@ div ul {
     cursor: pointer;
     text-decoration: none;
 }
+.user-form input:not([type="checkbox" i]),
+.button
+{
+    border: 1px solid #8a8a8a;
+    border-radius: 4px;
+    padding: 0 0 0 10px;
+    width: 290px;
+    height: 35px;
+}
 
-.login-form input[type="submit" i]:hover,
-.registration-form input[type="submit" i]:hover,
+.login-form input[type="checkbox" i]
+{
+    text-align: left;
+    margin: 10px;
+}
+
+.user-form input[type="submit" i]:hover, 
 .button:hover
 {
     background-color: #6780ec;
 }
 
+/*Entfernt die stadardmäßige Umrandung in Eingabefeldern*/
+:focus {
+    outline: none;
+}
+
+    /*Für die Schrift der "Zurück zum Login" und "Registrierungs" Knöpfe*/
+.button a 
+{
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+div.rememberMe 
+{
+    display: inline-block;
+    text-align: left;
+}
+
+label 
+{
+    color: white;
+}
+
+
+/*  Bei einem Fehler werden die Eingabefelder rot umrandet, aber nicht der submit button oder das checkbox feld  */
+.login-form-error input:not([type="checkbox" i]) :not([type="submit" i])
+{
+    border: 1px solid red;
+    border-radius: 4px;
+    padding: 0 0 0 10px;
+    width: 290px;
+    height: 35px;
+}
+
+
+/*Registration Details*/
+.registration-form input#firstname
+{
+    border-radius: 4px 0 0 0;
+}
+
+.registration-form input#lastname
+{
+    border-radius: 0 4px 0 0;
+}
 
 .registration-form input
 {
@@ -246,24 +265,4 @@ input#lastname {
 .registration-form input#passwordconfirm
 {
     margin-bottom: 5px;
-}
-
-
-
-
-
-
-.button a {
-    color: white;
-    text-decoration: none;
-    display: block;
-}
-
-div.rememberMe {
-    display: inline-block;
-    text-align: left;
-}
-
-label {
-    color: white;
 }

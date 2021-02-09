@@ -1,11 +1,11 @@
 
 <? if (!isset($errors)) : ?>
 <!-- KOMMENTIEREN -->
-<div class="login-form">
+<div class="login-form user-form">
 
 <? else : ?>
 <!-- KOMMENTIEREN -->
-<div class="login-form login-form-error">
+<div class="login-form user-form login-form-error">
 
 <? endif; ?>
 

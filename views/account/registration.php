@@ -7,7 +7,7 @@
     <?="";//header('Location: ?c=account&a=login'); ?>
 <?php else : ?>
 
-<div class="registration-form">
+<div class="registration-form user-form">
     <h1>Registrierung</h1>
 
     <form method="post">
