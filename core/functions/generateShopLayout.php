@@ -7,22 +7,26 @@ function generateShopLayout($catName)
     $db = $GLOBALS['db'];
 
     // get the category-ID from the given category-name
-    $sqlCategoryId = "SELECT id FROM category WHERE name = '{$catName}';";   //auslagern
+    $sqlCategoryId = "SELECT id FROM category WHERE name = '{$catName}';";                      //??? auslagern ???
     $catIdArray    = $db->query($sqlCategoryId)->fetchAll();
     $catId         = $catIdArray[0]['id'] ?? null;
 
-    
+
     if ($catId !== null)
     {
         // store all the products that are in that category in $productsFromSameCategory
-        $sqlProducts              = "SELECT * FROM product WHERE category_id = '{$catId}';";    //auslagern
+        $sqlProducts              = "SELECT * FROM product WHERE category_id = '{$catId}';";    //??? auslagern ???
         $productsFromSameCategory = $db->query($sqlProducts)->fetchAll();
-        
+
         // store the images for the products in $imagesArray
-        $sqlImages   = "SELECT imageUrl, altText, product_id FROM image;";
-        $imagesArray = $db->query($sqlImages)->fetchAll();                  //!!!better: only get the ones that are necessary!!!
-        
-        
+        // only stores images from the current category so no unnecessary images are in the array
+        $sqlImages   = "SELECT imageUrl, altText, product_id
+                        FROM image i
+                        JOIN product p ON i.product_id = p.id
+                        WHERE category_id = {$catId};";
+        $imagesArray = $db->query($sqlImages)->fetchAll();
+
+
         // because the layout has 3 products in a row $itemsInRow is required to count
         // the products in the array so no uneccessary columns will be generated
         // $itemsInRow loops through $position because every column in each row
@@ -31,16 +35,16 @@ function generateShopLayout($catName)
         $position = [ 0 => 'left',
                       1 => 'middle',
                       2 => 'right', ];
-        
+
         $productsHTMLLayout = "";
-        
+
         foreach($productsFromSameCategory as $productData)
         {
             $productId   = $productData['id'];
             $productName = $productData['name'];
             $price       = $productData['price'];
-        
-            //get the correct picture from the $imagesArray for each product
+
+            // get the correct picture from the $imagesArray for each product
             foreach($imagesArray as $imageData)
             {
                 if ($imageData['product_id'] == $productId)
@@ -50,44 +54,42 @@ function generateShopLayout($catName)
                     break;
                 }
             }
-        
-            //calls the generateProductHTML function based on the current position and arguments form the product/image
+
+            // calls the generateProductHTML function based on the current position and arguments form the product/image
             switch ($position[$itemsInRow])
             {
                 case "left":
-                    $productsHTMLLayout .= generateProductHTML("links", "blabla", $imageSrc, $altText, $productName, $price);
+                    $productsHTMLLayout .= generateProductHTML("links", "?c=shop&a=productDetails&prodId={$productId}", $imageSrc, $altText, $productName, $price);        // !!! LINK RAUSNEHMEN !!!
                     ++$itemsInRow;
                     break;
-                
+
                 case "middle":
-                    $productsHTMLLayout .= generateProductHTML("mitte", "blabla", $imageSrc, $altText, $productName, $price);
+                    $productsHTMLLayout .= generateProductHTML("mitte", "?c=shop&a=productDetails&prodId={$productId}", $imageSrc, $altText, $productName, $price);
                     ++$itemsInRow;
                     break;
-                
+
                 case "right":
-                    $productsHTMLLayout .= generateProductHTML("rechts", "blabla", $imageSrc, $altText, $productName, $price);
+                    $productsHTMLLayout .= generateProductHTML("rechts", "?c=shop&a=productDetails&prodId={$productId}", $imageSrc, $altText, $productName, $price);
                     $itemsInRow = 0;
                     break;
-                
+
                 default:
-                    echo("This direction does not exist.");   // better on error_controller?
+                    echo("This direction does not exist.");
                     break;
             }
         
         }
-    
+
         echo($productsHTMLLayout);  //???besser???
     }
     else
     {
-        echo("Keine Produkte im Shop vorhanden.");
+        echo("Zu dieser Kategorie gibt es keine Produkte im Shop.");
     }
-
-    //echo("<pre>");var_dump($productData);echo("</pre>");
 }
 
 
-//generates the HTML for the given position
+// generates the HTML for the given position
 function generateProductHTML($position, $productLink, $imageSrc, $altText, $productName, $price)
 {
     $html = "<li class='{$position}'>";
