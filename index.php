@@ -72,3 +72,10 @@ else { header('Location: index.php?c=errors&a=error404'); }
     </footer>
 </body>
 </html>
+
+
+<!--
+    echo("<pre>");
+    var_dump($productDetails);
+    echo("</pre>");
+-->

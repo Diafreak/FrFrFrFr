@@ -1,4 +1,12 @@
-<h1><?=$test?></h1>
+<h1><?= $name; ?></h1>
 
+<img src=<?= $imageUrl ?> alt=<?= $altText ?> width='250em' height='250em'>
+<br>
 
-<img src=<?= $imageSrc ?> alt=<?= $altText ?> width='250em' height='250em'>
+Preis: <?= $price; ?>€
+<br>
+
+Auf Lager: <?= $numberInStock; ?>
+<br>
+
+Beschreibung: <?= $description; ?>

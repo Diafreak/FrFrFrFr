@@ -80,7 +80,7 @@ function generateShopLayout($catName)
         
         }
 
-        echo($productsHTMLLayout);  //???besser???
+        echo($productsHTMLLayout);                                       //???besser???
     }
     else
     {
@@ -96,7 +96,7 @@ function generateProductHTML($position, $productLink, $imageSrc, $altText, $prod
 
     $html .=     "<div class='product-showcase'>";
     $html .=         "<a href='{$productLink}'>";
-    $html .=             "<img class='product-picture' src='.{$imageSrc}' alt='{$altText}' width='80%' height='55%'>";   //!!! width-height in css !!!
+    $html .=             "<img class='product-picture' src='{$imageSrc}' alt='{$altText}' width='80%' height='55%'>";   //!!! width-height in css !!!
     $html .=         "</a>";
     $html .=     "</div>";
 

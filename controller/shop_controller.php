@@ -13,15 +13,25 @@ class ShopController extends Controller
 
     public function actionProductDetails()
     {
-        $this->setParam('test', "INFOOO");
+        $db     = $GLOBALS['db'];
+        $prodId = $_GET['prodId'];
 
-        $db = $GLOBALS['db'];
-        //$_GET['prodId'];
+        // get all product-details from the product that has been clicked on
+        $sqlCurrentProduct = "SELECT p.name, p.price, p.numberInStock, p.description,
+                                     i.imageUrl, i.altText
+                              FROM product p
+                              JOIN image i ON p.id = i.product_id
+                              WHERE p.id = {$prodId};";
+        $productDetails = $db->query($sqlCurrentProduct)->fetchAll();
 
-        $this->setParam('imageSrc', "assets/images/products/apple.jpg");
-        $this->setParam('altText',  "Apfel");
+        // push all necessary product-info from $productDetails to the view
+        foreach ($productDetails[0] as $key => $value)
+        {
+            $this->setParam($key, $value);
+        }
     }
 
 }
+
 
 ?>
