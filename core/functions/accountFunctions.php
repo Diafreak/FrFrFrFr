@@ -154,7 +154,7 @@ function validateEmail($email, &$errors)
     $regexEmail = "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/";      //??? 4 doesn't work ???
 
     // check if email has pattern of x@x.xx
-    if (!preg_match($regexEmail, $email))
+    if ($email === null || !preg_match($regexEmail, $email))
     {
         $errors['email'] = 'Bitte eine valide Email-Adresse eingeben.';
     }
@@ -163,12 +163,11 @@ function validateEmail($email, &$errors)
 
 function validatePassword($password, &$errors)
 {
-    $regexPassword = "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/";               // !!! NEED REGEX !!!
+    //$regexPassword = "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/";               // !!! NEED REGEX !!!
 
-    // check if password has: 
-    if (!preg_match($regexPassword, $password))
+    if ($password === null || mb_strlen($password) < 6)  //!preg_match($regexPassword, $password))
     {
-        $errors['email'] = 'Bitte eine valide Email-Adresse eingeben.';
+        $errors['password'] = 'Passwort muss mind. 6 Zeichen lang sein.';
     }
 }
 
