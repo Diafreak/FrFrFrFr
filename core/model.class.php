@@ -10,36 +10,53 @@ abstract class Model
     const TYPE_DECIMAL = 'dec';
     const TYPE_DATE    = 'date';
 
+
+
+    // =====================
+    // ===== VARIABLES =====
+    // =====================
+
     protected $schema = [];
+    private   $values = [];
 
-    private $values = [];
 
 
-    //constructor
-    public function __construct($values)        //was muss hier übergeben werden???
+    // =======================
+    // ===== CONSTRUCTOR =====
+    // =======================
+
+    // gets an associative array $newValues and inserts the gives values in the $values-array of the class,
+    // but only if the key of $newValues exist in the $schema of the created class
+    public function __construct($newValues = [])
     {
         try
         {
-            foreach($this->schema as $key => $value)
+            // loop through the schema of the created class
+            foreach ($this->schema as $key => $value)
             {
-                if(isset($values[$key]))
+                // if the key from $newValues exists in the $schema
+                if (isset($newValues[$key]))
                 {
-                    $this->$key = $values[$key];
+                    $this->setValue($key, $newValues[$key]);
                 }
                 else
                 {
-                    $this->$key = null;
+                    $this->setValue($key, null);
                 }
             }
-            
         }
-        catch(\Exception $error)
+        catch(\Exception $error)        //!!! CHANGE !!!
         {
             print_r($error);
             exit(1);
         }
     }
 
+
+
+    // =============================
+    // ===== GENERAL FUNCTIONS =====
+    // =============================
 
     public static function tablename()
     {
@@ -54,7 +71,82 @@ abstract class Model
     }
 
 
-    public function __set($key, $value)
+
+    // =========================
+    // ===== SQL FUNCTIONS =====
+    // =========================
+
+    public function insert()
+    {
+        $db        = $GLOBALS['db'];
+        $tableName = self::tablename();
+
+        // $columnsString generates a string from the class-schema in which the insert-collums are stored
+        // $valuesString  generates a string of the values that you want to insert
+        // $sqlString combines $columnsString & $valuesString toa complete sql-insert-statement
+        $valuesString  = "";
+        $columnsString = "";
+
+        foreach($this->schema as $key => $schemaOptions)          //$key = id, createdAt, updatedAt...
+        {
+            $columnsString .=       $key . ', ';
+            $valuesString  .= ':' . $key . ', ';
+        }
+
+        // remove the last comma from the string
+        $columnsString = rtrim($columnsString, ', ');
+        $valuesString  = rtrim($valuesString,  ', ');
+
+        $sqlString = "INSERT INTO `{$tableName}` (" . $columnsString . ') VALUES (' . $valuesString . ');';
+
+
+        try
+        {
+            $insertStatement = $db->prepare($sqlString);
+
+            // bind each value from the $values-array to its related placeholder in the insertStatement
+            foreach ($this->values as $key => $value)
+            {
+                //$insertStatement->bindParam(':'.$key, $value);        //"SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'email' cannot be null"
+                //echo(':'.$key . " -> " . $value . "<br>");
+                $insertStatement->bindParam(':id',           $this->values['id']);
+                $insertStatement->bindParam(':createdAt',    $this->values['createdAt']);
+                $insertStatement->bindParam(':updatedAt',    $this->values['updatedAt']);
+                $insertStatement->bindParam(':email',        $this->values['email']);
+                $insertStatement->bindParam(':passwordHash', $this->values['passwordHash']);
+                $insertStatement->bindParam(':firstName',    $this->values['firstName']);
+                $insertStatement->bindParam(':lastName',     $this->values['lastName']);
+                $insertStatement->bindParam(':address_id',   $this->values['address_id']);
+            }
+
+            // execute the insert-statement
+            $insertStatement->execute();
+        }
+        catch (\PDOException $e)
+        {
+            die( 'Error inserting new User: ' . $e->GetMessage() );              //!!! CHANGE !!!
+        }
+
+    }
+
+
+
+    // ======================
+    // ===== DESTRUCTOR =====
+    // ======================
+
+    public function __destruct()
+    {
+        $schema = null;
+        $values = null;
+    }
+
+
+
+    // ===========================
+    // ===== SETTER & GETTER =====
+    // ===========================
+    public function setValue($key, $value)
     {
         //is the given key in the schema?
         if(isset($this->schema[$key]))
@@ -69,7 +161,7 @@ abstract class Model
     }
 
 
-    public function __get($key)
+    public function getValue($key)
     {
         //is the given key in the schema?
         if(isset($this->schema[$key]))
@@ -84,44 +176,10 @@ abstract class Model
     }
 
 
-
-    public function insert()
+    public function getSchema()
     {
-        $db        = $GLOBALS['db'];
-        $tableName = self::tablename();
-
-        //$sqlString    generates a string from the class-schema in which the insert-collums are stored
-        //$valuesString generates a string of the values that you want to insert
-        $sqlString    = "INSERT INTO `{$tableName}` (";
-        $valuesString = "";
-
-        foreach($this->schema as $key => $values)   //??? values nötig ???          //key     = id, createdAt, updatedAt...
-        {                                                                           //$values = ["type"] => ... ["max"] => ...
-            //echo('key:' . $key . '<br>');
-            echo('values: '); var_dump($values); echo('<br>');
-
-            $sqlString .= $key . ',';
-            $valuesString .= $key . ',';
-        }
-
-        //remove the last comma from the string
-        $sqlString    = rtrim($sqlString,    ',');
-        $valuesString = rtrim($valuesString, ',');
-
-
-        $sqlString = $sqlString . ') VALUES (' . $valuesString . ');';
-        echo($sqlString);
+        return $this->schema;
     }
-
-
-
-    //destructor
-    public function __destruct()
-    {
-        $schema = null;
-        $values = null;
-    }
-
 
     /*
     public static function find($whereStr = '1')
@@ -159,40 +217,6 @@ abstract class Model
 
         return null;
     }
-
-
-    public function insert()
-    {
-        $db = $GLOBALS['db'];
-        $tableName = self::tablename();
-        $sqlStr = "INSERT INTO `${tableName}` (";
-        $valuesStr = "(";
-        foreach($this->schema as $key => $value)
-        {
-            $sqlStr.=$key.',';
-            $valuesStr.=':'.$key.',';
-        }
-
-        $sqlStr = rtrim($sqlStr, ',');
-        $valuesStr = rtrim($valuesStr, ',');
-
-        $sqlStr = $sqlStr.') VALUES '.$valuesStr.');';
-
-        try
-        {
-            $stmt=$db->prepare($sqlStr);
-            $stmt->execute($this->values);
-            $this->id = $db->lastInsertId();
-        }
-        catch(\PDOException $e)
-        {
-            print_r($e);
-        }
-    }
-
-    public function update(){}
-
-    public function destroy(){}
     */
 }
 
