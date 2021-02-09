@@ -59,17 +59,17 @@ function generateShopLayout($catName)
             switch ($position[$itemsInRow])
             {
                 case "left":
-                    $productsHTMLLayout .= generateProductHTML("links", "?c=shop&a=productDetails&prodId={$productId}", $imageSrc, $altText, $productName, $price);        // !!! LINK RAUSNEHMEN !!!
+                    $productsHTMLLayout .= generateProductHTML("links", $productId, $imageSrc, $altText, $productName, $price);
                     ++$itemsInRow;
                     break;
 
                 case "middle":
-                    $productsHTMLLayout .= generateProductHTML("mitte", "?c=shop&a=productDetails&prodId={$productId}", $imageSrc, $altText, $productName, $price);
+                    $productsHTMLLayout .= generateProductHTML("mitte", $productId, $imageSrc, $altText, $productName, $price);
                     ++$itemsInRow;
                     break;
 
                 case "right":
-                    $productsHTMLLayout .= generateProductHTML("rechts", "?c=shop&a=productDetails&prodId={$productId}", $imageSrc, $altText, $productName, $price);
+                    $productsHTMLLayout .= generateProductHTML("rechts", $productId, $imageSrc, $altText, $productName, $price);
                     $itemsInRow = 0;
                     break;
 
@@ -90,19 +90,19 @@ function generateShopLayout($catName)
 
 
 // generates the HTML for the given position
-function generateProductHTML($position, $productLink, $imageSrc, $altText, $productName, $price)
+function generateProductHTML($position, $productId, $imageSrc, $altText, $productName, $price)
 {
     $html = "<li class='{$position}'>";
 
     $html .=     "<div class='product-showcase'>";
-    $html .=         "<a href='{$productLink}'>";
+    $html .=         "<a href='?c=shop&a=productDetails&prodId={$productId}'>";
     $html .=             "<img class='product-picture' src='{$imageSrc}' alt='{$altText}' width='80%' height='55%'>";   //!!! width-height in css !!!
     $html .=         "</a>";
     $html .=     "</div>";
 
     $html .=     "<div class='produkt-details'>";
     $html .=         "<div class='produkt-name'>";
-    $html .=             "<a href='{$productLink}'>";
+    $html .=             "<a href='?c=shop&a=productDetails&prodId={$productId}'>";
     $html .=                 "{$productName}";
     $html .=             "</a>";
     $html .=         "</div>";
