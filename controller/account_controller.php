@@ -3,6 +3,7 @@
 
 class AccountController extends Controller
 {
+
     public function actionRegistration()
     {
         $userInformation   = [];
@@ -90,6 +91,7 @@ class AccountController extends Controller
             header('Location: ?c=account&a=login');
         }
     }
+
 }
 
 
