@@ -92,26 +92,26 @@ function generateShopLayout($catName)
 // generates the HTML for the given position
 function generateProductHTML($position, $productId, $imageSrc, $altText, $productName, $price)
 {
-    $html = "<li class='{$position}'>";
+    $html  = "<li class='{$position}'>\n";
 
-    $html .=     "<div class='product-showcase'>";
-    $html .=         "<a href='?c=shop&a=productDetails&prodId={$productId}'>";
-    $html .=             "<img class='product-picture' src='{$imageSrc}' alt='{$altText}' width='80%' height='55%'>";   //!!! width-height in css !!!
-    $html .=         "</a>";
-    $html .=     "</div>";
+    $html .=     "<div class='product-showcase'>\n";
+    $html .=         "<a href='?c=shop&a=productDetails&prodId={$productId}'>\n";
+    $html .=             "<img class='product-picture' src='{$imageSrc}' alt='{$altText}' width='80%' height='55%'>\n";   //!!! width-height in css !!!
+    $html .=         "</a>\n";
+    $html .=     "</div>\n";
 
-    $html .=     "<div class='produkt-details'>";
-    $html .=         "<div class='produkt-name'>";
-    $html .=             "<a href='?c=shop&a=productDetails&prodId={$productId}'>";
-    $html .=                 "{$productName}";
-    $html .=             "</a>";
-    $html .=         "</div>";
-    $html .=         "<div class='produkt-preis'>";
-    $html .=             "{$price} €";
-    $html .=         "</div>";
-    $html .=     "</div>";
+    $html .=     "<div class='produkt-details'>\n";
+    $html .=         "<div class='produkt-name'>\n";
+    $html .=             "<a href='?c=shop&a=productDetails&prodId={$productId}'>\n";
+    $html .=                 "{$productName}\n";
+    $html .=             "</a>\n";
+    $html .=         "</div>\n";
+    $html .=         "<div class='produkt-preis'>\n";
+    $html .=             "{$price} €\n";
+    $html .=         "</div>\n";
+    $html .=     "</div>\n";
 
-    $html .= "</li>";
+    $html .= "</li>\n";
 
     return $html;
 }
