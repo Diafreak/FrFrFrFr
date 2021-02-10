@@ -8,7 +8,7 @@
                 <ul>
                     <li class="no-hover">
                         <a href="?c=pages&a=home" type="no-hover">
-                            <img src=<?=IMAGESPATH . 'ferret.png'?> alt="Logo" width="80px" height="45px"></a>
+                            <img src=<?=IMAGESPATH . 'ferret.svg'?> alt="Logo" width="100px" height="45px"></a>
                     </li>
 
                     <a href="?c=pages&a=home">
