@@ -1,7 +1,9 @@
 <h1><?=$test?></h1>
 <?="Dies ist ein Test"?>
 
-<div class="ui-corner-all ui-state-highlight" id="login-success" style="">
+<!-- pass a get with a var true when coming from login only
+     Do the same for Registration -->
+<div class="ui-corner-all ui-state-highlight" id="login-success" style="">      
       <span>Anmeldung erfolgreich</span>
       <a href="#" id="close-login-success">close</a>
 </div>
