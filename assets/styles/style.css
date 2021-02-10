@@ -1,4 +1,8 @@
-/* Allgemeines*/
+/*
+==============================
+=========Allgemeines==========
+==============================
+*/
 body
 {
     /* font-family: 'Average',  'Times New Roman'; */
@@ -23,7 +27,11 @@ footer {
 }
 
 
-/*Navigationsleisten Style*/
+/*
+==============================
+===Navigationsleisten Style===
+==============================
+*/
 header
 {
     background-color: #5331a3; /*#7209B7 | 3a0ca3*/
@@ -78,8 +86,11 @@ nav ul .no-hover:hover
     background-color: #5331a3; /*#7209B7 | 3a0ca3*/
 }
 
-
-/*Hauptpart der Seite*/
+/*
+==============================
+===Seitenmitte / Shop-Style===
+==============================
+*/
 .content 
 {
     padding-top: 10px;
@@ -135,8 +146,11 @@ div ul
     font-weight: 500;
 }
 
-
-/*Allgemeine Form faktoren sowie Login details*/
+/*
+=====================================
+===Allgemeine Form & Login Details===
+=====================================
+*/
 .user-form
 {
     margin: 15vh auto;
@@ -194,7 +208,7 @@ div ul
     background-color: #6780ec;
 }
 
-/*Entfernt die stadardmäßige Umrandung in Eingabefeldern*/
+    /*Entfernt die stadardmäßige Umrandung in Eingabefeldern*/
 :focus {
     outline: none;
 }
@@ -229,8 +243,11 @@ label
     height: 35px;
 }
 
-
-/*Registration Details*/
+/*
+==============================
+=====Registration Details=====
+==============================
+*/
 .registration-form input#firstname
 {
     border-radius: 4px 0 0 0;
@@ -266,3 +283,63 @@ input#lastname {
 {
     margin-bottom: 5px;
 }
+
+/*
+==============================
+========Warenkorb Style=======
+==============================
+*/
+.warenkorb.aktiv {
+    right: 0;
+}
+.warenkorb {
+    background-color: #eee;
+    bottom: 0;
+    height: auto;
+    overflow-y: auto;
+    position: absolute;
+    right: -100%;
+    top: 0;
+    transition: right .35s ease;
+    width: 450px;
+}
+
+aside {
+    display: block;
+}
+
+.warenkorbinhalt {
+    padding: 1rem 2rem;
+}
+
+.warenreihe {
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.warenreihe img {
+    max-width: none;
+    height: 50px;
+    width: 50px;
+}
+
+.warenkorbliste .produktname {
+    margin: 0;
+}
+
+/*
+.warenkorbliste .product-form {
+    padding-top: 0;
+}
+.product-form {
+    align-items: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-top: 15px;
+}
+*/
+

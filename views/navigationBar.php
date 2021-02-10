@@ -31,6 +31,7 @@
                         <a href="?c=pages&a=shoppingCard" type="no-hover">
                             <img src=<?=IMAGESPATH . 'Korb.png'?> alt="Warenkorb" width="25px" height="25px">
                         </a>
+                        <!--Ich/ wir müssen mal schauen wie wir einfach eine Variable ändern mit nem 'a', anstatt ne neue Seite aufzurufen siehe jurassicfruit blabla?showCart=1 -->
                         <a href="?c=account&a=login" type="no-hover">
                             <img src=<?=IMAGESPATH . 'user.png'?> alt="Login" width="25px" height="25px">
                         </a>
