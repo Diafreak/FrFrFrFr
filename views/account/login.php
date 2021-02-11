@@ -30,7 +30,11 @@
             </div>
         <? endif; ?><br>
 
-        <input type="submit" name="submitLogin" value="Login"><br>
+        <!-- "Login"-Button -->
+        <button type="submit" name="submitLogin" class="button">
+            Login
+        </button>
+        <br>
     </form>
 
     <form method="get">

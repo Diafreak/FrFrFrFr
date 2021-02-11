@@ -4,7 +4,7 @@
         Vielen Dank, für dein Konto! Sie werden automatisch auf die Login-Seite weitergeleitet.
         <meta http-equiv="refresh" content="5; URL=index.php?c=pages&a=login">
     </div>-->
-    <?="";//header('Location: ?c=account&a=login'); ?>
+    <?= header('Location: ?c=account&a=login'); ?>
 <?php else : ?>
 
 <div class="registration-form user-form">
@@ -39,7 +39,10 @@
         <? endif; ?><br>
 
         <!-- "Register"-Button -->
-        <input type="submit" name="submitRegistration" value="Registrieren"><br>
+        <button type="submit" name="submitRegistration" class="button">
+            Registrieren
+        </button>
+        <br>
 
     </form>
 
