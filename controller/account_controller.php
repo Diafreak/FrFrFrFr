@@ -45,7 +45,7 @@ class AccountController extends Controller
         $this->setParam('test', 'Login');
 
         // continue to login if user isn't logged in already
-        if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false)       //??? change to only false ???
+        if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false)
         {
             // check if "Login"-button is pressed
             if (isset($_POST['submitLogin']))

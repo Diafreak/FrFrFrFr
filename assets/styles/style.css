@@ -356,3 +356,40 @@ table {
 }
 */
 
+
+
+/*
+============================================
+========Anmeldung-Erfolgreich Banner =======
+============================================
+*/
+.login-success, .registration-success
+{
+    padding: .25em;
+    padding-left: 0.75em;
+    top: 2.5rem;
+    position: fixed;
+    color: #fff;
+    width: 25%;
+    background-color: #217c21;
+    border: 1px solid #085701;
+    border-radius: 3px;
+}
+
+.close-login-success, .close-registration-success
+{
+    position: absolute;
+    right: 1em;
+    color: #fd6e6e;
+    text-decoration: none;
+}
+
+#success:not(:target)
+{
+    right: -100%;
+}
+
+#success:target
+{
+    left: 37.5%;
+}

@@ -44,7 +44,8 @@ function logIn($email = '', $password = '', $rememberMe = false, &$error = '')
         &&  $password == $password_DB)
         {
             $_SESSION['loggedIn'] = true;
-            header('Location: index.php');
+            // redirect to the front page and show the "Anmeldung Erfolgreich"-banner
+            header('Location: index.php#success');
 
             // check if "Angemeldet bleiben?" is selected
             if (isset($_POST['rememberMe']))

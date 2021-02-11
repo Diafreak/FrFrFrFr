@@ -1,4 +1,11 @@
 
+<!-- "Registrierung Erfolgreich"-Banner -->
+<div id="success" class="registration-success">
+    <span>Registrierung Erfolgreich!</span>
+    <a href="#" class="close-registration-success">[schließen]</a>
+</div>
+
+
 <? if (!isset($errors)) : ?>
 <!-- KOMMENTIEREN -->
 <div class="login-form user-form">
