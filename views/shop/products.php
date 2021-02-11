@@ -16,7 +16,7 @@
 <!-- Da ich noch nicht wusste wo das hin kommt, kommts einfach erst mal hier rein:
                     ________________WARENKORB________________
  -->
- <div class="warenkorbcontainer">
+<div class="warenkorbcontainer">
     <aside class="warenkorb aktiv">
         <div class="warenkorb-header">
             <a href="irgendwasumdenwarenkorbzuschließenjaja">></a>
