@@ -1,5 +1,6 @@
 <?php
 
+use function PHPSTORM_META\override;
 
 function register($userInformation)
 {
@@ -9,7 +10,17 @@ function register($userInformation)
 
 
 
-function logIn($email = '', $password = '', $rememberMe = false, &$error = '')
+function logInWithSessionId()
+{
+    session_destroy();
+    session_id($_COOKIE['sessionId']);
+    session_start();
+
+    $_SESSION['loggedIn'] = true;
+}
+
+
+function logIn($email, $password, &$error)
 {
     $db = $GLOBALS['db'];
 
@@ -19,15 +30,7 @@ function logIn($email = '', $password = '', $rememberMe = false, &$error = '')
     $password_DB = '';
 
 
-    if ($rememberMe === true)
-    {
-        $userID   = $_COOKIE['userID'];
-        $password = $_COOKIE['passwordHash'];
-    }
-    else
-    {
-        $userID = getUserID($email, $error);
-    }
+    $userID = getUserID($email, $error);
 
 
     try
@@ -48,9 +51,11 @@ function logIn($email = '', $password = '', $rememberMe = false, &$error = '')
             header('Location: index.php#success');
 
             // check if "Angemeldet bleiben?" is selected
-            if (isset($_POST['rememberMe']))
+            if (isset($_POST['rememberMe']) && $_POST['rememberMe'] == 'remember')
             {
-                rememberMe($userID, $password_DB);
+                $sessionID = session_id();
+                $_SESSION['userID'] = $userID;
+                rememberMe($sessionID);
             }
         }
         else
@@ -68,13 +73,10 @@ function logIn($email = '', $password = '', $rememberMe = false, &$error = '')
 
 function logOut()
 {
-    setcookie('userID',       '', -1, '/');
-    setcookie('passwordHash', '', -1, '/');
-
-    $_SESSION['loggedIn'] = false;
-    unset($_SESSION['loggedIn']);
+    setcookie('sessionId', '', -1, '/');
 
     session_destroy();
+
     header('Location: index.php');
 }
 
