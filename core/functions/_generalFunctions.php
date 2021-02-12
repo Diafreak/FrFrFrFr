@@ -1,11 +1,11 @@
 <?php
 
 
-function rememberMe($userID, $password_DB)
+function rememberMe($sessionId)
 {
     $duration = time() + 3600 * 24 * 30;
-    setcookie('userID',       $userID,      $duration, '/');
-    setcookie('passwordHash', $password_DB, $duration, '/');
+    setcookie('sessionId', $sessionId, $duration, '/');
+    echo($_COOKIE['sessionId']);
 }
 
 
