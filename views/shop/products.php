@@ -3,15 +3,25 @@
 
 <div class="content">
     <div class="schaufenster">
-
         <ul class="produkt-tabelle">
 
-            <?= generateShopLayout('fruit'); ?>
+            <?= generateShopLayout('fruit', $errors); ?>
 
         </ul>
-
     </div>
 </div>
+
+
+<!-- Errors -->
+<? if (isset($errors)) : ?>
+    <div style="text-align: center;">
+        <? foreach ($errors as $error) : ?>
+            <?= $error ?>
+        <? endforeach; ?>
+    </div>
+<? endif; ?><br>
+
+
 
 <!-- Da ich noch nicht wusste wo das hin kommt, kommts einfach erst mal hier rein:
                     ________________WARENKORB________________
