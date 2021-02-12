@@ -1,1 +1,0 @@
-This file is just for git so it won't delete the folder because the session files don't have to be synchronized.
