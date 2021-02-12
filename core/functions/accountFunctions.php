@@ -26,7 +26,7 @@ function logIn($email = '', $password = '', $rememberMe = false, &$error = '')
     }
     else
     {
-        $userID = getUserID($email);
+        $userID = getUserID($email, $error);
     }
 
 
@@ -143,7 +143,7 @@ function validateLastName($lastName, &$errors)
 
 function checkEmailExistence($email, &$errors)
 {
-    if (doesEmailExist($email))
+    if (doesEmailExist($email, $errors))
     {
         $errors['emailTaken'] = "Email ist bereits vorhanden.";
     }
@@ -153,9 +153,7 @@ function checkEmailExistence($email, &$errors)
 function validateEmail($email, &$errors)
 {
     $user = new User();                                                             //??? Better solution ???
-
     $maxEmailLength = $user->getSchema()['lastName']['max'];
-
 
     if ($email === null || invalidEmail($email) || mb_strlen($email) > $maxEmailLength)
     {
@@ -187,10 +185,6 @@ function validatePasswordConfirm($password, $passwordConfirm, &$errors)
 
 
 
-// ===============================
-// ===== EXTRACTED FUNCTIONS =====
-// ===============================
-
 // check if email has pattern of x@x.xx
 function invalidEmail($email)
 {
@@ -205,4 +199,6 @@ function invalidEmail($email)
     // return true if the email doesn't match the regex
     return true;
 }
+
+
 ?>
