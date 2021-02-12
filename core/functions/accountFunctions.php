@@ -152,13 +152,17 @@ function checkEmailExistence($email, &$errors)
 
 function validateEmail($email, &$errors)
 {
-    $regexEmail = "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/";      //??? 4 doesn't work ???
+    $user = new User();                                                             //??? Better solution ???
 
-    // check if email has pattern of x@x.xx
-    if ($email === null || !preg_match($regexEmail, $email))
+    $maxEmailLength = $user->getSchema()['lastName']['min'];
+
+
+    if ($email === null || invalidEmail($email) || mb_strlen($email) > $maxEmailLength)
     {
         $errors['email'] = 'Bitte eine valide Email-Adresse eingeben.';
     }
+
+    unset($user);
 }
 
 
@@ -181,4 +185,24 @@ function validatePasswordConfirm($password, $passwordConfirm, &$errors)
     }
 }
 
+
+
+// ===============================
+// ===== EXTRACTED FUNCTIONS =====
+// ===============================
+
+// check if email has pattern of x@x.xx
+function invalidEmail($email)
+{
+    $regexEmail = "/^.+@.+\..{2,4}$/";
+
+    // return false if email matches the regex
+    if (preg_match($regexEmail, $email))
+    {
+        return false;
+    }
+
+    // return true if the email doesn't match the regex
+    return true;
+}
 ?>
