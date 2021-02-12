@@ -154,7 +154,7 @@ function validateEmail($email, &$errors)
 {
     $user = new User();                                                             //??? Better solution ???
 
-    $maxEmailLength = $user->getSchema()['lastName']['min'];
+    $maxEmailLength = $user->getSchema()['lastName']['max'];
 
 
     if ($email === null || invalidEmail($email) || mb_strlen($email) > $maxEmailLength)
