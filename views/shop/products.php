@@ -3,11 +3,7 @@
 
 <div class="content">
     <div class="schaufenster">
-        <ul class="produkt-tabelle">
-
-            <?= generateShopLayout('fruit', $errors); ?>
-
-        </ul>
+        <ul class="produkt-tabelle"> <?= generateShopLayout('fruit', $errors); ?> </ul>
     </div>
 </div>
 
