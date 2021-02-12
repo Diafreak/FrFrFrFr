@@ -10,20 +10,28 @@ function rememberMe($userID, $password_DB)
 
 
 // gets an email and returns the userID from the database if the email is in the database
-function getUserID($email)
+function getUserID($email, &$error)
 {
     $db = $GLOBALS['db'];
-    $sqlUserID = "SELECT id FROM user WHERE email = '{$email}';";
-    $userData  = $db->query($sqlUserID)->fetchAll();
+
+    try
+    {
+        $sqlUserID = "SELECT id FROM user WHERE email = '{$email}';";
+        $userData  = $db->query($sqlUserID)->fetchAll();
+    }
+    catch (\PDOException $e)
+    {
+        $error = "Die angegebene Email existiert nicht.";
+    }
 
     return $userData[0]['id'] ?? '';
 }
 
 
 // check for the registration if the given email is already in the database
-function doesEmailExist($email)
+function doesEmailExist($email, &$error)
 {
-    $userID = getUserID($email);
+    $userID = getUserID($email, $error);
 
     // if there is no user-id the email doesn't exist in the database
     if (empty($userID))
