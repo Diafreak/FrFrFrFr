@@ -81,9 +81,9 @@ abstract class Model
         $db        = $GLOBALS['db'];
         $tableName = self::tablename();
 
-        // $columnsString generates a string from the class-schema in which the insert-collums are stored
-        // $valuesString  generates a string of the values that you want to insert
-        // $sqlString combines $columnsString & $valuesString toa complete sql-insert-statement
+        // $columnsString  generates a string from the class-schema in which the insert-collums are stored
+        // $valuesString   generates a string of the values that you want to insert
+        // $sqlString      combines $columnsString & $valuesString toa complete sql-insert-statement
         $valuesString  = "";
         $columnsString = "";
 
