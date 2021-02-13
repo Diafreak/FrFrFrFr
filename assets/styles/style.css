@@ -23,6 +23,10 @@ footer {
     position: fixed;
 }
 
+h1
+{
+    text-align: center;
+}
 
 /*
 ==============================
@@ -173,7 +177,7 @@ div ul
 }
 
 .user-form input[type="submit" i],
-.button
+button
 {
     margin: 10px 0 0;
     background-color: #4361ee;
@@ -184,7 +188,7 @@ div ul
     text-decoration: none;
 }
 .user-form input:not([type="checkbox" i]),
-.button
+button
 {
     border: 1px solid #8a8a8a;
     border-radius: 4px;
@@ -200,7 +204,7 @@ div ul
 }
 
 .user-form input[type="submit" i]:hover, 
-.button:hover
+button:hover
 {
     background-color: #6780ec;
 }
