@@ -2,7 +2,6 @@
 
 require_once 'config/imports.php';
 
-session_save_path(SESSIONSPATH);
 session_start();    //??? wohin ???
 
 
@@ -13,9 +12,9 @@ $controllerPath = CONTROLLERSPATH.$controllerName.'_controller.php';
 
 
 //if a cookie is set: log in user automatically
-if (isset($_COOKIE['userID']))
+if (isset($_COOKIE['sessionId']))
 {
-    logIn(true);
+    logInWithSessionId();
 }
 
 

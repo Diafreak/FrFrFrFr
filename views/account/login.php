@@ -25,7 +25,7 @@
         <input type="password" name="password" id="password" placeholder="Passwort" autocapitalize="off">
 
         <div class="rememberMe">
-            <input type="checkbox" name="rememberMe" id="check" <?=isset($_POST['rememberMe']) ? 'checked' : '' ?>>
+            <input type="checkbox" name="rememberMe" id="check" value="remember" <?=isset($_POST['rememberMe']) ? 'checked' : '' ?>>
             <label for="check"> Angemeldet bleiben?</label>
         </div>
 

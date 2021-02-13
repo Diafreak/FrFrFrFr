@@ -71,15 +71,22 @@ function generateShopLayout($catName, &$errors = [])
             // get the correct picture from the $imagesArray for each product
             foreach($imagesArray as $imageData)
             {
-                if ($imageData['product_id'] == $productId)
+                if (file_exists($imageData['imageUrl']) && $imageData['product_id'] == $productId)
                 {
                     $imageSrc = $imageData['imageUrl'];
                     $altText  = $imageData['altText'];
                     break;
                 }
+                else
+                {
+                    // display a placeholder-image if there is no picture for the product
+                    // or there is no image for the path stored in the database
+                    $imageSrc = IMAGESPATH . "placeholder.png";
+                    $altText  = "Placeholder";
+                }
             }
 
-            // calls the generateProductHTML function based on the current position and arguments form the product/image
+            // calls the generateProductHTML function based on the current position and arguments from the product/image
             switch ($position[$itemsInRow])
             {
                 case "left":
@@ -120,26 +127,31 @@ function generateShopLayout($catName, &$errors = [])
 // generates the HTML for the given position
 function generateProductHTML($position, $productId, $imageSrc, $altText, $productName, $price)
 {
-    $html  = "<li class='{$position}'>\n";
+    // number of tabs that are used until "<ul class="produkt-tabelle">"
+    // $start, nTabs(x) & \n are only for better readability of the shop-code when inspecting the page
+    $start = 3;
 
-    $html .=     "<div class='product-showcase'>\n";
-    $html .=         "<a href='?c=shop&a=productDetails&prodId={$productId}'>\n";
-    $html .=             "<img class='product-picture' src='{$imageSrc}' alt='{$altText}' width='80%' height='55%'>\n";   //!!! width-height in css !!!
-    $html .=         "</a>\n";
-    $html .=     "</div>\n";
+    $html  = "\n";
+    $html .= nTabs($start)."<li class='{$position}'>\n";
 
-    $html .=     "<div class='produkt-details'>\n";
-    $html .=         "<div class='produkt-name'>\n";
-    $html .=             "<a href='?c=shop&a=productDetails&prodId={$productId}'>\n";
-    $html .=                 "{$productName}\n";
-    $html .=             "</a>\n";
-    $html .=         "</div>\n";
-    $html .=         "<div class='produkt-preis'>\n";
-    $html .=             "{$price} €\n";
-    $html .=         "</div>\n";
-    $html .=     "</div>\n";
+    $html .= nTabs($start).nTabs(1)."<div class='product-showcase'>\n";
+    $html .= nTabs($start).nTabs(2).    "<a href='?c=shop&a=productDetails&prodId={$productId}'>\n";
+    $html .= nTabs($start).nTabs(3).        "<img class='product-picture' src='{$imageSrc}' alt='{$altText}' width='80%' height='55%'>\n";   //!!! width-height in css !!!
+    $html .= nTabs($start).nTabs(2).    "</a>\n";
+    $html .= nTabs($start).nTabs(1)."</div>\n";
 
-    $html .= "</li>\n";
+    $html .= nTabs($start).nTabs(1)."<div class='produkt-details'>\n";
+    $html .= nTabs($start).nTabs(2).    "<div class='produkt-name'>\n";
+    $html .= nTabs($start).nTabs(3).        "<a href='?c=shop&a=productDetails&prodId={$productId}'>\n";
+    $html .= nTabs($start).nTabs(4).            "{$productName}\n";
+    $html .= nTabs($start).nTabs(3).        "</a>\n";
+    $html .= nTabs($start).nTabs(2).    "</div>\n";
+    $html .= nTabs($start).nTabs(2).    "<div class='produkt-preis'>\n";
+    $html .= nTabs($start).nTabs(3).        "{$price} €\n";
+    $html .= nTabs($start).nTabs(2).    "</div>\n";
+    $html .= nTabs($start).nTabs(1)."</div>\n";
+
+    $html .= nTabs($start)."</li>\n";
 
     return $html;
 }
@@ -193,7 +205,30 @@ function getProductImages($catId, $db, &$errors)
     }
     catch (\PDOException $e)
     {
-        $errors['prodImage'] = "Die angegebene Kategorie existiert nicht.";         //!!! return placeholder !!!
+        $errors['prodImage'] = "Die angegebene Kategorie existiert nicht.";
+        return null;
+    }
+}
+
+
+// this function is just for better readability when inspecting the sourcecode of the shop-page ("Seitenquelltext anzeigen")
+// otherwise the entire html-layout would be in one line
+function nTabs($numberOfTabs)
+{
+    static $TAB = "    ";
+    $tabs = "";
+
+    if ($numberOfTabs > 0)
+    {
+        for ($tabIndex = 0; $tabIndex < $numberOfTabs; $tabIndex++)
+        {
+            $tabs .= $TAB;
+        }
+        return $tabs;
+    }
+    else
+    {
+        return "";
     }
 }
 

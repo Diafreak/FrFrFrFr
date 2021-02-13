@@ -58,7 +58,7 @@ class AccountController extends Controller
                     $email    = htmlspecialchars($_POST['email']);
                     $password = htmlspecialchars($_POST['password']);
 
-                    logIn($email, $password, false, $this->params['errors']);
+                    logIn($email, $password, $this->params['errors']);
                 }
                 else
                 {
