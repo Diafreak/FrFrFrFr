@@ -14,7 +14,7 @@ $controllerPath = CONTROLLERSPATH.$controllerName.'_controller.php';
 //if a cookie is set: log in user automatically
 if (isset($_COOKIE['sessionId']))
 {
-    logInWithSessionId();
+    loginWithSessionId();
 }
 
 
