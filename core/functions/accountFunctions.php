@@ -214,7 +214,8 @@ function validatePassword($password, &$errors)
     || !$specialChars
     ||  mb_strlen($password) < $minPWLength)
     {
-        $errors['password'] = "Passwort muss mind. $minPWLength Zeichen lang sein.";
+        $errors['passwordLength'] = "Passwort muss mind. $minPWLength Zeichen lang sein.";
+        $errors['passwordChars']  = "Passwort muss mind. 1 Groß- und Kleinbuchstaben, 1 Zahl und 1 Sonderzeichen enthalten.";
     }
 
     unset($user);
