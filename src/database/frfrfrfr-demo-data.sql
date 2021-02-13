@@ -15,11 +15,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 
-INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`) VALUES ('Apfel',    '1.00', 10, 'This is a Äpfel',   1);
-INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`) VALUES ('Orange',   '0.90', 15, 'This is a Oränge',  1);
-INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`) VALUES ('Pfirsich', '1.20',  7, 'This is a Pfirsch', 1);
-INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`) VALUES ('Birne',    '1.10',  5, 'This is a Birnä',   1);
-INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`) VALUES ('Gurke',    '0.80', 20, 'This is a Gurkä',   2);
+INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Apfel',    '1.00', 10, 'This is a Äpfel',   1, null);
+INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Orange',   '0.90', 15, 'This is a Oränge',  1, null);
+INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Pfirsich', '1.20',  7, 'This is a Pfirsch', 1, null);
+INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Birne',    '1.10',  5, 'This is a Birnä',   1, null);
+INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Gurke',    '0.80', 20, 'This is a Gurkä',   2, null);
 
 COMMIT;
 
@@ -29,7 +29,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 
-INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/apple.jpg',    'Apfel',    1);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/appl.jpg',     'Apfel',    1);
 INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/orange.jpg',   'Orange',   2);
 INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/peach.jpg',    'Pfirsich', 3);
 INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/pear.jpg',     'Birne',    4);
@@ -39,11 +39,22 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `frfrfrfr`.`role`
+-- -----------------------------------------------------
+START TRANSACTION;
+
+INSERT INTO `frfrfrfr`.`role` (`name`) VALUES ('admin');
+INSERT INTO `frfrfrfr`.`role` (`name`) VALUES ('customer');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `frfrfrfr`.`user`
 -- -----------------------------------------------------
 START TRANSACTION;
 
-INSERT INTO `frfrfrfr`.`user` (`email`, `passwordHash`, `firstName`, `lastName`, `address_id`) VALUES ('max@max.de', '12345', 'Max', 'Mustermann', NULL);
-INSERT INTO `frfrfrfr`.`user` (`email`, `passwordHash`, `firstName`, `lastName`, `address_id`) VALUES ('tom@tom.de', '98765', 'Tom', 'Tommy',      NULL);
+INSERT INTO `frfrfrfr`.`user` (`email`, `passwordHash`, `firstName`, `lastName`, `address_id`, `role_id`) VALUES ('max@max.de', '12345', 'Max', 'Mustermann', NULL, 2);
+INSERT INTO `frfrfrfr`.`user` (`email`, `passwordHash`, `firstName`, `lastName`, `address_id`, `role_id`) VALUES ('tom@tom.de', '98765', 'Tom', 'Tommy',      NULL, 1);
 
 COMMIT;
