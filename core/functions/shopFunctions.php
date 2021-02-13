@@ -136,7 +136,7 @@ function generateProductHTML($position, $productId, $imageSrc, $altText, $produc
 
     $html .= nTabs($start).nTabs(1)."<div class='product-showcase'>\n";
     $html .= nTabs($start).nTabs(2).    "<a href='?c=shop&a=productDetails&prodId={$productId}'>\n";
-    $html .= nTabs($start).nTabs(3).        "<img class='product-picture' src='{$imageSrc}' alt='{$altText}' width='80%' height='55%'>\n";   //!!! width-height in css !!!
+    $html .= nTabs($start).nTabs(3).        "<img class='product-picture' src='{$imageSrc}' alt='{$altText}'>\n";
     $html .= nTabs($start).nTabs(2).    "</a>\n";
     $html .= nTabs($start).nTabs(1)."</div>\n";
 
