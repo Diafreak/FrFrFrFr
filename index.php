@@ -48,7 +48,8 @@ else { header('Location: index.php?c=errors&a=error404'); }
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/styles/style.css">
+    <link rel="stylesheet" href=<?=STYLESPATH."style.css"?>>
+    <link rel="stylesheet" href=<?=STYLESPATH."banner.css"?>>
 
     <!-- load page-font from GoogleFonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
