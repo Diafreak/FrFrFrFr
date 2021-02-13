@@ -3,16 +3,11 @@
 =========Allgemeines==========
 ==============================
 */
-body
-{
+
+body {
     /* font-family: 'Average',  'Times New Roman'; */
     /* font-family: 'Aclonica', 'Times New Roman'; */
     font-family: 'Averia Serif Libre', 'Times New Roman';
-}
-
-
-body
-{
     margin: 0;
     margin-bottom: 7vh;
     min-height: 100vh;
@@ -34,18 +29,17 @@ footer {
 ===Navigationsleisten Style===
 ==============================
 */
-header
-{
-    background-color: #5331a3; /*#7209B7 | 3a0ca3*/
+
+header {
+    background-color: #5331a3;
+    /*#7209B7 | 3a0ca3*/
 }
 
-header > nav
-{
+header>nav {
     width: 100%;
 }
 
-header > nav > ul
-{
+header>nav>ul {
     width: 100%;
     display: table;
     list-style: none;
@@ -55,9 +49,8 @@ header > nav > ul
     table-layout: fixed;
 }
 
-header > nav > ul > li,
-header > nav > ul > a
-{
+header>nav>ul>li,
+header>nav>ul>a {
     display: table-cell;
     vertical-align: middle;
     cursor: pointer;
@@ -67,34 +60,32 @@ header > nav > ul > a
     height: 100%;
 }
 
-
-nav ul a:hover:not([type="no-hover" i]) 
-{
-    background-color: #4361ee; /*#f72585*/
+nav ul a:hover:not([type="no-hover" i]) {
+    background-color: #4361ee;
+    /*#f72585*/
 }
 
-nav ul .no-hover 
-{
+nav ul .no-hover {
     cursor: context-menu;
 }
 
-nav ul .no-hover a 
-{
+nav ul .no-hover a {
     text-decoration: none;
 }
 
-nav ul .no-hover:hover 
-{
-    background-color: #5331a3; /*#7209B7 | 3a0ca3*/
+nav ul .no-hover:hover {
+    background-color: #5331a3;
+    /*#7209B7 | 3a0ca3*/
 }
+
 
 /*
 ==============================
 ===Seitenmitte / Shop-Style===
 ==============================
 */
-.content 
-{
+
+.content {
     padding-top: 10px;
     padding-bottom: 10px;
     max-width: 1300px;
@@ -103,8 +94,7 @@ nav ul .no-hover:hover
     margin: 0 auto;
 }
 
-div ul 
-{
+div ul {
     display: table;
     width: 100%;
     display: table;
@@ -116,8 +106,7 @@ div ul
     table-layout: fixed;
 }
 
-.content li 
-{
+.content li {
     box-sizing: border-box;
     border-bottom: 1px solid #5331a3;
     border-right: 1px solid #5331a3;
@@ -129,13 +118,11 @@ div ul
     width: 33.333%;
 }
 
-.content li.rechts
-{
+.content li.rechts {
     border-right: none;
 }
 
-.produkt-tabelle .produkt-name a
-{
+.produkt-tabelle .produkt-name a {
     text-overflow: ellipsis;
     padding: 10px 0;
     white-space: nowrap;
@@ -148,38 +135,38 @@ div ul
     font-weight: 500;
 }
 
+
 /*
 =====================================
 ===Allgemeine Form & Login Details===
 =====================================
 */
-.user-form
-{
+
+.user-form {
     margin: 15vh auto;
     color: white;
     text-align: center;
-    background-color: #5331a3; /*3a0ca3*/
+    background-color: #5331a3;
+    /*3a0ca3*/
     width: 363px;
     padding: 50px 0 70px;
     border-radius: 6px;
 }
 
-.user-form input#email, input#password
-{
+.user-form input#email,
+input#password {
     border-radius: 4px 4px 0px 0px;
 }
 
 .login-form input#password,
 .registration-form input#passwordconfirm,
-.registration-form input#email
-{
+.registration-form input#email {
     margin-bottom: 5px;
     border-radius: 0 0 4px 4px;
 }
 
 .user-form input[type="submit" i],
-.button
-{
+.button {
     margin: 10px 0 0;
     background-color: #4361ee;
     color: white;
@@ -188,9 +175,9 @@ div ul
     cursor: pointer;
     text-decoration: none;
 }
+
 .user-form input:not([type="checkbox" i]),
-.button
-{
+.button {
     border: 1px solid #8a8a8a;
     border-radius: 4px;
     padding: 0 0 0 10px;
@@ -198,46 +185,45 @@ div ul
     height: 35px;
 }
 
-.login-form input[type="checkbox" i]
-{
+.login-form input[type="checkbox" i] {
     text-align: left;
     margin: 10px;
 }
 
-.user-form input[type="submit" i]:hover, 
-.button:hover
-{
+.user-form input[type="submit" i]:hover,
+.button:hover {
     background-color: #6780ec;
 }
 
-    /*Entfernt die stadardmäßige Umrandung in Eingabefeldern*/
+
+/*Entfernt die stadardmäßige Umrandung in Eingabefeldern*/
+
 :focus {
     outline: none;
 }
 
-    /*Für die Schrift der "Zurück zum Login" und "Registrierungs" Knöpfe*/
-.button a 
-{
+
+/*Für die Schrift der "Zurück zum Login" und "Registrierungs" Knöpfe*/
+
+.button a {
     color: white;
     text-decoration: none;
     display: block;
 }
 
-div.rememberMe 
-{
+div.rememberMe {
     display: inline-block;
     text-align: left;
 }
 
-label 
-{
+label {
     color: white;
 }
 
 
 /*  Bei einem Fehler werden die Eingabefelder rot umrandet, aber nicht der submit button oder das checkbox feld  */
-.login-form-error input:not([type="checkbox" i]) :not([type="submit" i])
-{
+
+.login-form-error input:not([type="checkbox" i]) :not([type="submit" i]) {
     border: 1px solid red;
     border-radius: 4px;
     padding: 0 0 0 10px;
@@ -245,23 +231,22 @@ label
     height: 35px;
 }
 
+
 /*
 ==============================
 =====Registration Details=====
 ==============================
 */
-.registration-form input#firstname
-{
+
+.registration-form input#firstname {
     border-radius: 4px 0 0 0;
 }
 
-.registration-form input#lastname
-{
+.registration-form input#lastname {
     border-radius: 0 4px 0 0;
 }
 
-.registration-form input
-{
+.registration-form input {
     border: 1px solid #dfebf2;
     border-radius: 4px;
     padding: 0 0 0 10px;
@@ -270,30 +255,39 @@ label
 }
 
 .registration-form input#firstname,
-input#lastname {
+input#lastname 
+{
     display: inline-block;
     width: 37.9%;
     margin-bottom: 0px;
 }
 
-.registration-form input#email
+.registration-form input#email 
 {
     margin-bottom: 10px;
 }
 
-.registration-form input#passwordconfirm
+.registration-form input#passwordconfirm 
 {
     margin-bottom: 5px;
 }
+
 
 /*
 ==============================
 ========Warenkorb Style=======
 ==============================
 */
-.warenkorb.aktiv {
+
+.aktiv {
     right: 0;
 }
+
+div a {
+    color: black;
+    text-decoration: none;
+}
+
 .warenkorb {
     background-color: #eee;
     bottom: 0;
@@ -303,22 +297,18 @@ input#lastname {
     top: 0;
     transition: right .35s ease;
     max-width: 450px;
-	width: 80%;
+    width: 80%;
     height: 100%;
 }
 
-.warenkorb:not(:target) {
-	right: -100%;
-	transition: right 1.5s;
+#w:not(:target) {
+    right: -100%;
+    transition: right 1.5s;
 }
 
-.warenkorb:target {
-	right: 0;
-	transition: right 1s;
-}
-
-aside {
-    display: block;
+#w:target {
+    right: 0;
+    transition: right 1s;
 }
 
 .warenkorbinhalt {
@@ -343,28 +333,15 @@ table {
     margin: 0;
 }
 
-/*
-.warenkorbliste .product-form {
-    padding-top: 0;
-}
-.product-form {
-    align-items: stretch;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    padding-top: 15px;
-}
-*/
-
-
 
 /*
 ============================================
 ========Anmeldung-Erfolgreich Banner =======
 ============================================
 */
-.login-success, .registration-success
-{
+
+.login-success,
+.registration-success {
     padding: .25em;
     padding-left: 0.75em;
     top: 2.5rem;
@@ -376,20 +353,18 @@ table {
     border-radius: 3px;
 }
 
-.close-login-success, .close-registration-success
-{
+.close-login-success,
+.close-registration-success {
     position: absolute;
     right: 1em;
     color: #fd6e6e;
     text-decoration: none;
 }
 
-#success:not(:target)
-{
+#success:not(:target) {
     right: -100%;
 }
 
-#success:target
-{
+#success:target {
     left: 37.5%;
 }
