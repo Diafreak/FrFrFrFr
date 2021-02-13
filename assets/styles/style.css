@@ -9,7 +9,6 @@ body
     /* font-family: 'Aclonica', 'Times New Roman'; */
     font-family: 'Averia Serif Libre', 'Times New Roman';
     margin: 0;
-    margin-bottom: 7vh;
     min-height: 100vh;
     clear: both;
 }
@@ -20,7 +19,6 @@ footer {
     bottom: 0;
     background-color: grey;
     text-align: center;
-    position: fixed;
 }
 
 h1
@@ -32,6 +30,7 @@ h1
 {
    height: 110vh;
    width: 100vw; 
+   padding-bottom: 10vh;
 }
 /*
 ==============================
