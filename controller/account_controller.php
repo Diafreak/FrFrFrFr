@@ -21,13 +21,11 @@ class AccountController extends Controller
             $userInformation['passwordConfirm'] = htmlspecialchars($_POST['passwordconfirm']) ?? null;
             $userInformation['role_id']         = getRoleId('customer', $errors);
 
-
             validateInputs($userInformation, $errors);
-
-            $userInformation['passwordHash'] = $userInformation['password'];        //!!! CHANGE !!!
 
             if (count($errors) === 0)
             {
+                $userInformation['passwordHash'] = generatePasswordHash($userInformation['password']);
                 register($userInformation);
                 $validRegistration = true;
             }

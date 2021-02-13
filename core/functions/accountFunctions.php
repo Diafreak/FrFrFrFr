@@ -28,10 +28,8 @@ function login($email, $password, &$error)
 
     $userData = [];
 
-    $userID_DB   = '';
-    $password_DB = '';
-
     $userID = getUserID($email, $error);
+
 
     try
     {
@@ -39,15 +37,17 @@ function login($email, $password, &$error)
         $sqlUserData = "SELECT * FROM user WHERE id = {$userID};";
         $userData    = $db->query($sqlUserData)->fetchAll();
 
-        $userID_DB   = $userData[0]['id']           ?? '';
-        $password_DB = $userData[0]['passwordHash'] ?? '';
+        $userID_DB       = $userData[0]['id']           ?? '';
+        $passwordHash_DB = $userData[0]['passwordHash'] ?? '';
 
-        // check if email and password match                //!!! CHANGE TO EMAIL? !!!
-        if ($userID   == $userID_DB
-        &&  $password == $password_DB)
+        // check if email and password match
+        if ($userID == $userID_DB
+        &&  password_verify($password, $passwordHash_DB)
+        // this is just a "helper" so we can insert an admin-role with the "demo-data.sql"
+        ||  $userData[0]['email'] == 'admin' && $password == $passwordHash_DB)
         {
             $_SESSION['loggedIn'] = true;
-            $_SESSION['userID']   = $userID;                                            // ??? RIGHT HERE ???
+            $_SESSION['userID']   = $userID;
             // redirect to the front page and show the "Anmeldung Erfolgreich"-banner
             header('Location: index.php#success');
 
@@ -79,6 +79,12 @@ function logOut()
 }
 
 
+function generatePasswordHash($password)
+{
+    return password_hash($password, PASSWORD_DEFAULT);
+}
+
+
 
 function validateInputs($userInformation, &$errors)
 {
@@ -98,11 +104,13 @@ function validateInputs($userInformation, &$errors)
 }
 
 
+
 function rememberMe($sessionId)
 {
     $duration = time() + 3600 * 24 * 30;
     setcookie('sessionId', $sessionId, $duration, '/');
 }
+
 
 
 function getRoleId($role, &$errors)
