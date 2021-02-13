@@ -11,9 +11,10 @@ class User extends Model
         'updatedAt'    => [ 'type' => Model::TYPE_STRING ],
         'email'        => [ 'type' => Model::TYPE_STRING, 'max' => 120 ],
         'passwordHash' => [ 'type' => Model::TYPE_STRING, 'max' => 255 ],
-        'firstName'    => [ 'type' => Model::TYPE_STRING, 'min' =>   2, 'max' =>  50 ],   //because Rhoshandiatellyneshiaunneveshenk Koyaanisquatsiuth
-        'lastName'     => [ 'type' => Model::TYPE_STRING, 'min' =>   2, 'max' =>  50 ],
-        'address_id'   => [ 'type' => Model::TYPE_UINT   ]
+        'firstName'    => [ 'type' => Model::TYPE_STRING, 'min' =>   2, 'max' => 50 ],   //because Rhoshandiatellyneshiaunneveshenk Koyaanisquatsiuth
+        'lastName'     => [ 'type' => Model::TYPE_STRING, 'min' =>   2, 'max' => 50 ],
+        'address_id'   => [ 'type' => Model::TYPE_UINT   ],
+        'role_id'      => [ 'type' => Model::TYPE_UINT   ]
     ];
 }
 
