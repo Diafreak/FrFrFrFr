@@ -10,7 +10,7 @@ class User extends Model
         'createdAt'    => [ 'type' => Model::TYPE_STRING ],
         'updatedAt'    => [ 'type' => Model::TYPE_STRING ],
         'email'        => [ 'type' => Model::TYPE_STRING, 'max' => 120 ],
-        'passwordHash' => [ 'type' => Model::TYPE_STRING, 'max' => 255 ],
+        'passwordHash' => [ 'type' => Model::TYPE_STRING, 'max' => 255, 'min' =>  8 ],
         'firstName'    => [ 'type' => Model::TYPE_STRING, 'min' =>   2, 'max' => 50 ],   //because Rhoshandiatellyneshiaunneveshenk Koyaanisquatsiuth
         'lastName'     => [ 'type' => Model::TYPE_STRING, 'min' =>   2, 'max' => 50 ],
         'address_id'   => [ 'type' => Model::TYPE_UINT   ],
