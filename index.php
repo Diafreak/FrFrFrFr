@@ -58,16 +58,18 @@ else { header('Location: index.php?c=errors&a=error404'); }
 </head>
 
 <body>
-    <?php
-        // this method will render the view of the called action
-        // for this the the file in the views directory will be included
-        $controllerInstance->render();
-    ?>
+    <div class="wrapall">
+        <?php
+            // this method will render the view of the called action
+            // for this the the file in the views directory will be included
+            $controllerInstance->render();
+        ?>
 
-    <footer>
-        <p>Test test<br>
-            Hier wird getestet</p>
-    </footer>
+        <footer>
+            <p>Test test<br>
+                Hier wird getestet</p>
+        </footer>
+    </div>
 </body>
 </html>
 
