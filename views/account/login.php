@@ -1,8 +1,8 @@
 
 <!-- "Registrierung Erfolgreich"-Banner -->
-<div id="success" class="registration-success">
+<div id="success" class="banner registration-success">
     <span>Registrierung Erfolgreich!</span>
-    <a href="#" class="close-registration-success">[schließen]</a>
+    <a href="#" class="close">[schließen]</a>
 </div>
 
 

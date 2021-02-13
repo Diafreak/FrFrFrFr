@@ -28,10 +28,8 @@ function login($email, $password, &$error)
 
     $userData = [];
 
-    $userID_DB   = '';
-    $password_DB = '';
-
     $userID = getUserID($email, $error);
+
 
     try
     {
@@ -39,15 +37,17 @@ function login($email, $password, &$error)
         $sqlUserData = "SELECT * FROM user WHERE id = {$userID};";
         $userData    = $db->query($sqlUserData)->fetchAll();
 
-        $userID_DB   = $userData[0]['id']           ?? '';
-        $password_DB = $userData[0]['passwordHash'] ?? '';
+        $userID_DB       = $userData[0]['id']           ?? '';
+        $passwordHash_DB = $userData[0]['passwordHash'] ?? '';
 
-        // check if email and password match                //!!! CHANGE TO EMAIL? !!!
-        if ($userID   == $userID_DB
-        &&  $password == $password_DB)
+        // check if email and password match
+        if ($userID == $userID_DB
+        &&  password_verify($password, $passwordHash_DB)
+        // this is just a "helper" so we can insert an admin-role with the "demo-data.sql"
+        ||  $userData[0]['email'] == 'admin' && $password == $passwordHash_DB)
         {
             $_SESSION['loggedIn'] = true;
-            $_SESSION['userID']   = $userID;                                            // ??? RIGHT HERE ???
+            $_SESSION['userID']   = $userID;
             // redirect to the front page and show the "Anmeldung Erfolgreich"-banner
             header('Location: index.php#success');
 
@@ -75,7 +75,13 @@ function logOut()
 {
     setcookie('sessionId', '', -1, '/');
     session_destroy();
-    header('Location: index.php');
+    header('Location: index.php#logout');
+}
+
+
+function generatePasswordHash($password)
+{
+    return password_hash($password, PASSWORD_DEFAULT);
 }
 
 
@@ -98,11 +104,13 @@ function validateInputs($userInformation, &$errors)
 }
 
 
+
 function rememberMe($sessionId)
 {
     $duration = time() + 3600 * 24 * 30;
     setcookie('sessionId', $sessionId, $duration, '/');
 }
+
 
 
 function getRoleId($role, &$errors)
@@ -191,12 +199,25 @@ function validateEmail($email, &$errors)
 
 function validatePassword($password, &$errors)
 {
-    //$regexPassword = "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/";               // !!! NEED REGEX !!!
+    $user = new User();
+    $minPWLength = $user->getSchema()['passwordHash']['min'];
 
-    if ($password === null || mb_strlen($password) < 6)  //!preg_match($regexPassword, $password))
+    $uppercase    = preg_match('@[A-Z]@', $password);
+    $lowercase    = preg_match('@[a-z]@', $password);
+    $number       = preg_match('@[0-9]@', $password);
+    $specialChars = preg_match('@[^\w]@', $password);
+
+    if ($password === null
+    || !$uppercase
+    || !$lowercase
+    || !$number
+    || !$specialChars
+    ||  mb_strlen($password) < $minPWLength)
     {
-        $errors['password'] = 'Passwort muss mind. 6 Zeichen lang sein.';
+        $errors['password'] = "Passwort muss mind. $minPWLength Zeichen lang sein.";
     }
+
+    unset($user);
 }
 
 
@@ -213,7 +234,7 @@ function validatePasswordConfirm($password, $passwordConfirm, &$errors)
 // check if email has pattern of x@x.xx
 function invalidEmail($email)
 {
-    $regexEmail = "/^.+@.+\..{2,4}$/";
+    $regexEmail = "/^.+@.+\..{2,6}$/";
 
     // return false if email matches the regex
     if (preg_match($regexEmail, $email))

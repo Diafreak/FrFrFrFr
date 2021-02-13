@@ -54,7 +54,6 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 
-INSERT INTO `frfrfrfr`.`user` (`email`, `passwordHash`, `firstName`, `lastName`, `address_id`, `role_id`) VALUES ('max@max.de', '12345', 'Max', 'Mustermann', NULL, 2);
-INSERT INTO `frfrfrfr`.`user` (`email`, `passwordHash`, `firstName`, `lastName`, `address_id`, `role_id`) VALUES ('tom@tom.de', '98765', 'Tom', 'Tommy',      NULL, 1);
+INSERT INTO `frfrfrfr`.`user` (`email`, `passwordHash`, `firstName`, `lastName`, `address_id`, `role_id`) VALUES ('admin', '12345', 'admin', 'admin', NULL, 1);
 
 COMMIT;
