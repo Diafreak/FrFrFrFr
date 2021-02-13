@@ -2,7 +2,7 @@
 
 require_once 'config/imports.php';
 
-session_start();    //??? wohin ???
+session_start();
 
 
 $controllerName = $_GET['c'] ?? 'pages';
@@ -50,9 +50,8 @@ else { header('Location: index.php?c=errors&a=error404'); }
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/styles/style.css">
 
+    <!-- load page-font from GoogleFonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Average&display=swap"> -->
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap"> 
 
     <title>FrFrFrFr Frontpage</title>
