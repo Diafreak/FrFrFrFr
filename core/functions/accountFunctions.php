@@ -199,12 +199,25 @@ function validateEmail($email, &$errors)
 
 function validatePassword($password, &$errors)
 {
-    //$regexPassword = "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/";               // !!! NEED REGEX !!!
+    $user = new User();
+    $minPWLength = $user->getSchema()['passwordHash']['min'];
 
-    if ($password === null || mb_strlen($password) < 6)  //!preg_match($regexPassword, $password))
+    $uppercase    = preg_match('@[A-Z]@', $password);
+    $lowercase    = preg_match('@[a-z]@', $password);
+    $number       = preg_match('@[0-9]@', $password);
+    $specialChars = preg_match('@[^\w]@', $password);
+
+    if ($password === null
+    || !$uppercase
+    || !$lowercase
+    || !$number
+    || !$specialChars
+    ||  mb_strlen($password) < $minPWLength)
     {
-        $errors['password'] = 'Passwort muss mind. 6 Zeichen lang sein.';
+        $errors['password'] = "Passwort muss mind. $minPWLength Zeichen lang sein.";
     }
+
+    unset($user);
 }
 
 
@@ -221,7 +234,7 @@ function validatePasswordConfirm($password, $passwordConfirm, &$errors)
 // check if email has pattern of x@x.xx
 function invalidEmail($email)
 {
-    $regexEmail = "/^.+@.+\..{2,4}$/";
+    $regexEmail = "/^.+@.+\..{2,6}$/";
 
     // return false if email matches the regex
     if (preg_match($regexEmail, $email))
