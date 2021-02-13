@@ -1,6 +1,9 @@
 <?php
 
-use function PHPSTORM_META\override;
+
+// ================================================
+// ===== FUNCTIONS USED BY ACCOUNT_CONTROLLER =====
+// ================================================
 
 function register($userInformation)
 {
@@ -9,8 +12,7 @@ function register($userInformation)
 }
 
 
-
-function logInWithSessionId()
+function loginWithSessionId()
 {
     session_destroy();
     session_id($_COOKIE['sessionId']);
@@ -20,7 +22,7 @@ function logInWithSessionId()
 }
 
 
-function logIn($email, $password, &$error)
+function login($email, $password, &$error)
 {
     $db = $GLOBALS['db'];
 
@@ -29,9 +31,7 @@ function logIn($email, $password, &$error)
     $userID_DB   = '';
     $password_DB = '';
 
-
     $userID = getUserID($email, $error);
-
 
     try
     {
@@ -39,7 +39,7 @@ function logIn($email, $password, &$error)
         $sqlUserData = "SELECT * FROM user WHERE id = {$userID};";
         $userData    = $db->query($sqlUserData)->fetchAll();
 
-        $userID_DB   = $userData[0]['id']           ?? '';                  //= isset($userData[0]['email']) ? $userData[0]['email'] : ''; 
+        $userID_DB   = $userData[0]['id']           ?? '';
         $password_DB = $userData[0]['passwordHash'] ?? '';
 
         // check if email and password match                //!!! CHANGE TO EMAIL? !!!
@@ -47,6 +47,7 @@ function logIn($email, $password, &$error)
         &&  $password == $password_DB)
         {
             $_SESSION['loggedIn'] = true;
+            $_SESSION['userID']   = $userID;                                            // ??? RIGHT HERE ???
             // redirect to the front page and show the "Anmeldung Erfolgreich"-banner
             header('Location: index.php#success');
 
@@ -54,7 +55,6 @@ function logIn($email, $password, &$error)
             if (isset($_POST['rememberMe']) && $_POST['rememberMe'] == 'remember')
             {
                 $sessionID = session_id();
-                $_SESSION['userID'] = $userID;
                 rememberMe($sessionID);
             }
         }
@@ -74,9 +74,7 @@ function logIn($email, $password, &$error)
 function logOut()
 {
     setcookie('sessionId', '', -1, '/');
-
     session_destroy();
-
     header('Location: index.php');
 }
 
@@ -100,6 +98,31 @@ function validateInputs($userInformation, &$errors)
 }
 
 
+function rememberMe($sessionId)
+{
+    $duration = time() + 3600 * 24 * 30;
+    setcookie('sessionId', $sessionId, $duration, '/');
+}
+
+
+function getRoleId($role, &$errors)
+{
+    $db = $GLOBALS['db'];
+
+    try
+    {
+        $sqlRoleID = "SELECT id FROM role WHERE name = '{$role}';";
+        $roleID    = $db->query($sqlRoleID)->fetchAll();
+    }
+    catch (\PDOException $e)
+    {
+        $errors['roleId'] = "Die angegebene Rolle existiert nicht.";
+    }
+
+    return $roleID[0]['id'] ?? null;
+}
+
+
 
 // ===============================
 // ===== EXTRACTED FUNCTIONS =====
@@ -107,7 +130,7 @@ function validateInputs($userInformation, &$errors)
 
 function validateFirstName($firstName, &$errors)
 {
-    $user = new User();                                                             //??? Better solution ???
+    $user = new User();
     $minLength = $user->getSchema()['firstName']['min'];
     $maxLength = $user->getSchema()['firstName']['max'];
 
@@ -126,7 +149,7 @@ function validateFirstName($firstName, &$errors)
 
 function validateLastName($lastName, &$errors)
 {
-    $user = new User();                                                             //??? Better solution ???
+    $user = new User();
     $minLength = $user->getSchema()['lastName']['min'];
     $maxLength = $user->getSchema()['lastName']['max'];
 
@@ -154,7 +177,7 @@ function checkEmailExistence($email, &$errors)
 
 function validateEmail($email, &$errors)
 {
-    $user = new User();                                                             //??? Better solution ???
+    $user = new User();
     $maxEmailLength = $user->getSchema()['lastName']['max'];
 
     if ($email === null || invalidEmail($email) || mb_strlen($email) > $maxEmailLength)
@@ -203,4 +226,39 @@ function invalidEmail($email)
 }
 
 
+
+// gets an email and returns the userID from the database if the email is in the database
+function getUserID($email, &$error)
+{
+    $db = $GLOBALS['db'];
+
+    try
+    {
+        $sqlUserID = "SELECT id FROM user WHERE email = '{$email}';";
+        $userData  = $db->query($sqlUserID)->fetchAll();
+    }
+    catch (\PDOException $e)
+    {
+        $error = "Die angegebene Email existiert nicht.";
+    }
+
+    return $userData[0]['id'] ?? '';
+}
+
+
+
+// check for the registration if the given email is already in the database
+function doesEmailExist($email, &$error)
+{
+    $userID = getUserID($email, $error);
+
+    // if there is no user-id the email doesn't exist in the database
+    if (empty($userID))
+    {
+        return false;
+    }
+
+    // if there is an user-id the email already exists in the database
+    return true;
+}
 ?>

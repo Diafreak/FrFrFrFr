@@ -117,6 +117,7 @@ abstract class Model
                 $insertStatement->bindParam(':firstName',    $this->values['firstName']);
                 $insertStatement->bindParam(':lastName',     $this->values['lastName']);
                 $insertStatement->bindParam(':address_id',   $this->values['address_id']);
+                $insertStatement->bindParam(':role_id',      $this->values['role_id']);
             }
 
             // execute the insert-statement
@@ -124,7 +125,7 @@ abstract class Model
         }
         catch (\PDOException $e)
         {
-            die( 'Error inserting new User: ' . $e->GetMessage() );              //!!! CHANGE !!!
+            die( 'Error inserting new User: ' . $e->GetMessage() );              //!!! CHANGE-Redirect to 404? !!!
         }
 
     }
@@ -146,6 +147,7 @@ abstract class Model
     // ===========================
     // ===== SETTER & GETTER =====
     // ===========================
+
     public function setValue($key, $value)
     {
         //is the given key in the schema?

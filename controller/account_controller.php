@@ -19,6 +19,7 @@ class AccountController extends Controller
             $userInformation['email']           = htmlspecialchars($_POST['email']          ) ?? null;
             $userInformation['password']        = htmlspecialchars($_POST['password']       ) ?? null;
             $userInformation['passwordConfirm'] = htmlspecialchars($_POST['passwordconfirm']) ?? null;
+            $userInformation['role_id']         = getRoleId('customer', $errors);
 
 
             validateInputs($userInformation, $errors);
@@ -58,7 +59,7 @@ class AccountController extends Controller
                     $email    = htmlspecialchars($_POST['email']);
                     $password = htmlspecialchars($_POST['password']);
 
-                    logIn($email, $password, $this->params['errors']);
+                    login($email, $password, $this->params['errors']);
                 }
                 else
                 {
