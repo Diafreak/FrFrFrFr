@@ -8,11 +8,6 @@ body
     /* font-family: 'Average',  'Times New Roman'; */
     /* font-family: 'Aclonica', 'Times New Roman'; */
     font-family: 'Averia Serif Libre', 'Times New Roman';
-}
-
-
-body
-{
     margin: 0;
     margin-bottom: 7vh;
     min-height: 100vh;
@@ -28,6 +23,10 @@ footer {
     position: fixed;
 }
 
+h1
+{
+    text-align: center;
+}
 
 /*
 ==============================
@@ -178,7 +177,7 @@ div ul
 }
 
 .user-form input[type="submit" i],
-.button
+button
 {
     margin: 10px 0 0;
     background-color: #4361ee;
@@ -189,7 +188,7 @@ div ul
     text-decoration: none;
 }
 .user-form input:not([type="checkbox" i]),
-.button
+button
 {
     border: 1px solid #8a8a8a;
     border-radius: 4px;
@@ -205,7 +204,7 @@ div ul
 }
 
 .user-form input[type="submit" i]:hover, 
-.button:hover
+button:hover
 {
     background-color: #6780ec;
 }
@@ -236,14 +235,14 @@ label
 
 
 /*  Bei einem Fehler werden die Eingabefelder rot umrandet, aber nicht der submit button oder das checkbox feld  */
-.login-form-error input:not([type="checkbox" i]) :not([type="submit" i])
+/* .login-form-error input:not([type="checkbox" i]) :not([type="submit" i])
 {
     border: 1px solid red;
     border-radius: 4px;
     padding: 0 0 0 10px;
     width: 290px;
     height: 35px;
-}
+} */
 
 /*
 ==============================
@@ -270,7 +269,8 @@ label
 }
 
 .registration-form input#firstname,
-input#lastname {
+input#lastname 
+{
     display: inline-block;
     width: 37.9%;
     margin-bottom: 0px;
@@ -291,9 +291,15 @@ input#lastname {
 ========Warenkorb Style=======
 ==============================
 */
-.warenkorb.aktiv {
+.aktiv {
     right: 0;
 }
+
+div a {
+    color: black;
+    text-decoration: none;
+}
+
 .warenkorb {
     background-color: #eee;
     bottom: 0;
@@ -307,18 +313,14 @@ input#lastname {
     height: 100%;
 }
 
-.warenkorb:not(:target) {
+#w:not(:target) {
 	right: -100%;
 	transition: right 1.5s;
 }
 
-.warenkorb:target {
+#w:target {
 	right: 0;
 	transition: right 1s;
-}
-
-aside {
-    display: block;
 }
 
 .warenkorbinhalt {
@@ -343,15 +345,28 @@ table {
     margin: 0;
 }
 
+
 /*
-.warenkorbliste .product-form {
-    padding-top: 0;
-}
-.product-form {
-    align-items: stretch;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    padding-top: 15px;
-}
+============================================
+================Bilder Größen===============
+============================================
 */
+img.nav-icon
+{
+    height: 1.84vw;
+    width: 1.84vw;
+    min-height: 20px;
+    min-width: 20px;
+}
+img.logo
+{
+    height: 2.36vw;
+    width: 5.26vw;
+    min-height: 25px;
+    min-width: 56px;
+}
+img.product-picture
+{
+    width: 80%;
+    height: 55%;
+}
