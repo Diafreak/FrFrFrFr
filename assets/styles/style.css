@@ -370,7 +370,7 @@ table {
     top: 2.5rem;
     position: fixed;
     color: #fff;
-    width: 25%;
+    width: 30%;
     background-color: #217c21;
     border: 1px solid #085701;
     border-radius: 3px;
@@ -380,7 +380,7 @@ table {
 {
     position: absolute;
     right: 1em;
-    color: #fd6e6e;
+    color: #001c9b;
     text-decoration: none;
 }
 
@@ -391,5 +391,5 @@ table {
 
 #success:target
 {
-    left: 37.5%;
+    left: 35%;
 }
