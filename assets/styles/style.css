@@ -381,3 +381,28 @@ table {
 {
     left: 37.5%;
 }
+
+/*
+============================================
+================Bilder Größen===============
+============================================
+*/
+img.nav-icon
+{
+    height: 1.84vw;
+    width: 1.84vw;
+    min-height: 20px;
+    min-width: 20px;
+}
+img.logo
+{
+    height: 2.36vw;
+    width: 5.26vw;
+    min-height: 25px;
+    min-width: 56px;
+}
+img.product-picture
+{
+    width: 80%;
+    height: 55%;
+}
