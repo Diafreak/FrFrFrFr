@@ -19,6 +19,7 @@ class AccountController extends Controller
             $userInformation['email']           = htmlspecialchars($_POST['email']          ) ?? null;
             $userInformation['password']        = htmlspecialchars($_POST['password']       ) ?? null;
             $userInformation['passwordConfirm'] = htmlspecialchars($_POST['passwordconfirm']) ?? null;
+            $userInformation['role_id']         = getRoleId('customer', $errors);
 
 
             validateInputs($userInformation, $errors);
