@@ -12,7 +12,6 @@ require_once COREPATH.'controller.class.php';
 require_once COREPATH.'model.class.php';
 
 // load functions in the core-folder
-require_once FUNCTIONSPATH.'_generalFunctions.php';
 require_once FUNCTIONSPATH.'accountFunctions.php';
 require_once FUNCTIONSPATH.'shopFunctions.php';
 
