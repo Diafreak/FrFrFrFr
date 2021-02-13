@@ -1,12 +1,15 @@
 <?php
 
 
+// ================================================
+// ===== FUNCTIONS USED BY ACCOUNT_CONTROLLER =====
+// ================================================
+
 function register($userInformation)
 {
     $user = new User($userInformation);
     $user->insert();
 }
-
 
 
 function loginWithSessionId()
@@ -28,9 +31,7 @@ function login($email, $password, &$error)
     $userID_DB   = '';
     $password_DB = '';
 
-
     $userID = getUserID($email, $error);
-
 
     try
     {
@@ -38,7 +39,7 @@ function login($email, $password, &$error)
         $sqlUserData = "SELECT * FROM user WHERE id = {$userID};";
         $userData    = $db->query($sqlUserData)->fetchAll();
 
-        $userID_DB   = $userData[0]['id']           ?? '';                  //= isset($userData[0]['email']) ? $userData[0]['email'] : ''; 
+        $userID_DB   = $userData[0]['id']           ?? '';
         $password_DB = $userData[0]['passwordHash'] ?? '';
 
         // check if email and password match                //!!! CHANGE TO EMAIL? !!!
@@ -46,6 +47,7 @@ function login($email, $password, &$error)
         &&  $password == $password_DB)
         {
             $_SESSION['loggedIn'] = true;
+            $_SESSION['userID']   = $userID;                                            // ??? RIGHT HERE ???
             // redirect to the front page and show the "Anmeldung Erfolgreich"-banner
             header('Location: index.php#success');
 
@@ -53,7 +55,6 @@ function login($email, $password, &$error)
             if (isset($_POST['rememberMe']) && $_POST['rememberMe'] == 'remember')
             {
                 $sessionID = session_id();
-                $_SESSION['userID'] = $userID;
                 rememberMe($sessionID);
             }
         }
@@ -73,9 +74,7 @@ function login($email, $password, &$error)
 function logOut()
 {
     setcookie('sessionId', '', -1, '/');
-
     session_destroy();
-
     header('Location: index.php');
 }
 
@@ -103,7 +102,24 @@ function rememberMe($sessionId)
 {
     $duration = time() + 3600 * 24 * 30;
     setcookie('sessionId', $sessionId, $duration, '/');
-    echo($_COOKIE['sessionId']);
+}
+
+
+function getRoleId($role, &$errors)
+{
+    $db = $GLOBALS['db'];
+
+    try
+    {
+        $sqlRoleID = "SELECT id FROM role WHERE name = '{$role}';";
+        $roleID    = $db->query($sqlRoleID)->fetchAll();
+    }
+    catch (\PDOException $e)
+    {
+        $errors['roleId'] = "Die angegebene Rolle existiert nicht.";
+    }
+
+    return $roleID[0]['id'] ?? null;
 }
 
 
