@@ -121,7 +121,7 @@ abstract class Model
         }
         catch (\PDOException $e)
         {
-            echo('Error inserting new User: ' . $e->GetMessage() );              //!!! CHANGE-Redirect to 404? !!!
+            echo('Error inserting new ' . SELF::tablename() . ': ' . $e->GetMessage() );              //!!! CHANGE-Redirect to 404? !!!
         }
 
     }
