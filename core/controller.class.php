@@ -32,7 +32,7 @@ class Controller
     public function render()
     {
         // generate the view path
-        $viewPath = $this->viewPath($this->controller, $this->action); //VIEWSPATH.$this->controller.DIRECTORY_SEPARATOR.$this->action.'.php';
+        $viewPath = $this->viewPath($this->controller, $this->action);
 
         // check if the file exists
         if(!file_exists($viewPath))
@@ -45,11 +45,11 @@ class Controller
         // extract the params array to get all needed variables for the view
         extract($this->params);
 
+        //get the current view for the shopping cart-url in the navigation bar
+        $currentURL = $_SERVER['REQUEST_URI'];
 
         // include the navigation bar which is visible on all pages
         require VIEWSPATH.'navigationBar.php';
-        // include the shopping cart which can be called on all pages
-        require VIEWSPATH.'shoppingCart.php';
 
         // include the view
         include $viewPath;
@@ -76,7 +76,7 @@ class Controller
     // generates the include-path for the site you want to render
     private function viewPath($controllerName, $action)
     {
-        return __DIR__.'/../views/'.$controllerName.'/'.$action.'.php';
+        return VIEWSPATH.$controllerName. DIRECTORY_SEPARATOR .$action.'.php';
     }
 
 
