@@ -190,7 +190,8 @@ function validateEmail($email, &$errors)
 
     if ($email === null || invalidEmail($email) || mb_strlen($email) > $maxEmailLength)
     {
-        $errors['email'] = 'Bitte eine valide Email-Adresse eingeben.';
+        $errors['email']       = 'Bitte eine valide Email-Adresse eingeben.';
+        $errors['emailLength'] = "Email darf max. $maxEmailLength Zeichen lang sein.";
     }
 
     unset($user);
