@@ -18,7 +18,7 @@ START TRANSACTION;
 INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Apfel',    '1.00', 10, 'This is a Äpfel',   1, null);
 INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Orange',   '0.90', 15, 'This is a Oränge',  1, null);
 INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Pfirsich', '1.20',  7, 'This is a Pfirsch', 1, null);
-INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Birne',    '1.10',  5, 'This is a Birnä',   1, null);
+INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Birne',    '1.10',  0, 'This is a Birnä',   1, null);
 INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Gurke',    '0.80', 20, 'This is a Gurkä',   2, null);
 
 COMMIT;
