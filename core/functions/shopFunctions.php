@@ -70,6 +70,25 @@ function generateAmountHTML($numberInStock)
 }
 
 
+function getCartId($userId, &$errors)
+{
+    $db = $GLOBALS['db'];
+
+    try
+    {
+        $sqlCartId   = "SELECT id FROM shoppingcart WHERE user_id = '{$userId}';";
+        $cartIdArray = $db->query($sqlCartId)->fetchAll();
+
+        var_dump($cartIdArray);
+        return $cartIdArray[0]['id'] ?? null;
+    }
+    catch (\PDOException $e)
+    {
+        $errors['cartId'] = "Dieser Nutzer besitzt keinen Einkaufswagen.";
+    }
+}
+
+
 
 // ==========================
 // ========== SHOP ==========
