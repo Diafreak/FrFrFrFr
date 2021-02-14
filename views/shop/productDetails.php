@@ -23,24 +23,14 @@
 
     Beschreibung: <?= $description; ?>
 
-    <form action="hier muss was wichtiges rein">
+    <form method="post" action="hier muss was wichtiges rein">          <!-- WHUT REIN? -->
         <div class="menge_mit_submit">
             <div class="mengenauswahl">
-                <select name="amount" id="amount">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                </select>
+                <?= generateAmountHTML($numberInStock) ?>
                 <!-- <p>oder ander Menge wählen</p>
                 und dann hier noch ein Formular wo man eine eigene Menge reinschreiben kann -->
             </div>
-            <button type="submit" class="submit_amount">In den Warenkorb</button>
+            <button type="submit" class="submit_amount" name="submitProduct">In den Warenkorb</button>
         </div>
     </form>
 

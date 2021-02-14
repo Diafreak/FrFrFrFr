@@ -1,5 +1,8 @@
 <?php
 
+// ==============================
+// ========== PRODUCTS ==========
+// ==============================
 
 function getProductDetails($prodId, &$errors)
 {
@@ -15,11 +18,21 @@ function getProductDetails($prodId, &$errors)
 
         $prodDetails = $db->query($sqlCurrentProduct)->fetchAll();
 
+        // display an error if an ID is called that doesn't exist
         if (empty($prodDetails))
         {
             $errors['prodId'] = "Zu dieser ID existiert kein Produkt.";
             return null;
         }
+
+        // display a placeholder if the image is missing
+        if (!file_exists($prodDetails[0]['imageUrl']))
+        {
+            $prodDetails[0]['imageUrl'] = IMAGESPATH.'placeholder.png';
+            $prodDetails[0]['altText']  = 'Placeholder';
+
+        }
+
         return $prodDetails;
     }
     catch (\PDOException $e)
@@ -27,9 +40,40 @@ function getProductDetails($prodId, &$errors)
         $errors['prodId'] = "Zu dieser ID existiert kein Produkt.";
         return null;
     }
-
 }
 
+
+// generates the amount-selection on the product-details page based on how many are in stock
+function generateAmountHTML($numberInStock)
+{
+    // only generate a selectable amount if there are items in stock
+    if ($numberInStock > 0)
+    {
+        $html = "<select name='amount' id='amount'>";
+
+        for ($option = 1; $option <= $numberInStock; $option++ )
+        {
+            $html .= "<option value='{$option}'>{$option}</option>";
+        }
+
+        $html .= "</select>";
+    }
+    else
+    {
+        // if there are 0 items in stock it will display an error instead of a selection
+        $html  = "<div class='' style='color:red'>";                            // !!! CLASS RED !!!
+        $html .= "Keine Produkte auf Lager.";
+        $html .= "</div>";
+    }
+
+    return $html;
+}
+
+
+
+// ==========================
+// ========== SHOP ==========
+// ==========================
 
 // generates the HTML-Code for the given product-category
 function generateShopLayout($catName, &$errors = [])
