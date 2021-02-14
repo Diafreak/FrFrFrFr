@@ -5,8 +5,11 @@ require_once 'config/imports.php';
 session_start();
 
 
+// set default values for controller and cation
 $controllerName = $_GET['c'] ?? 'pages';
 $actionName     = $_GET['a'] ?? 'home';
+// check if cart is clicked
+$cart = $_GET['cart'] ?? '';
 
 $controllerPath = CONTROLLERSPATH.$controllerName.'_controller.php';
 
@@ -61,6 +64,11 @@ else { header('Location: index.php?c=errors&a=error404'); }
 <body>
     <div class="wrapall">
         <?php
+            // show shopping cart if the icon is clicked
+            if ($cart == 'show')
+            {
+                include VIEWSPATH.'shoppingCart.php';
+            }
             // this method will render the view of the called action
             // for this the the file in the views directory will be included
             $controllerInstance->render();
