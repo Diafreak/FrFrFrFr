@@ -1,5 +1,4 @@
 <h1><?=$test?></h1>
-<? $_SESSION['currentURL'] = "?c=shop&a=products" ?>
 
 
 <div class="content">

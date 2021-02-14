@@ -1,5 +1,3 @@
-<? $_SESSION['currentURL'] = "?c=account&a=login" ?>
-
 
 <!-- "Registrierung Erfolgreich"-Banner -->
 <div id="success" class="banner registration-success">
