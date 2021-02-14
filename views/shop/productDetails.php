@@ -23,7 +23,7 @@
 
     Beschreibung: <?= $description; ?>
 
-    <form method="post" action="hier muss was wichtiges rein">          <!-- WHUT REIN? -->
+    <form method="post"> <!--action="hier muss was wichtiges rein"-->
         <div class="menge_mit_submit">
             <div class="mengenauswahl">
                 <?= generateAmountHTML($numberInStock) ?>
