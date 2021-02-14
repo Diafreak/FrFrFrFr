@@ -7,7 +7,7 @@
             <p>Mein Warenkorb</p>
         </div>
 
-        <div class="warenkorbliste"> <!-- hier wurde noch was mit data load gemacht um dann vermutlich die daten auszulesen -->
+        <div class="warenkorbliste">
             <div class="warenkorbinhalt">
                 <table class="warenreihe">
                     <tbody>
