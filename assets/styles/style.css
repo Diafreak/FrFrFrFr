@@ -313,11 +313,13 @@ div a {
     top: 0;
     transition: right .35s ease;
     max-width: 450px;
-	width: 80%;
+    width: 80%;
     height: 100%;
+
+    right: 0;
 }
 
-#w:not(:target) {
+/* #w:not(:target) {
 	right: -100%;
 	transition: right 1.5s;
 }
@@ -325,7 +327,7 @@ div a {
 #w:target {
 	right: 0;
 	transition: right 1s;
-}
+} */
 
 .warenkorbinhalt {
     padding: 1rem 2rem;
