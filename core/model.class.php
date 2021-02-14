@@ -45,7 +45,7 @@ abstract class Model
                 }
             }
         }
-        catch(\Exception $error)        //!!! CHANGE !!!
+        catch(\Exception $error)                                            //!!! CHANGE !!!
         {
             print_r($error);
             exit(1);
@@ -87,37 +87,33 @@ abstract class Model
         $valuesString  = "";
         $columnsString = "";
 
-        foreach($this->schema as $key => $schemaOptions)          //$key = id, createdAt, updatedAt...
+        foreach($this->schema as $key => $schemaOptions)
         {
             $columnsString .=       $key . ', ';
             $valuesString  .= ':' . $key . ', ';
         }
 
-        // remove the last comma from the string
+        // remove the last comma from the strings
         $columnsString = rtrim($columnsString, ', ');
         $valuesString  = rtrim($valuesString,  ', ');
 
         $sqlString = "INSERT INTO `{$tableName}` (" . $columnsString . ') VALUES (' . $valuesString . ');';
-
 
         try
         {
             $insertStatement = $db->prepare($sqlString);
 
             // bind each value from the $values-array to its related placeholder in the insertStatement
-            foreach ($this->values as $key => $value)
+            foreach ($this->schema as $key => $value)
             {
-                //$insertStatement->bindParam(':'.$key, $value);        //"SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'email' cannot be null"
-                //echo(':'.$key . " -> " . $value . "<br>");
-                $insertStatement->bindParam(':id',           $this->values['id']);
-                $insertStatement->bindParam(':createdAt',    $this->values['createdAt']);
-                $insertStatement->bindParam(':updatedAt',    $this->values['updatedAt']);
-                $insertStatement->bindParam(':email',        $this->values['email']);
-                $insertStatement->bindParam(':passwordHash', $this->values['passwordHash']);
-                $insertStatement->bindParam(':firstName',    $this->values['firstName']);
-                $insertStatement->bindParam(':lastName',     $this->values['lastName']);
-                $insertStatement->bindParam(':address_id',   $this->values['address_id']);
-                $insertStatement->bindParam(':role_id',      $this->values['role_id']);
+                if ($this->values === null)
+                {
+                    $insertStatement->bindParam(":{$key}", null);
+                }
+                else
+                {
+                    $insertStatement->bindParam(":{$key}", $this->values[$key]);
+                }
             }
 
             // execute the insert-statement
@@ -125,7 +121,7 @@ abstract class Model
         }
         catch (\PDOException $e)
         {
-            die( 'Error inserting new User: ' . $e->GetMessage() );              //!!! CHANGE-Redirect to 404? !!!
+            echo('Error inserting new User: ' . $e->GetMessage() );              //!!! CHANGE-Redirect to 404? !!!
         }
 
     }
@@ -150,7 +146,7 @@ abstract class Model
 
     public function setValue($key, $value)
     {
-        //is the given key in the schema?
+        // check if the given key is in the schema
         if(isset($this->schema[$key]))
         {
             $this->values[$key] = $value;
@@ -165,7 +161,7 @@ abstract class Model
 
     public function getValue($key)
     {
-        //is the given key in the schema?
+        // check if the given key is in the schema
         if(isset($this->schema[$key]))
         {
             return $this->values[$key];
@@ -178,6 +174,10 @@ abstract class Model
     }
 
 
+
+    // ===========================
+    // ===== SETTER & GETTER =====
+    // ===========================
     public function getSchema()
     {
         return $this->schema;
