@@ -9,6 +9,18 @@ function register($userInformation)
 {
     $user = new User($userInformation);
     $user->insert();
+
+    // get the ID from the registered user to create his own shopping cart
+    $db = $GLOBALS['db'];
+    $insertedId = $db->lastInsertId();
+    $userId = [ 'user_id' => $insertedId ];
+
+    // assign a shopping cart for the registered user
+    $cart = new ShoppingCart($userId);
+    $cart->insert();
+
+    unset($cart);
+    unset($user);
 }
 
 
