@@ -57,3 +57,13 @@ START TRANSACTION;
 INSERT INTO `frfrfrfr`.`user` (`email`, `passwordHash`, `firstName`, `lastName`, `address_id`, `role_id`) VALUES ('admin', '12345', 'admin', 'admin', NULL, 1);
 
 COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `frfrfrfr`.`shoppingcart`
+-- -----------------------------------------------------
+START TRANSACTION;
+
+INSERT INTO `frfrfrfr`.`shoppingcart` (`user_id`) VALUES (1);
+
+COMMIT;
