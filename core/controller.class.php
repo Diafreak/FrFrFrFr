@@ -45,7 +45,7 @@ class Controller
         // extract the params array to get all needed variables for the view
         extract($this->params);
 
-        //get the current view for the shopping cart-url in the navigation bar
+        // get the current view for the shoppingCart-url in the navigation bar
         $currentURL = $_SERVER['REQUEST_URI'];
 
         // include the navigation bar which is visible on all pages
