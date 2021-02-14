@@ -1,5 +1,5 @@
 <h1><?=$test?></h1>
-<?="Dies ist ein Test"?>
+<? $_SESSION['currentURL'] = "?c=pages&a=home" ?>
 
 <!-- "Login Erfolgreich"-Banner -->
 <div id="success" class="banner login-success">

@@ -1,3 +1,5 @@
+<? $_SESSION['currentURL'] = "?c=account&a=registration" ?>
+
 
 <?php if($validRegistration === true) : ?>
     <!-- redirect to Login-page and show "Registrierung Erfolgreich"-banner -->

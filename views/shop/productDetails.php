@@ -1,3 +1,5 @@
+<? $_SESSION['currentURL'] = "?c=shop&a=productDetails&prodId={$id}" ?>
+
 
 <!-- Errors -->
 <? if (isset($errors)) : ?>

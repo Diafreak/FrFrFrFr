@@ -7,7 +7,7 @@ function getProductDetails($prodId, &$errors)
 
     try
     {
-        $sqlCurrentProduct = "  SELECT p.name, p.price, p.numberInStock, p.description,
+        $sqlCurrentProduct = "  SELECT p.id, p.name, p.price, p.numberInStock, p.description,
                                        i.imageUrl, i.altText
                                 FROM   product p
                                 JOIN   image i ON p.id = i.product_id
