@@ -25,7 +25,7 @@
                 </a>
 
                 <li class="no-hover">
-                    <a href=<?="{$currentURL}&cart=show"?> type="no-hover">
+                    <a href=<?= "{$currentURL}&cart=show" ?> type="no-hover">
                         <img src=<?=IMAGESPATH . 'basket.svg'?> alt="Warenkorb" class="nav-icon">
                     </a>
 
