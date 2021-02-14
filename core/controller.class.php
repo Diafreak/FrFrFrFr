@@ -47,7 +47,9 @@ class Controller
 
 
         // include the navigation bar which is visible on all pages
-        include __DIR__.'/../views/navigationBar.php';
+        require VIEWSPATH.'navigationBar.php';
+        // include the shopping cart which can be called on all pages
+        require VIEWSPATH.'shoppingCart.php';
 
         // include the view
         include $viewPath;
