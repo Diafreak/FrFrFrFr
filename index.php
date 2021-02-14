@@ -8,8 +8,7 @@ session_start();
 // set default values for controller and cation
 $controllerName = $_GET['c'] ?? 'pages';
 $actionName     = $_GET['a'] ?? 'home';
-// check if cart is clicked
-$cart = $_GET['cart'] ?? '';
+
 
 $controllerPath = CONTROLLERSPATH.$controllerName.'_controller.php';
 
@@ -35,13 +34,13 @@ if (file_exists($controllerPath))
         {
             $controllerInstance->{$actionMethodName}();
         }
-        else { header('Location: index.php?c=errors&a=error404'); }
+        else { header('Location: ?c=errors&a=error404'); }
 
     }
-    else { header('Location: index.php?c=errors&a=error404'); }
+    else { header('Location: ?c=errors&a=error404'); }
 
 }
-else { header('Location: index.php?c=errors&a=error404'); }
+else { header('Location: ?c=errors&a=error404'); }
 
 ?>
 
@@ -51,8 +50,11 @@ else { header('Location: index.php?c=errors&a=error404'); }
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
     <link rel="stylesheet" href=<?=STYLESPATH."style.css"?>>
     <link rel="stylesheet" href=<?=STYLESPATH."banner.css"?>>
+    <link rel="stylesheet" href=<?=STYLESPATH."cart.css"?>>
 
     <!-- load page-font from GoogleFonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -65,10 +67,11 @@ else { header('Location: index.php?c=errors&a=error404'); }
     <div class="wrapall">
         <?php
             // show shopping cart if the icon is clicked
-            if ($cart == 'show')
+            if (isset($_GET['cart']) && $_GET['cart'] == 'show')
             {
                 include VIEWSPATH.'shoppingCart.php';
             }
+
             // this method will render the view of the called action
             // for this the the file in the views directory will be included
             $controllerInstance->render();
