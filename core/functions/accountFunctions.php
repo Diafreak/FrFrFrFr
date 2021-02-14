@@ -24,12 +24,9 @@ function loginWithSessionId()
 
 function login($email, $password, &$error)
 {
-    $db = $GLOBALS['db'];
-
+    $db       = $GLOBALS['db'];
     $userData = [];
-
-    $userID = getUserID($email, $error);
-
+    $userID   = getUserID($email, $error);
 
     try
     {
