@@ -70,6 +70,25 @@ function generateAmountHTML($numberInStock)
 }
 
 
+function getNumberInStock($prodId)
+{
+    $db = $GLOBALS['db'];
+
+    try
+    {
+        $sqlProdAmount = "SELECT numberInStock FROM product WHERE id = '{$prodId}';";
+        $prodAmount = $db->query($sqlProdAmount)->fetchAll()[0];
+
+        return $prodAmount['numberInStock'] ?? null;
+    }
+    catch (\PDOException $e)
+    {
+        $errors['productId'] = "Zu dieser ID gibt es kein Produkt.";
+    }
+}
+
+
+
 function getCartId($userId, &$errors)
 {
     $db = $GLOBALS['db'];
@@ -77,10 +96,9 @@ function getCartId($userId, &$errors)
     try
     {
         $sqlCartId   = "SELECT id FROM shoppingcart WHERE user_id = '{$userId}';";
-        $cartIdArray = $db->query($sqlCartId)->fetchAll();
+        $cartId      = $db->query($sqlCartId)->fetchAll()[0];
 
-        var_dump($cartIdArray);
-        return $cartIdArray[0]['id'] ?? null;
+        return $cartId['id'] ?? null;
     }
     catch (\PDOException $e)
     {
