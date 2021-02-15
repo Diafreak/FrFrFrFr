@@ -1,5 +1,10 @@
 <h1><?=$test?></h1>
 
+<!-- "Zum Warenkorb hinzugefügt"-Banner -->
+<div id="success" class="banner product-added">
+    <span>Zum Warenkorb hinzugefügt</span>
+    <a href="#" class="close">[schließen]</a>
+</div>
 
 <div class="content">
     <div class="schaufenster">

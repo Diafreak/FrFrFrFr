@@ -17,7 +17,8 @@ CSS for banner:
 }
 
 
-.login-success, .registration-success
+.login-success, .registration-success,
+.product-added
 {
     background-color: #217c21;
     border: 1px solid #085701;
