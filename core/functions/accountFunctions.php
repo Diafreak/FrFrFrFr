@@ -38,25 +38,27 @@ function login($email, $password, &$error)
 {
     $db       = $GLOBALS['db'];
     $userData = [];
-    $userID   = getUserID($email, $error);
+    $userID   = getUserId($email, $error);
 
     try
     {
         // get the user-information for the entered email from the database
         $sqlUserData = "SELECT * FROM user WHERE id = {$userID};";
-        $userData    = $db->query($sqlUserData)->fetchAll();
+        $userData    = $db->query($sqlUserData)->fetchAll()[0];
 
-        $userID_DB       = $userData[0]['id']           ?? '';
-        $passwordHash_DB = $userData[0]['passwordHash'] ?? '';
+        $userID_DB       = $userData['id']           ?? '';
+        $passwordHash_DB = $userData['passwordHash'] ?? '';
 
         // check if email and password match
         if ($userID == $userID_DB
         &&  password_verify($password, $passwordHash_DB)
         // this is just a "helper" so we can insert an admin-role with the "demo-data.sql"
-        ||  $userData[0]['email'] == 'admin' && $password == $passwordHash_DB)
+        ||  $userData['email'] == 'admin' && $password == $passwordHash_DB)
         {
             $_SESSION['loggedIn'] = true;
-            $_SESSION['userID']   = $userID;
+            $_SESSION['userId']   = $userID;
+            $_SESSION['cartId']   = getCartId($userID);
+
             // redirect to the front page and show the "Anmeldung Erfolgreich"-banner
             header('Location: index.php#success');
 
@@ -137,6 +139,25 @@ function getRoleId($role, &$errors)
     }
 
     return $roleID[0]['id'] ?? null;
+}
+
+
+
+function getCartId($userId, &$errors = [])
+{
+    $db = $GLOBALS['db'];
+
+    try
+    {
+        $sqlCartId = "SELECT id FROM shoppingcart WHERE user_id = '{$userId}';";
+        $cartId    = $db->query($sqlCartId)->fetchAll()[0];
+
+        return $cartId['id'] ?? null;
+    }
+    catch (\PDOException $e)
+    {
+        $errors['cartId'] = "Dieser Nutzer besitzt keinen Einkaufswagen.";
+    }
 }
 
 
@@ -260,7 +281,7 @@ function invalidEmail($email)
 
 
 // gets an email and returns the userID from the database if the email is in the database
-function getUserID($email, &$error)
+function getUserId($email, &$error)
 {
     $db = $GLOBALS['db'];
 
@@ -282,7 +303,7 @@ function getUserID($email, &$error)
 // check for the registration if the given email is already in the database
 function doesEmailExist($email, &$error)
 {
-    $userID = getUserID($email, $error);
+    $userID = getUserId($email, $error);
 
     // if there is no user-id the email doesn't exist in the database
     if (empty($userID))

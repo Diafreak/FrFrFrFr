@@ -11,24 +11,9 @@
             <div class="warenkorbinhalt">
                 <table class="warenreihe">
                     <tbody>
-                        <tr> <!-- jede Reihe ist ein Produkt im Warenkorb mit: -->
 
-                            <td> <!-- Bild -->
-                                <a href="?c=shop&a=productDetails" type="no-hover">
-                                    <img src=<?=IMAGESPATH . 'placeholder.png'?> alt="Frucht" width="25px" height="25px">
-                                </a>
-                            </td>
+                        <?= generateCartItems(); ?>
 
-                            <td> <!-- Name & Anzahl -->
-                                <h3 class="produktname">Eine Frucht!</h3>
-                                <p>14125 Tonnen</p>
-                            </td>
-
-                            <td> <!-- Preis -->
-                                3 Geld
-                            </td>
-
-                        </tr>
                     </tbody>
                 </table>
             </div>

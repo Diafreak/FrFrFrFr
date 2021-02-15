@@ -33,15 +33,16 @@ class ShopController extends Controller
         }
 
 
+        // check if "In den Warenkorb" is clicked
         if (isset($_POST['submitProduct']))
         {
             if ($_SESSION['loggedIn'] === true)
             {
-                $userId    = $_SESSION['userID'];
+                $userId    = $_SESSION['userId'];
+                $cartId    = $_SESSION['cartId'];
                 $amount    = $_POST['amount'];
                 $prodId    = $_GET['prodId'];
                 $noInStock = getNumberInStock($prodId);
-                $cartId    = getCartId($userId, $errors);
 
                 // if the selected amount is higher than the numberInStock, the amount is set to the numberInStock
                 if ($amount > $noInStock)
