@@ -8,14 +8,22 @@ body
     /* font-family: 'Average',  'Times New Roman'; */
     /* font-family: 'Aclonica', 'Times New Roman'; */
     font-family: 'Averia Serif Libre', 'Times New Roman';
-    margin: 0;
     min-height: 100vh;
+    margin: 0;
     clear: both;
 }
 
-footer {
+.belowbody
+{
+    min-height: 100%;
+    /* position: relative; */
+}
+
+footer 
+{
+    position: fixed;
     width: 100%;
-    height: 5em;
+    height: 100px;
     bottom: 0;
     background-color: grey;
     text-align: center;
@@ -26,11 +34,12 @@ h1
     text-align: center;
 }
 
-.wrappall
+.wrapall
 {
-   height: 110vh;
-   width: 100vw; 
-   padding-bottom: 10vh;
+   overflow:auto;
+   position: relative;
+   height: 100vh;
+   width: 100vw;
 }
 /*
 ==============================

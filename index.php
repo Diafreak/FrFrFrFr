@@ -76,7 +76,7 @@ else { header('Location: ?c=errors&a=error404'); }
             // for this the the file in the views directory will be included
             $controllerInstance->render();
         ?>
-
+        
         <footer>
             <p>Test test<br>
                 Hier wird getestet</p>
