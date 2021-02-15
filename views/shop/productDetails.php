@@ -23,14 +23,14 @@
 
     Beschreibung: <?= $description; ?>
 
-    <form method="post"> <!--action="hier muss was wichtiges rein"-->
+    <form method="post">
         <div class="menge_mit_submit">
             <div class="mengenauswahl">
                 <?= generateAmountHTML($numberInStock) ?>
                 <!-- <p>oder ander Menge wählen</p>
                 und dann hier noch ein Formular wo man eine eigene Menge reinschreiben kann -->
             </div>
-            <button type="submit" class="submit_amount" name="submitProduct">In den Warenkorb</button>
+            <button type="submit" class="submit_amount" name="submitProduct" <?= ($numberInStock <= 0) ? "disabled" : "" ?>>In den Warenkorb</button>
         </div>
     </form>
 
