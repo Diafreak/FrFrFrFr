@@ -89,25 +89,6 @@ function getNumberInStock($prodId)
 
 
 
-function getCartId($userId, &$errors)
-{
-    $db = $GLOBALS['db'];
-
-    try
-    {
-        $sqlCartId   = "SELECT id FROM shoppingcart WHERE user_id = '{$userId}';";
-        $cartId      = $db->query($sqlCartId)->fetchAll()[0];
-
-        return $cartId['id'] ?? null;
-    }
-    catch (\PDOException $e)
-    {
-        $errors['cartId'] = "Dieser Nutzer besitzt keinen Einkaufswagen.";
-    }
-}
-
-
-
 // ==========================
 // ========== SHOP ==========
 // ==========================
@@ -191,7 +172,7 @@ function generateShopLayout($catName, &$errors = [])
             }
         }
         // print the entire html for the products on the shop page
-        echo($productsHTMLLayout);
+        return $productsHTMLLayout;
     }
     else
     {
