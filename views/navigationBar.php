@@ -12,8 +12,8 @@
                     <li>HOME</li>
                 </a>
                 <div class="dropdown-menu">
-                    <a href="?c=pages&a=about" >
-                        <li>Obst</li>
+                    <a href="?c=shop&a=fruits" >
+                        <li>OBST</li>
                     </a>
                     <div class="dropdown-content">
                         <a href="irgendwas:)">Kernobst</a>
@@ -23,8 +23,8 @@
                         <a href="irgendwas:)">Südfrüchte</a>
                     </div>
                 </div>
-                <a href="?c=shop&a=products">
-                    <li>PRODUKTE</li>
+                <a href="?c=shop&a=vegetables">
+                    <li>GEMÜSE</li>
                 </a>
                 <a href="?c=pages&a=current">
                     <li>AKTUELLES</li>
