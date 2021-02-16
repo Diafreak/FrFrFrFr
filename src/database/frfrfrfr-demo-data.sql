@@ -44,14 +44,14 @@ INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description
 INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Pfirsich',         '5.00',   7,  'Pfirsiche sind sehr süß und saftig, was sie besonders im Sommer sehr beliebt macht.',                                                               1, 2);
 INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Birne',            '3.10',   0,  'Diese weichen, süßen Früchte sind besonders im Herbst ein klarer Favorit.',                                                                         1, 1);
 INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Gurke',            '2.80',  20,  'Gurken eignen sich gut für Salate, Sandwiches oder einfach nur als erfrischender Snack.',                                                           2, 6);
--- OBST ---
+-- OBST --
 INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Grüner Apfel',     '3.00',   9,  'Diese Apfelsorte zeichnet sich durch eine gewisse Säure aus, die viele sehr schätzen.',                                                             1, 1);
 INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Zitrone',          '2.90',   6,  'Allseits bekannt sind die gelben Zitronen für ihren sauren Geschmack, sind aber auch reich an Vitaminen und daher sehr gesund.',                    1, 4);
 INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Limette',          '8.10',   3,  'Bekannt für ihre Säure eignen sich Limetten eher zum Verfeinern von Speisen und Getränken, als zum puren Verzehr.',                                 1, 4);
 INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Ananas',           '3.50',   8,  'Reife Ananas sind saftig und süß und vor allem im Sommer ein wahrer Genuss.',                                                                       1, 5);
 INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Mango',            '5.00',   5,  'Die zurecht beliebten Mangos sind wunderbar süß und aromatisch.',                                                                                   1, 5);
 INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Banane',           '2.50',  10,  'Gelb und krumm – das Aussehen von Bananen ist ebenso ikonisch wie ihr Geschmack.',                                                                  1, 5);
-INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Erdbeere',         '10.00',  3,  'Diese roten, leckeren Beeren sind sehr vielseitig. Ob pur, als Kuchen, in Marmelade oder Smoothies, sie sind bei Groß und Klein sehr geschätzt. ',  1, 3);
+INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Erdbeere',         '10.00',  3,  'Diese roten, leckeren Beeren sind sehr vielseitig. Ob pur, als Kuchen, in Marmelade oder Smoothies, sie sind bei Groß und Klein sehr geschätzt.',   1, 3);
 INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Himbeere',         '15.00',  2,  'Himbeeren eignen sich hervorragend als süßer Sommersnack.',                                                                                         1, 3);
 INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Blaubeere',        '16.00',  2,  'Blaubeeren sind ein leckerer Snack für zwischendurch, schmecken aber auch in Kuchen köstlich.',                                                     1, 3);
 INSERT INTO `frfrfrfr`.`product` (`name`, `price`, `numberInStock`, `description`, `category_id`, `productTags_id`) VALUES ('Brombeere',        '17.00',  2,  'Diese dunklen Beeren sind sehr vitaminreich und weniger süß als andere Beeren.',                                                                    1, 3);
@@ -100,7 +100,7 @@ INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('as
 INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/peach.jpg',    'Pfirsich', 3);
 INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/pear.jpg',     'Birne',    4);
 INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/cucumber.jpg', 'Gurke',    5);
-
+-- OBST --
 INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/apple_green.jpg', 'Grüner Apfel',  6);
 INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/lemon.jpg',       'Zitrone',       7);
 INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/lime.jpg',        'Limette',       8);
@@ -121,6 +121,27 @@ INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('as
 INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/tangerine.jpg',   'Mandarine',    22);
 INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/cherry.jpg',      'Kirschen',     23);
 INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/kiwi.jpg',        'Kiwi',         24);
+-- GEMÜSE --
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/tomato.jpg',         'Tomate',           25);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/iceberglettuce.jpg', 'Eisbergsalat',     26);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/gardensalad.jpg',    'Gartensalat',      27);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/whitecabbage.jpg',   'Weißkohl',         28);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/redcabbage.jpg',     'Rotkohl',          29);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/bellpepper.jpg',     'Paprika',          30);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/zucchini.jpg',       'Zucchini',         31);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/kohlrabi.jpg',       'Kohlrabi',         32);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/cauliflower.jpg',    'Blumenkohl',       33);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/broccoli.jpg',       'Brokkoli',         34);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/potato.jpg',         'Kartoffel',        35);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/onion.jpg',          'Zwiebel',          36);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/garlic.jpg',         'Knoblauch',        37);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/radish.jpg',         'Radieschen',       38);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/avocado.jpg',        'Avocado',          39);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/greenonion.jpg',     'Sellerie',         40);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/leek.jpg',           'Lauch',            41);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/rootcelery.jpg',     'Frühlingszwiebel', 42);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/sweetpotato.jpg',    'Süßkartoffel',     43);
+INSERT INTO `frfrfrfr`.`image` (`imageUrl`, `altText`, `product_id`) VALUES ('assets/images/products/carrot.jpg',         'Karotte',          44);
 
 COMMIT;
 
