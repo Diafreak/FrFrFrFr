@@ -312,7 +312,7 @@ function getProductsFromSameCategory($catId, $db, &$errors)
 {
     try
     {
-        $sqlProducts = "SELECT * FROM product WHERE category_id = '{$catId}';";
+        $sqlProducts = "SELECT * FROM product WHERE category_id = '{$catId}' ORDER BY name;";
         return $db->query($sqlProducts)->fetchAll();
     }
     catch (\PDOException $e)
