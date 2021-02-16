@@ -11,11 +11,11 @@
                 <a href="?c=pages&a=home">
                     <li>HOME</li>
                 </a>
-                <a href="?c=pages&a=about">
-                    <li>ÜBER UNS</li>
+                <a href="?c=shop&a=fruits">
+                    <li>OBST</li>
                 </a>
-                <a href="?c=shop&a=products">
-                    <li>PRODUKTE</li>
+                <a href="?c=shop&a=vegetables">
+                    <li>GEMÜSE</li>
                 </a>
                 <a href="?c=pages&a=current">
                     <li>AKTUELLES</li>
