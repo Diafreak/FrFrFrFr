@@ -45,6 +45,7 @@ function generateCartItems()
 
 function generateCartHTML($prodId, $name, $amount, $price, $imageUrl, $altText)
 {
+    $total = (float)$price * (int)$amount;
     $html  = "<tr>";
 
     // Picture
@@ -57,12 +58,12 @@ function generateCartHTML($prodId, $name, $amount, $price, $imageUrl, $altText)
     // Name & Amount
     $html .=     "<td>";
     $html .=         "<h3 class='produktname'>{$name}</h3>";
-    $html .=         "<p>{$amount}</p>";
+    $html .=         "<p>{$amount} x {$price}€</p>";
     $html .=     "</td>";
 
     // Price
     $html .=     "<td>";
-    $html .=         "{$price}€";
+    $html .=         "{$total}0€";
     $html .=     "</td>";
 
     $html .= "</tr>";
