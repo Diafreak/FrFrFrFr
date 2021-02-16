@@ -58,7 +58,7 @@ function generateCartHTML($prodId, $name, $amount, $price, $imageUrl, $altText)
     // Name & Amount
     $html .=     "<td>";
     $html .=         "<h3 class='produktname'>{$name}</h3>";
-    $html .=         "<p>{$amount} x {$price}€</p>";
+    $html .=         "<p>{$amount} x {$price}€/kg</p>";
     $html .=     "</td>";
 
     // Price
