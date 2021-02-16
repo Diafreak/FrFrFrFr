@@ -11,9 +11,18 @@
                 <a href="?c=pages&a=home">
                     <li>HOME</li>
                 </a>
-                <a href="?c=pages&a=about">
-                    <li>ÜBER UNS</li>
-                </a>
+                <div class="dropdown-menu">
+                    <a href="?c=pages&a=about" class="dropdown-element">
+                        <li>Obst</li>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="irgendwas:)">Kernobst</a>
+                        <a href="irgendwas:)">Steinobst</a>
+                        <a href="irgendwas:)">Beeren</a>
+                        <a href="irgendwas:)">Zitrusfrüchte</a>
+                        <a href="irgendwas:)">Südfrüchte</a>
+                    </div>
+                </div>
                 <a href="?c=shop&a=products">
                     <li>PRODUKTE</li>
                 </a>
