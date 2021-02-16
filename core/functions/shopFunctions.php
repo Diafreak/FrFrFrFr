@@ -103,11 +103,11 @@ function isProductAlreadyInCart($cartId, $prodId, &$amount)
         $sqlProdInCart = "SELECT quantity
                           FROM   productinshoppingcart
                           WHERE  shoppingCart_id = '{$cartId}' AND product_id = '{$prodId}';";
-        $prodInCart = $db->query($sqlProdInCart)->fetchAll()[0];
+        $prodInCart = $db->query($sqlProdInCart)->fetchAll();
 
         if (!empty($prodInCart))
         {
-            (int) $amount += (int) $prodInCart['quantity'];
+            (int) $amount += (int) $prodInCart[0]['quantity'];
         }
     }
     catch (\PDOException $e)

@@ -53,13 +53,11 @@ class ShopController extends Controller
                 }
 
                 // if the item is already in your cart, update the amount of it instead of creating a new entry
-                if ($amount != $_POST['amount'])
+                if ($amount != $_POST['amount'] || $amount == $noInStock)
                 {
                     updateAmountInCart($cartId, $prodId, $amount);
                 }
-                // if the selected amount is higher than the numberInStock, nothing will happen to
-                // prevent unnecessary database updating/inserting
-                else if (!$amount == $noInStock)
+                else
                 {
                     addItemToCart($amount, $noInStock, $prodId, $cartId);
                 }
