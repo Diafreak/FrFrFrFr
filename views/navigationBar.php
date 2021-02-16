@@ -11,12 +11,30 @@
                 <a href="?c=pages&a=home">
                     <li>HOME</li>
                 </a>
-                <a href="?c=shop&a=fruits">
-                    <li>OBST</li>
-                </a>
-                <a href="?c=shop&a=vegetables">
-                    <li>GEMÜSE</li>
-                </a>
+                <div class="dropdown-menu">
+                    <a href="?c=shop&a=fruits" >
+                        <li>OBST</li>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="irgendwas:)">Kernobst</a>
+                        <a href="irgendwas:)">Steinobst</a>
+                        <a href="irgendwas:)">Beeren</a>
+                        <a href="irgendwas:)">Zitrusfrüchte</a>
+                        <a href="irgendwas:)">Südfrüchte</a>
+                    </div>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="?c=shop&a=vegetables">
+                        <li>GEMÜSE</li>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="irgendwas:)">Fruchtgemüse</a>
+                        <a href="irgendwas:)">(Blatt)Salat</a>
+                        <a href="irgendwas:)">Kohlgemüse</a>
+                        <a href="irgendwas:)">Knollengemüse</a>
+                        <a href="irgendwas:)">Zwiebelgewächse</a>
+                    </div>
+                </div>
                 <a href="?c=pages&a=current">
                     <li>AKTUELLES</li>
                 </a>

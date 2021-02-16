@@ -65,17 +65,19 @@ else { header('Location: ?c=errors&a=error404'); }
 
 <body>
     <div class="wrapall">
-        <?php
-            // show shopping cart if the icon is clicked
-            if (isset($_GET['cart']) && $_GET['cart'] == 'show')
-            {
-                include VIEWSPATH.'shoppingCart.php';
-            }
+        <div class="stuff">
+            <?php
+                // show shopping cart if the icon is clicked
+                if (isset($_GET['cart']) && $_GET['cart'] == 'show')
+                {
+                    include VIEWSPATH.'shoppingCart.php';
+                }
 
-            // this method will render the view of the called action
-            // for this the the file in the views directory will be included
-            $controllerInstance->render();
-        ?>
+                // this method will render the view of the called action
+                // for this the the file in the views directory will be included
+                $controllerInstance->render();
+            ?>
+        </div>
         
         <footer>
             <p>Test test<br>

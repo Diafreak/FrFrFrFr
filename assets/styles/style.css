@@ -19,6 +19,10 @@ body
     /* position: relative; */
 }
 
+.stuff
+{
+    padding-bottom: 100px;
+}
 footer 
 {
     position: fixed;
@@ -68,7 +72,9 @@ header > nav > ul
 }
 
 header > nav > ul > li,
-header > nav > ul > a
+header > nav > ul > a,
+header > nav > ul > div > a > li,
+header > nav > ul > div > a
 {
     display: table-cell;
     vertical-align: middle;
@@ -99,6 +105,15 @@ nav ul .no-hover:hover
 {
     background-color: #5331a3; /*#7209B7 | 3a0ca3*/
 }
+
+.dropdown-content
+{
+    /* display: none; */
+    font: inherit;
+    font-size: inherit;
+    color: white;
+}
+
 
 /*
 ==============================
