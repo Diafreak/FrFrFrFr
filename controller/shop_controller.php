@@ -71,7 +71,7 @@ class ShopController extends Controller
                 }
 
                 $action = $productDetails['catName'] . 's';
-                //header("Location: ?c=shop&a={$action}#success");             // !!! CHANGE DYNAMIC URL !!!
+                header("Location: ?c=shop&a={$action}#success");             // !!! CHANGE DYNAMIC URL !!!
             }
             else
             {
