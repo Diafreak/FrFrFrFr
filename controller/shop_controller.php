@@ -44,26 +44,32 @@ class ShopController extends Controller
                 $prodId    = $_GET['prodId'];
                 $noInStock = getNumberInStock($prodId);
 
+                isProductAlreadyInCart($cartId, $prodId, $amount);
+
                 // if the selected amount is higher than the numberInStock, the amount is set to the numberInStock
                 if ($amount > $noInStock)
                 {
                     $amount = $noInStock;
                 }
 
-                // create array with all necessary info of the product so it can be added to the cart
-                $prodInfo = [ 'product_id'      => $prodId,
-                              'quantity'        => $amount,
-                              'shoppingCart_id' => $cartId ];
+                // if the item is already in your cart, update the amount of it instead of creating a new entry
+                if ($amount != $_POST['amount'])
+                {
+                    updateAmountInCart($cartId, $prodId, $amount);
+                }
+                // if the selected amount is higher than the numberInStock, nothing will happen to
+                // prevent unnecessary database updating/inserting
+                else if (!$amount == $noInStock)
+                {
+                    addItemToCart($amount, $noInStock, $prodId, $cartId);
+                }
 
-                // add item and amount to your shopping cart
-                $prodInCart = new ProductInShoppingCart($prodInfo);
-                $prodInCart->insert();
                 header('Location: ?c=shop&a=products#success');             // !!! CHANGE DYNAMIC URL !!!
-                unset($prodInCart);
             }
             else
             {
-                header('Location: ?c=account&a=login');     // CHANGE !!!
+                // redirect to login if the user wants to add an item to their cart
+                header('Location: ?c=account&a=login');                         //!!! CHANGE !!!
             }
         }
 
