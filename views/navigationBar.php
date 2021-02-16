@@ -23,9 +23,18 @@
                         <a href="irgendwas:)">Südfrüchte</a>
                     </div>
                 </div>
-                <a href="?c=shop&a=vegetables">
-                    <li>GEMÜSE</li>
-                </a>
+                <div class="dropdown-menu">
+                    <a href="?c=shop&a=vegetables">
+                        <li>GEMÜSE</li>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="irgendwas:)">Fruchtgemüse</a>
+                        <a href="irgendwas:)">(Blatt)Salat</a>
+                        <a href="irgendwas:)">Kohlgemüse</a>
+                        <a href="irgendwas:)">Knollengemüse</a>
+                        <a href="irgendwas:)">Zwiebelgewächse</a>
+                    </div>
+                </div>
                 <a href="?c=pages&a=current">
                     <li>AKTUELLES</li>
                 </a>
