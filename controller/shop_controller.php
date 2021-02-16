@@ -4,11 +4,20 @@
 class ShopController extends Controller
 {
 
-    public function actionProducts()
+    public function actionFruits()
     {
-        $test = "PRODUKTE";
-        $this->setParam('test', $test);
+        $product = "fruit";
+        $this->setParam('product', $product);
     }
+
+
+
+    public function actionVegetables()
+    {
+        $product = "vegetable";
+        $this->setParam('product', $product);
+    }
+
 
 
     public function actionProductDetails()
@@ -17,7 +26,7 @@ class ShopController extends Controller
         $prodId = $_GET['prodId'];
 
         // get all product-details from the product that has been clicked on
-        $productDetails = getProductDetails($prodId, $errors);
+        $productDetails = getProductDetails($prodId, $errors)[0];
 
         if ($productDetails == null)
         {
@@ -26,7 +35,7 @@ class ShopController extends Controller
         else
         {
             // push all necessary product-info from $productDetails to the view
-            foreach ($productDetails[0] as $key => $value)
+            foreach ($productDetails as $key => $value)
             {
                 $this->setParam($key, $value);
             }
@@ -62,7 +71,8 @@ class ShopController extends Controller
                     addItemToCart($amount, $noInStock, $prodId, $cartId);
                 }
 
-                header('Location: ?c=shop&a=products#success');             // !!! CHANGE DYNAMIC URL !!!
+                $action = $productDetails['catName'] . 's';
+                header("Location: ?c=shop&a={$action}#success");             // !!! CHANGE DYNAMIC URL !!!
             }
             else
             {
@@ -70,7 +80,6 @@ class ShopController extends Controller
                 header('Location: ?c=account&a=login');                         //!!! CHANGE !!!
             }
         }
-
     }
 
 }
