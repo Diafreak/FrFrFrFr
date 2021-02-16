@@ -274,7 +274,7 @@ function generateProductHTML($position, $productId, $imageSrc, $altText, $produc
     $html .= nTabs($start).nTabs(3).        "</a>\n";
     $html .= nTabs($start).nTabs(2).    "</div>\n";
     $html .= nTabs($start).nTabs(2).    "<div class='produkt-preis'>\n";
-    $html .= nTabs($start).nTabs(3).        "{$price} €\n";
+    $html .= nTabs($start).nTabs(3).        "{$price} € / kg\n";
     $html .= nTabs($start).nTabs(2).    "</div>\n";
     $html .= nTabs($start).nTabs(1)."</div>\n";
 
