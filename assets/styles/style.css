@@ -235,12 +235,12 @@ button:hover
     display: block;
 }
 
-button.disabled
+button:disabled
 {
     background-color:gray;
     border-color: gray;
 }
-button.disabled:hover
+button:disabled:hover
 {
     background-color: gray;
     cursor: not-allowed;
