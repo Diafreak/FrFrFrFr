@@ -110,12 +110,15 @@ function isProductAlreadyInCart($cartId, $prodId, &$amount)
         if (!empty($prodInCart))
         {
             (int) $amount += (int) $prodInCart[0]['quantity'];
+            return true;
         }
     }
     catch (\PDOException $e)
     {
         $errors['prodInCart'] = "In diesem Cart sind keine Produkte mit der ID {$prodId} vorhanden.";
     }
+
+    return false;
 }
 
 

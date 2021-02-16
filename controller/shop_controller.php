@@ -53,8 +53,6 @@ class ShopController extends Controller
                 $prodId    = $_GET['prodId'];
                 $noInStock = getNumberInStock($prodId);
 
-                isProductAlreadyInCart($cartId, $prodId, $amount);
-
                 // if the selected amount is higher than the numberInStock, the amount is set to the numberInStock
                 if ($amount > $noInStock)
                 {
@@ -62,8 +60,9 @@ class ShopController extends Controller
                 }
 
                 // if the item is already in your cart, update the amount of it instead of creating a new entry
-                if ($amount != $_POST['amount'] || $amount == $noInStock)
+                if (isProductAlreadyInCart($cartId, $prodId, $amount))
                 {
+                    if ($amount > $noInStock) $amount = $noInStock;
                     updateAmountInCart($cartId, $prodId, $amount);
                 }
                 else
@@ -72,7 +71,7 @@ class ShopController extends Controller
                 }
 
                 $action = $productDetails['catName'] . 's';
-                header("Location: ?c=shop&a={$action}#success");             // !!! CHANGE DYNAMIC URL !!!
+                //header("Location: ?c=shop&a={$action}#success");             // !!! CHANGE DYNAMIC URL !!!
             }
             else
             {
