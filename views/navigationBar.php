@@ -12,7 +12,7 @@
                     <li>HOME</li>
                 </a>
                 <div class="dropdown-menu">
-                    <a href="?c=pages&a=about" class="dropdown-element">
+                    <a href="?c=pages&a=about" >
                         <li>Obst</li>
                     </a>
                     <div class="dropdown-content">

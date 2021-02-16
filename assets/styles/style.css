@@ -72,7 +72,9 @@ header > nav > ul
 }
 
 header > nav > ul > li,
-header > nav > ul > a
+header > nav > ul > a,
+header > nav > ul a  li,
+header > nav > ul > div > a
 {
     display: table-cell;
     vertical-align: middle;
@@ -81,6 +83,11 @@ header > nav > ul > a
     text-align: center;
     text-decoration: none;
     height: 100%;
+}
+header > nav > ul > div > a > li
+{
+    display: list-item;
+    text-align: -webkit-match-parent;
 }
 
 
