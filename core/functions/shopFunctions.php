@@ -1,8 +1,8 @@
 <?php
 
-// ==============================
-// ========== PRODUCTS ==========
-// ==============================
+// =====================================
+// ========== PRODUCT-DETAILS ==========
+// =====================================
 
 function getProductDetails($prodId, &$errors)
 {
@@ -61,13 +61,14 @@ function generateAmountHTML($numberInStock)
     else
     {
         // if there are 0 items in stock it will display an error instead of a selection
-        $html  = "<div class='' style='color:red'>";                            // !!! CLASS RED !!!
+        $html  = "<div class='' style='color:red'>";                                        // !!! CLASS RED !!!
         $html .= "Keine Produkte auf Lager.";
         $html .= "</div>";
     }
 
     return $html;
 }
+
 
 
 function getNumberInStock($prodId)
@@ -84,6 +85,68 @@ function getNumberInStock($prodId)
     catch (\PDOException $e)
     {
         $errors['productId'] = "Zu dieser ID gibt es kein Produkt.";
+    }
+}
+
+
+
+// ==========================
+// ========== CART ==========
+// ==========================
+
+function isProductAlreadyInCart($cartId, $prodId, &$amount)
+{
+    $db = $GLOBALS['db'];
+
+    try
+    {
+        $sqlProdInCart = "SELECT quantity
+                          FROM   productinshoppingcart
+                          WHERE  shoppingCart_id = '{$cartId}' AND product_id = '{$prodId}';";
+        $prodInCart = $db->query($sqlProdInCart)->fetchAll()[0];
+
+        if (!empty($prodInCart))
+        {
+            (int) $amount += (int) $prodInCart['quantity'];
+        }
+    }
+    catch (\PDOException $e)
+    {
+        $errors['prodInCart'] = "In diesem Cart sind keine Produkte mit der ID {$prodId} vorhanden.";
+    }
+}
+
+
+function addItemToCart($amount, $noInStock, $prodId, $cartId)
+{
+    // create array with all necessary info of the product so it can be added to the cart
+    $prodInfo = [ 'product_id'      => $prodId,
+                  'quantity'        => $amount,
+                  'shoppingCart_id' => $cartId ];
+
+    // add item and amount to your shopping cart
+    $prodInCart = new ProductInShoppingCart($prodInfo);
+    $prodInCart->insert();
+    unset($prodInCart);
+}
+
+
+
+function updateAmountInCart($cartId, $prodId, $amount)
+{
+    $db = $GLOBALS['db'];
+
+    try
+    {
+        $sqlUpdateAmount = "UPDATE productinshoppingcart
+                            SET    quantity = '{$amount}'
+                            WHERE  shoppingCart_id = '{$cartId}' AND product_id = '{$prodId}';";
+        $updateStatement = $db->prepare($sqlUpdateAmount);
+        $updateStatement->execute();
+    }
+    catch (\PDOException $e)
+    {
+        $errors['updateAmount'] = "Menge vom Produkt (ID: {$prodId}) konnte nicht aktualisiert werden.";
     }
 }
 

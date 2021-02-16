@@ -15,7 +15,7 @@ function getUrlWithoutCart()
 
 function generateCartItems()
 {
-    $cartId = $_SESSION['cartId'];
+    $cartId = $_SESSION['cartId'] ?? null;
 
     // get all items that are in your shopping cart
     $cartItems = getCartItems($cartId);
@@ -34,9 +34,11 @@ function generateCartItems()
             $cartHTML .= generateCartHTML($prodInfo['product_id'], $prodInfo['name'], $prodInfo['quantity'], $prodInfo['price'],
                                           $prodInfo['imageUrl'],   $prodInfo['altText']);
         }
+
+        return $cartHTML;
     }
 
-    return $cartHTML;
+
 }
 
 
