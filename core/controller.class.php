@@ -57,7 +57,7 @@ class Controller
         }
 
         // include the navigation bar which is visible on all pages
-        require VIEWSPATH.'navigationBar.php';
+        require_once VIEWSPATH.'navigationBar.php';
 
         // include the view
         include $viewPath;
