@@ -37,33 +37,42 @@ function generateProductHTML($position, $productId, $imageSrc, $altText, $produc
     return $html;
 }
 
+
+
 // ===================================
 // ========== SHOPPING CART ==========
 // ===================================
 function generateCartHTML($prodId, $name, $amount, $price, $imageUrl, $altText)
 {
-    $total = (float)$price * (int)$amount;
-    $html  = "<tr>";
+    $total      = (float)$price * (int)$amount;
+    $currentUrl = $_SERVER['REQUEST_URI'];
+
+    $html  = "<tr>\n";
 
     // Picture
-    $html .=     "<td>";
-    $html .=         "<a href='?c=shop&a=productDetails&prodId={$prodId}' type='no-hover'>";
-    $html .=             "<img src='{$imageUrl}' alt='{$altText}' width='25px' height='25px'>";        // !!! CSS !!!
-    $html .=         "</a>";
-    $html .=     "</td>";
+    $html .=     "<td>\n";
+    $html .=         "<a href='?c=shop&a=productDetails&prodId={$prodId}' type='no-hover'>\n";
+    $html .=             "<img src='{$imageUrl}' alt='{$altText}' width='25px' height='25px'>\n";        // !!! CSS !!!
+    $html .=         "</a>\n";
+    $html .=     "</td>\n";
 
     // Name & Amount
-    $html .=     "<td>";
-    $html .=         "<h3 class='produktname'>{$name}</h3>";
-    $html .=         "<p>{$amount} x {$price}€/kg</p>";
-    $html .=     "</td>";
+    $html .=     "<td>\n";
+    $html .=         "<h3 class='produktname'>{$name}</h3>\n";
+    $html .=         "<p>{$amount} x {$price}€/kg</p>\n";
+    $html .=     "</td>\n";
 
     // Price
-    $html .=     "<td>";
-    $html .=         "{$total}0€";
-    $html .=     "</td>";
+    $html .=     "<td>\n";
+    $html .=         "<form method='get'>\n";
+    $html .=             "<input type='hidden' name='removeItem' value='{$prodId}'>\n";
+    $html .=             "<input type='hidden' name='currentUrl' value='{$currentUrl}'>\n";
+    $html .=             "<button type='submit' class=''>[entfernen]</button>\n";
+    $html .=         "</form>\n";
+    $html .=         "<p>{$total}0€</p>\n";
+    $html .=     "</td>\n";
 
-    $html .= "</tr>";
+    $html .= "</tr>\n";
 
     return $html;
 }

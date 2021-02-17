@@ -45,6 +45,7 @@ else { header('Location: ?c=errors&a=error404'); }
 ?>
 
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,6 +72,11 @@ else { header('Location: ?c=errors&a=error404'); }
                 if (isset($_GET['cart']) && $_GET['cart'] == 'show')
                 {
                     include VIEWSPATH.'shoppingCart.php';
+                }
+
+                if (isset($_GET['removeItem']))
+                {
+                    removeCartItem($_GET['removeItem'], $_GET['currentUrl']);
                 }
 
                 // this method will render the view of the called action

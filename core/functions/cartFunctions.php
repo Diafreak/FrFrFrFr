@@ -39,8 +39,14 @@ function generateCartItems()
 
         return $cartHTML;
     }
+}
 
 
+
+function removeCartItem($id, $url)
+{
+    removeItemFromDatabase($id, $_SESSION['cartId']);
+    header("Location: {$url}");
 }
 
 
@@ -71,5 +77,23 @@ function getCartItems($cartId)
     }
 }
 
+
+
+function removeItemFromDatabase($prodId, $cartId)
+{
+    $db = $GLOBALS['db'];
+
+    try
+    {
+        $sqlCartItem = "DELETE FROM productinshoppingcart WHERE shoppingCart_id = '{$cartId}' AND product_id = '{$prodId}';";
+
+        $deleteSatement = $db->prepare($sqlCartItem);
+        $deleteSatement->execute();
+    }
+    catch (\PDOException $e)
+    {
+        $errors['cartItems'] = "Dieses Item befindet sich nicht in Ihrem Warenkorb.";
+    }
+}
 
 ?>
