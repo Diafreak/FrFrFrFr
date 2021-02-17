@@ -5,8 +5,6 @@
 */
 body
 {
-    /* font-family: 'Average',  'Times New Roman'; */
-    /* font-family: 'Aclonica', 'Times New Roman'; */
     font-family: 'Averia Serif Libre', 'Times New Roman';
     min-height: 100vh;
     margin: 0;
@@ -46,6 +44,9 @@ h1
    height: 100%;
    width: 100vw;
 }
+
+
+
 /*
 ==============================
 ===Navigationsleisten Style===
@@ -138,6 +139,8 @@ nav ul .no-hover:hover
     color: white;
 }
 
+
+
 /*
 ==============================
 ===Seitenmitte / Shop-Style===
@@ -197,6 +200,8 @@ div ul.produkt-tabelle
     font-weight: 500;
 }
 
+
+
 /*
 =====================================
 ===Allgemeine Form & Login Details===
@@ -227,7 +232,7 @@ div ul.produkt-tabelle
 }
 
 .user-form input[type="submit" i],
-button
+.button
 {
     margin: 10px 0 0;
     background-color: #4361ee;
@@ -238,7 +243,7 @@ button
     text-decoration: none;
 }
 .user-form input:not([type="checkbox" i]),
-button
+.button
 {
     border: 1px solid #8a8a8a;
     border-radius: 4px;
@@ -254,7 +259,7 @@ button
 }
 
 .user-form input[type="submit" i]:hover, 
-button:hover
+.button:hover
 {
     background-color: #6780ec;
 }
@@ -305,6 +310,8 @@ label
     height: 35px;
 } */
 
+
+
 /*
 ==============================
 =====Registration Details=====
@@ -346,6 +353,7 @@ input#lastname
 {
     margin-bottom: 5px;
 }
+
 
 
 /*
