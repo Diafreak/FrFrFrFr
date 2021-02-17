@@ -62,7 +62,7 @@ else { header('Location: ?c=errors&a=error404'); }
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap"> 
 
     <link rel="shortcut icon" href=<?=IMAGESPATH."ferret.svg"?> type="image/x-icon" />
-    <title>FrFrFrFr Frontpage</title>
+    <title>FrFrFrFr <?=ucfirst($actionName)?></title>
 </head>
 
 <body>
