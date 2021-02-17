@@ -71,7 +71,7 @@ function generateCartHTML($prodId, $name, $amount, $price, $imageUrl, $altText)
     $html .= nTabs($start).        "<form method='get'>\n";
     $html .= nTabs($start).            "<input type='hidden' name='removeItem' value='{$prodId}'>\n";
     $html .= nTabs($start).            "<input type='hidden' name='currentUrl' value='{$currentUrl}'>\n";
-    $html .= nTabs($start).            "<button type='submit' class='shopping-cart-remove-item-btn'><b>[entfernen]</b></button>\n";
+    $html .= nTabs($start).            "<button type='submit' class='shopping-cart-remove-item-btn noHover'><b>[entfernen]</b></button>\n";
     $html .= nTabs($start).        "</form>\n";
     $html .= nTabs($start).        "<p>{$total}€</p>\n";
     $html .= nTabs($start).    "</td>\n";

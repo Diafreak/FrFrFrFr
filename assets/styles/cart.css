@@ -91,3 +91,8 @@ table
     background: none; 
     cursor: pointer;
 }
+
+.noHover:hover
+{
+    background-color: #eee;
+}
