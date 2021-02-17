@@ -4,15 +4,15 @@
 
             <ul>
                 <li class="no-hover">
-                    <a href="?c=pages&a=home" type="no-hover">
+                    <a href="?c=pages&a=home" type="no-hover" class="navbar-icon">
                         <img src=<?=IMAGESPATH . 'ferret.svg'?> alt="Logo" class="logo"></a>
                 </li>
 
                 <a href="?c=pages&a=home">
                     <li>HOME</li>
                 </a>
-                <div class="dropdown-menu">
-                    <a href="?c=shop&a=fruits" >
+                <ul class="dropdown-menu">
+                    <a href="?c=shop&a=fruits">
                         <li>OBST</li>
                     </a>
                     <div class="dropdown-content">
@@ -22,8 +22,8 @@
                         <a href="irgendwas:)">Zitrusfrüchte</a>
                         <a href="irgendwas:)">Südfrüchte</a>
                     </div>
-                </div>
-                <div class="dropdown-menu">
+                </ul>
+                <ul class="dropdown-menu">
                     <a href="?c=shop&a=vegetables">
                         <li>GEMÜSE</li>
                     </a>
@@ -34,7 +34,7 @@
                         <a href="irgendwas:)">Knollengemüse</a>
                         <a href="irgendwas:)">Zwiebelgewächse</a>
                     </div>
-                </div>
+                </ul>
                 <a href="?c=pages&a=current">
                     <li>AKTUELLES</li>
                 </a>
