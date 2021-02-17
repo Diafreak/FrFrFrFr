@@ -65,7 +65,7 @@ else { header('Location: ?c=errors&a=error404'); }
     <title>FrFrFrFr <?=ucfirst($actionName)?></title>
 </head>
 
-<body>
+<body class=<?= (isset($_GET['cart']) && $_GET['cart'] == 'show') ? 'no-scrolling' : '' ?>>
     <div class="wrapall">
         <div class="stuff">
             <?php
