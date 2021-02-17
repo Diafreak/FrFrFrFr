@@ -247,7 +247,7 @@ div ul.produkt-tabelle
 }
 
 .user-form input[type="submit" i],
-button
+.button
 {
     margin: 10px 0 0;
     background-color: #4361ee;
@@ -258,7 +258,7 @@ button
     text-decoration: none;
 }
 .user-form input:not([type="checkbox" i]),
-button
+.button
 {
     border: 1px solid #8a8a8a;
     border-radius: 4px;

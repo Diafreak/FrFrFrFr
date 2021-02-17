@@ -216,12 +216,19 @@ function checkEmailExistence($email, &$errors)
 function validateEmail($email, &$errors)
 {
     $user = new User();
-    $maxEmailLength = $user->getSchema()['lastName']['max'];
+    $maxEmailLength = $user->getSchema()['email']['max'];
 
-    if ($email === null || invalidEmail($email) || mb_strlen($email) > $maxEmailLength)
+    if ($email == null)
     {
-        $errors['email']       = 'Bitte eine valide Email-Adresse eingeben.';
+        $errors['emailEmpty'] = 'Email darf nicht leer sein.';
+    }
+    else if (mb_strlen($email) > $maxEmailLength)
+    {
         $errors['emailLength'] = "Email darf max. $maxEmailLength Zeichen lang sein.";
+    }
+    else if (invalidEmail($email))
+    {
+        $errors['email'] = 'Bitte eine valide Email-Adresse eingeben.';
     }
 
     unset($user);
@@ -230,7 +237,7 @@ function validateEmail($email, &$errors)
 
 function validatePassword($password, &$errors)
 {
-    $user = new User();
+    $user        = new User();
     $minPWLength = $user->getSchema()['passwordHash']['min'];
 
     $uppercase    = preg_match('@[A-Z]@', $password);
@@ -238,16 +245,27 @@ function validatePassword($password, &$errors)
     $number       = preg_match('@[0-9]@', $password);
     $specialChars = preg_match('@[^\w]@', $password);
 
-    if ($password === null
-    || !$uppercase
-    || !$lowercase
-    || !$number
-    || !$specialChars
-    ||  mb_strlen($password) < $minPWLength)
+    if ($password == null)
     {
-        $errors['passwordLength'] = "Passwort muss mind. $minPWLength Zeichen lang sein.";
-        $errors['passwordChars']  = "Passwort muss mind. 1 Groß- und Kleinbuchstaben, 1 Zahl und 1 Sonderzeichen enthalten.";
+        $errors['pwEmpty'] = "Passwort darf nicht leer sein.";
     }
+    else if (mb_strlen($password) < $minPWLength)
+    {
+        $errors['pwLength'] = "Passwort muss mind. $minPWLength Zeichen lang sein.";
+    }
+    else if (!$uppercase || !$lowercase || !$number || !$specialChars)
+    {
+        $errors["pwChars"] = "Passwort muss noch mind. ";
+
+        if (!$uppercase)    $errors["pwChars"] .= "1 Großbuchstaben, ";
+        if (!$lowercase)    $errors["pwChars"] .= "1 Kleinbuchstaben, ";
+        if (!$number)       $errors["pwChars"] .= "1 Zahl, ";
+        if (!$specialChars) $errors["pwChars"] .= "1 Sonderzeichen, ";
+
+        $errors["pwChars"]  = rtrim($errors["pwChars"], ', ');
+        $errors["pwChars"] .= " enthalten";
+    }
+
 
     unset($user);
 }
