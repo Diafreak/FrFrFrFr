@@ -1,5 +1,7 @@
 <?php
 
+require_once 'htmlGeneration.php';
+
 
 // returns URL of the page you were on before the cart was clicked
 function getUrlWithoutCart()
@@ -39,36 +41,6 @@ function generateCartItems()
     }
 
 
-}
-
-
-
-function generateCartHTML($prodId, $name, $amount, $price, $imageUrl, $altText)
-{
-    $total = (float)$price * (int)$amount;
-    $html  = "<tr>";
-
-    // Picture
-    $html .=     "<td>";
-    $html .=         "<a href='?c=shop&a=productDetails&prodId={$prodId}' type='no-hover'>";
-    $html .=             "<img src='{$imageUrl}' alt='{$altText}' width='25px' height='25px'>";        // !!! CSS !!!
-    $html .=         "</a>";
-    $html .=     "</td>";
-
-    // Name & Amount
-    $html .=     "<td>";
-    $html .=         "<h3 class='produktname'>{$name}</h3>";
-    $html .=         "<p>{$amount} x {$price}€/kg</p>";
-    $html .=     "</td>";
-
-    // Price
-    $html .=     "<td>";
-    $html .=         "{$total}0€";
-    $html .=     "</td>";
-
-    $html .= "</tr>";
-
-    return $html;
 }
 
 
