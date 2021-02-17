@@ -306,25 +306,4 @@ function getProductImages($catId, $db, &$errors)
 }
 
 
-// this function is just for better readability when inspecting the sourcecode of the shop-page ("Seitenquelltext anzeigen")
-// otherwise the entire html-layout would be in one line
-function nTabs($numberOfTabs)
-{
-    static $TAB = "    ";
-    $tabs = "";
-
-    if ($numberOfTabs > 0)
-    {
-        for ($tabIndex = 0; $tabIndex < $numberOfTabs; $tabIndex++)
-        {
-            $tabs .= $TAB;
-        }
-        return $tabs;
-    }
-    else
-    {
-        return "";
-    }
-}
-
 ?>
