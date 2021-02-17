@@ -11,9 +11,7 @@
             <div class="warenkorbinhalt">
                 <table class="warenreihe">
                     <tbody>
-
                         <?= generateCartItems(); ?>
-
                     </tbody>
                 </table>
             </div>
