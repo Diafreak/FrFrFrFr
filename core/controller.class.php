@@ -39,7 +39,7 @@ class Controller
         {
             // redirect to error page 404 because not found
             header('Location: index.php?c=errors&a=error404');
-            //header('Location: index.php?c=errors&a=error404&error=viewpath');
+            //header('Location: index.php?c=errors&a=error404&error=viewpath');             // !!! BETTER !!!
         }
 
         // extract the params array to get all needed variables for the view

@@ -44,6 +44,7 @@
         <br>
     </form>
 
+    <!-- "Registrierung"-Button -->
     <form method="get">
         <input type="hidden" name="c" value="account" />
         <input type="hidden" name="a" value="registration" />
