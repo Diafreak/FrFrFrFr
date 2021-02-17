@@ -11,6 +11,11 @@ body
     clear: both;
 }
 
+.no-scrolling
+{
+    overflow: hidden;
+}
+
 .belowbody
 {
     min-height: 100%;
@@ -30,6 +35,7 @@ footer
     bottom: 0;
     background-color: grey;
     text-align: center;
+    z-index: -1;
 }
 
 h1
@@ -163,7 +169,6 @@ nav ul .no-hover:hover
     padding-bottom: 10px;
     max-width: 1300px;
     width: 100%;
-    position: relative;
     margin: 0 auto;
 }
 
@@ -178,6 +183,7 @@ div ul.produkt-tabelle
     margin-block-end: 0;
     table-layout: fixed;
 }
+
 
 .content li 
 {

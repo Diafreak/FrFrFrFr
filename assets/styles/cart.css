@@ -19,6 +19,8 @@ div a
     height: 100%;
     width: 100%;
     background-color: rgba(0,0,0,.6);
+    position: fixed;
+    z-index: 1;
 }
 
 .warenkorb
@@ -33,9 +35,8 @@ div a
     max-width: 450px;
     width: 80%;
     height: 100%;
-    z-index: 5;
-
     right: 0;
+    box-shadow: -3px 0 10px rgba(0,0,0,0.5);
 }
 
 /* #w:not(:target) {
@@ -73,4 +74,25 @@ table
 .warenkorbliste .produktname
 {
     margin: 0;
+}
+
+.shopping-cart-item-picture
+{
+    width: 25px;
+    height: 25px;
+}
+
+.shopping-cart-remove-item-btn
+{
+    /* kein */
+    color: red; 
+    padding: 0; 
+    border: none; 
+    background: none; 
+    cursor: pointer;
+}
+
+.noHover:hover
+{
+    background-color: #eee;
 }

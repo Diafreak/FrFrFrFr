@@ -58,7 +58,7 @@ function generateCartHTML($prodId, $name, $amount, $price, $imageUrl, $altText)
     // Picture
     $html .= nTabs($start).    "<td>\n";
     $html .= nTabs($start).        "<a href='?c=shop&a=productDetails&prodId={$prodId}' type='no-hover'>\n";
-    $html .= nTabs($start).            "<img src='{$imageUrl}' alt='{$altText}' width='25px' height='25px'>\n";        // !!! CSS !!!
+    $html .= nTabs($start).            "<img src='{$imageUrl}' alt='{$altText}' class='shoppin-cart-item-picture'>\n";        // !!! CSS !!!
     $html .= nTabs($start).        "</a>\n";
     $html .= nTabs($start).    "</td>\n";
     // Name & Amount
@@ -71,7 +71,7 @@ function generateCartHTML($prodId, $name, $amount, $price, $imageUrl, $altText)
     $html .= nTabs($start).        "<form method='get'>\n";
     $html .= nTabs($start).            "<input type='hidden' name='removeItem' value='{$prodId}'>\n";
     $html .= nTabs($start).            "<input type='hidden' name='currentUrl' value='{$currentUrl}'>\n";
-    $html .= nTabs($start).            "<button type='submit' class='' style='color:red; padding:0; border:none; background:none; cursor:pointer'><b>[entfernen]</b></button>\n";
+    $html .= nTabs($start).            "<button type='submit' class='shopping-cart-remove-item-btn noHover'><b>[entfernen]</b></button>\n";
     $html .= nTabs($start).        "</form>\n";
     $html .= nTabs($start).        "<p>{$total}€</p>\n";
     $html .= nTabs($start).    "</td>\n";
