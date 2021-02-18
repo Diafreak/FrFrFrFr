@@ -392,3 +392,9 @@ img.product-picture
     width: 80%;
     height: 55%;
 }
+
+img.user-picture
+{
+    height: 150px;
+    width: 150px;
+}
