@@ -77,7 +77,7 @@ else { header('Location: ?c=errors&a=error404'); }
 
                 if (isset($_GET['removeItem']))
                 {
-                    removeCartItem($_GET['removeItem'], $_GET['currentUrl']);
+                    removeItemFromCart($_GET['removeItem'], $_GET['currentUrl']);
                 }
 
                 // this method will render the view of the called action
