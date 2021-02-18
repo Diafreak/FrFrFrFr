@@ -20,7 +20,7 @@
 
     <form method="post">
         <input type="string" name="email" id="email" placeholder="E-Mail" autocapitalize="off"
-        value="<?= (isset($errors) && $errors !== '') && isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+        value="<?= (isset($errors) && $errors !== '') && isset($_POST['email']) ? strtolower(htmlspecialchars($_POST['email'])) : '' ?>">
 
         <input type="password" name="password" id="password" placeholder="Passwort" autocapitalize="off">
 
