@@ -2,6 +2,26 @@
 
 
 // =================================
+// ========== FORM-ERRORS ==========
+// =================================
+
+function printErrors($errors)
+{
+    if (isset($errors))
+    {
+        echo("<div style='color:red'>");
+        foreach($errors as $error)
+        {
+            echo("<li>{$error}</li>");
+        }
+        echo("</div>");
+    }
+}
+
+
+
+
+// =================================
 // ========== SHOP-LAYOUT ==========
 // =================================
 
