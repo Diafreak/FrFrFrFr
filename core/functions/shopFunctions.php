@@ -95,10 +95,52 @@ function getNumberInStock($prodId)
 
 
 
+
 // ==========================
 // ========== CART ==========
 // ==========================
 
+function addItemToCart($prodId, $productDetails)
+{
+    if ($_SESSION['loggedIn'] === true)
+    {
+        $userId    = $_SESSION['userId'];
+        $cartId    = $_SESSION['cartId'];
+        $amount    = $_POST['amount'];
+
+        $noInStock = getNumberInStock($prodId);
+
+        // if the selected amount is higher than the numberInStock, the amount is set to the numberInStock
+        if ($amount > $noInStock)
+        {
+            $amount = $noInStock;
+        }
+
+        // if the item is already in your cart, update the amount of it instead of creating a new entry
+        if (isProductAlreadyInCart($cartId, $prodId, $amount))
+        {
+            if ($amount > $noInStock) $amount = $noInStock;
+            updateAmountInCart($cartId, $prodId, $amount);
+        }
+        else
+        {
+            addItem($amount, $noInStock, $prodId, $cartId);
+        }
+
+        $action = $productDetails['catName'] . 's';
+        header("Location: ?c=shop&a={$action}#success");             // !!! CHANGE DYNAMIC URL !!!
+    }
+    else
+    {
+        // redirect to login if the user wants to add an item to their cart
+        header('Location: ?c=account&a=login');                         //!!! CHANGE !!!
+    }
+}
+
+
+
+// check if the added item is already in your cart
+// if yes, the selected amount and amount in the cart will be added together
 function isProductAlreadyInCart($cartId, $prodId, &$amount)
 {
     $db = $GLOBALS['db'];
@@ -125,21 +167,8 @@ function isProductAlreadyInCart($cartId, $prodId, &$amount)
 }
 
 
-function addItemToCart($amount, $noInStock, $prodId, $cartId)
-{
-    // create array with all necessary info of the product so it can be added to the cart
-    $prodInfo = [ 'product_id'      => $prodId,
-                  'quantity'        => $amount,
-                  'shoppingCart_id' => $cartId ];
 
-    // add item and amount to your shopping cart
-    $prodInCart = new ProductInShoppingCart($prodInfo);
-    $prodInCart->insert();
-    unset($prodInCart);
-}
-
-
-
+// if an item is already in the cart the amount of it will be updated instead of adding a new entry
 function updateAmountInCart($cartId, $prodId, $amount)
 {
     $db = $GLOBALS['db'];
@@ -160,12 +189,13 @@ function updateAmountInCart($cartId, $prodId, $amount)
 
 
 
+
 // ==========================
 // ========== SHOP ==========
 // ==========================
 
 // generates the HTML-Code for the given product-category
-function generateShopLayout($catName, &$errors = [])
+function generateShopLayout($catName, $tags = "", &$errors = [])
 {
     $db = $GLOBALS['db'];
 
@@ -253,6 +283,7 @@ function generateShopLayout($catName, &$errors = [])
 
 
 
+
 // ===============================
 // ===== EXTRACTED FUNCTIONS =====
 // ===============================
@@ -273,6 +304,7 @@ function getCatId($catName, $db, &$errors)
 }
 
 
+
 function getProductsFromSameCategory($catId, $db, &$errors)
 {
     try
@@ -285,6 +317,7 @@ function getProductsFromSameCategory($catId, $db, &$errors)
         $errors['prodOfSameCat'] = "Zu dieser Kategorie gibt es keine Produkte.";
     }
 }
+
 
 
 function getProductImages($catId, $db, &$errors)
@@ -305,5 +338,19 @@ function getProductImages($catId, $db, &$errors)
     }
 }
 
+
+
+function addItem($amount, $noInStock, $prodId, $cartId)
+{
+    // create array with all necessary info of the product so it can be added to the cart
+    $prodInfo = [ 'product_id'      => $prodId,
+                  'quantity'        => $amount,
+                  'shoppingCart_id' => $cartId ];
+
+    // add item and amount to your shopping cart
+    $prodInCart = new ProductInShoppingCart($prodInfo);
+    $prodInCart->insert();
+    unset($prodInCart);
+}
 
 ?>
