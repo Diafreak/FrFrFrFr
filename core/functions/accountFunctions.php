@@ -1,9 +1,9 @@
 <?php
 
 
-// ================================================
-// ===== FUNCTIONS USED BY ACCOUNT_CONTROLLER =====
-// ================================================
+// ========================================
+// =============== REGISTER ===============
+// ========================================
 
 function register($userInformation)
 {
@@ -24,6 +24,12 @@ function register($userInformation)
 }
 
 
+
+
+// =====================================
+// =============== LOGIN ===============
+// =====================================
+
 function loginWithSessionId()
 {
     session_destroy();
@@ -32,6 +38,7 @@ function loginWithSessionId()
 
     $_SESSION['loggedIn'] = true;
 }
+
 
 
 function login($email, $password, &$error)
@@ -82,6 +89,11 @@ function login($email, $password, &$error)
 
 
 
+
+// ======================================
+// =============== LOGOUT ===============
+// ======================================
+
 function logOut()
 {
     setcookie('sessionId', '', -1, '/');
@@ -89,6 +101,67 @@ function logOut()
     header('Location: index.php#logout');
 }
 
+
+
+
+// ============================================
+// =============== USER-ACCOUNT ===============
+// ============================================
+
+function getCurrentUser()
+{
+    $db     = $GLOBALS['db'];
+    $userId = $_SESSION['userId'];
+
+    try
+    {
+        $sqlCurrentUser = "SELECT * FROM user WHERE id = '{$userId}';";
+        return $db->query($sqlCurrentUser)->fetchAll()[0] ?? null;
+    }
+    catch (\PDOException $e)
+    {
+        $errors['currentUser'] = "Der angegebene Nutzer existiert nicht.";
+    }
+}
+
+
+
+function changeEmail($email, &$errors)
+{
+    // check if email has pattern of x@x.xx
+    validateEmail($email, $errors);
+
+    if (count($errors) == 0)
+    {
+        updateEmail($email, $errors);
+    }
+}
+
+
+
+function changePassword($oldPassword, $newPassword, $newPasswordConfirm, &$errors)
+{
+    // check if the old passwort matches with the database
+    validateOldPassword($oldPassword, $errors);
+    // check if new passwort is equal the old password
+    checkIfOldAndNewPasswordAreEqual($oldPassword, $newPassword, $errors);
+    // check if passwort fits regex
+    validatePassword($newPassword, $errors);
+    // check if new password and new password-confirm are equal
+    validatePasswordConfirm($newPassword, $newPasswordConfirm, $errors);
+
+    if (count($errors) == 0)
+    {
+        updatePassword($newPassword, $errors);
+    }
+}
+
+
+
+
+// =================================================
+// =============== GENERAL FUNCTIONS ===============
+// =================================================
 
 function generatePasswordHash($password)
 {
@@ -106,8 +179,7 @@ function validateInputs($userInformation, &$errors)
     validateFirstName($firstName, $errors);
     validateLastName( $lastName,  $errors);
 
-    checkEmailExistence($email, $errors);
-    validateEmail(      $email, $errors);
+    validateEmail($email, $errors);
 
     validatePassword($password, $errors);
 
@@ -162,9 +234,10 @@ function getCartId($userId, &$errors = [])
 
 
 
-// ===============================
-// ===== EXTRACTED FUNCTIONS =====
-// ===============================
+
+// ====================================================
+// =============== VALIDATION FUNCTIONS ===============
+// ====================================================
 
 function validateFirstName($firstName, &$errors)
 {
@@ -183,6 +256,7 @@ function validateFirstName($firstName, &$errors)
 
     unset($user);
 }
+
 
 
 function validateLastName($lastName, &$errors)
@@ -204,17 +278,11 @@ function validateLastName($lastName, &$errors)
 }
 
 
-function checkEmailExistence($email, &$errors)
-{
-    if (doesEmailExist($email, $errors))
-    {
-        $errors['emailTaken'] = "Email ist bereits vorhanden.";
-    }
-}
-
 
 function validateEmail($email, &$errors)
 {
+    checkEmailExistence($email, $errors);
+
     $user = new User();
     $maxEmailLength = $user->getSchema()['email']['max'];
 
@@ -233,6 +301,7 @@ function validateEmail($email, &$errors)
 
     unset($user);
 }
+
 
 
 function validatePassword($password, &$errors)
@@ -266,9 +335,9 @@ function validatePassword($password, &$errors)
         $errors["pwChars"] .= " enthalten";
     }
 
-
     unset($user);
 }
+
 
 
 function validatePasswordConfirm($password, $passwordConfirm, &$errors)
@@ -276,6 +345,48 @@ function validatePasswordConfirm($password, $passwordConfirm, &$errors)
     if ($password !== $passwordConfirm)
     {
         $errors['passwordMatch'] = 'Passwörter stimmen nicht überein.';
+    }
+}
+
+
+
+function validateOldPassword($oldPassword, &$errors)
+{
+    $db     = $GLOBALS['db'];
+    $userId = $_SESSION['userId'];
+
+    try
+    {
+        $sqlUserID = "SELECT passwordHash FROM user WHERE id = '{$userId}';";
+        $pwHashDB  = $db->query($sqlUserID)->fetchAll();
+
+        if (!password_verify($oldPassword, $pwHashDB[0]['passwordHash']))
+        {
+            // this is just a "helper" because "demo-data.sql" doesn't insert a passwordHash
+            if (!($userId == "1" && $oldPassword == $pwHashDB[0]['passwordHash']))
+            {
+                $errors['passwordOld'] = "Altes Passwort ist nicht korrekt.";
+            }
+        }
+    }
+    catch (\PDOException $e)
+    {
+        $errors['passwordOldUser'] = "Der Nutzer existiert nicht.";
+    }
+}
+
+
+
+
+// ===================================================
+// =============== EXTRACTED FUNCTIONS ===============
+// ===================================================
+
+function checkEmailExistence($email, &$errors)
+{
+    if (doesEmailExist($email, $errors))
+    {
+        $errors['emailTaken'] = "Email ist bereits vorhanden.";
     }
 }
 
@@ -298,6 +409,69 @@ function invalidEmail($email)
 
 
 
+function updateEmail($email, &$errors)
+{
+    $db     = $GLOBALS['db'];
+    $userId = $_SESSION['userId'];
+
+    try
+    {
+        $sqlUpdateEmail  = "UPDATE user SET email = '{$email}' WHERE id = '{$userId}';";
+        $updateStatement = $db->prepare($sqlUpdateEmail);
+        $updateStatement->execute();
+    }
+    catch (\PDOException $e)
+    {
+        $errors['updateEmail'] = "Email konnte nicht geupdated werden.";
+    }
+}
+
+
+
+// check for the registration if the given email is already in the database
+function doesEmailExist($email, &$error)
+{
+    $userID = getUserId($email, $error);
+
+    // if there is no user-id the email doesn't exist in the database
+    if (empty($userID))
+    {
+        return false;
+    }
+
+    // if there is an user-id the email already exists in the database
+    return true;
+}
+
+
+
+function checkIfOldAndNewPasswordAreEqual($oldPassword, $newPassword, &$errors)
+{
+    if ($oldPassword == $newPassword) $errors['passwordNewEqualOld'] = "Neues Passwort darf nicht gleich dem alten Passwort sein.";
+}
+
+
+
+function updatePassword($newPassword, &$errors)
+{
+    $db     = $GLOBALS['db'];
+    $userId = $_SESSION['userId'];
+
+    $newPasswordHash = generatePasswordHash($newPassword);
+
+    try
+    {
+        $sqlUpdateEmail  = "UPDATE user SET passwordHash = '{$newPasswordHash}' WHERE id = '{$userId}';";
+        $updateStatement = $db->prepare($sqlUpdateEmail);
+        $updateStatement->execute();
+    }
+    catch (\PDOException $e)
+    {
+        $errors['updateEmail'] = "Passwort konnte nicht geändert werden.";
+    }
+}
+
+
 // gets an email and returns the userID from the database if the email is in the database
 function getUserId($email, &$error)
 {
@@ -317,19 +491,4 @@ function getUserId($email, &$error)
 }
 
 
-
-// check for the registration if the given email is already in the database
-function doesEmailExist($email, &$error)
-{
-    $userID = getUserId($email, $error);
-
-    // if there is no user-id the email doesn't exist in the database
-    if (empty($userID))
-    {
-        return false;
-    }
-
-    // if there is an user-id the email already exists in the database
-    return true;
-}
 ?>

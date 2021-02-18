@@ -14,11 +14,12 @@ class AccountController extends Controller
         // check if "Registrieren"-button is pressed
         if(isset($_POST['submitRegistration']))
         {
-            $userInformation['firstName']       = htmlspecialchars($_POST['firstname']      ) ?? null;
-            $userInformation['lastName']        = htmlspecialchars($_POST['lastname']       ) ?? null;
-            $userInformation['email']           = htmlspecialchars($_POST['email']          ) ?? null;
-            $userInformation['password']        = htmlspecialchars($_POST['password']       ) ?? null;
-            $userInformation['passwordConfirm'] = htmlspecialchars($_POST['passwordconfirm']) ?? null;
+            $userInformation['firstName']       = htmlspecialchars($_POST['firstname']          ) ?? null;
+            $userInformation['lastName']        = htmlspecialchars($_POST['lastname']           ) ?? null;
+            $userInformation['email']           = strtolower( htmlspecialchars($_POST['email']) ) ?? null;
+            $userInformation['password']        = htmlspecialchars($_POST['password']           ) ?? null;
+            $userInformation['passwordConfirm'] = htmlspecialchars($_POST['passwordconfirm']    ) ?? null;
+            // every new registered user gets the role "customer"
             $userInformation['role_id']         = getRoleId('customer', $errors);
 
             validateInputs($userInformation, $errors);
@@ -30,7 +31,6 @@ class AccountController extends Controller
                 $validRegistration = true;
             }
         }
-
 
         // push variables to the view
         $this->setParam('errors', $errors);
@@ -76,10 +76,32 @@ class AccountController extends Controller
 
     public function actionAccount()
     {
-        $this->params['test'] = ($_SESSION['loggedIn'] === true) ? "Eingeloggt" : "Ausgeloggt" ;//"ACCOUNT";
+        $errors = [];
 
+        // page can only be accessed if the user is logged in, otherwise he is redirected to login
         if ($_SESSION['loggedIn'] === true)
         {
+            // check if "Email Ändern"-button is clicked
+            if (isset($_POST['submitEmailChange']))
+            {
+                changeEmail($_POST['changeEmail'], $errors);
+            }
+
+            // check if "Password Ändern"-button is clicked
+            if (isset($_POST['submitPasswordChange']))
+            {
+                changePassword($_POST['oldPassword'], $_POST['newPassword'], $_POST['newPasswordConfirm'], $errors);
+            }
+
+
+            $user = getCurrentUser();
+            // push all user-data to the view so it can be displayed
+            foreach ($user as $key => $userData)
+            {
+                $this->setParam($key, $userData);
+            }
+
+            // check if "Abmelden"-button is pressed
             if (isset($_POST['submitLogout']))
             {
                 logOut();
@@ -89,6 +111,8 @@ class AccountController extends Controller
         {
             header('Location: ?c=account&a=login');
         }
+
+        $this->setParam('errors', $errors);
     }
 
 }
