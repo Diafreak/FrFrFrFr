@@ -282,9 +282,9 @@ function generateShopLayout($catName, $tags = "", &$errors = [])
 
 
 
-// ===============================
-// ===== EXTRACTED FUNCTIONS =====
-// ===============================
+// =========================================
+// ========== EXTRACTED FUNCTIONS ==========
+// =========================================
 
 function getCatId($catName, &$errors)
 {
@@ -308,11 +308,11 @@ function getCatId($catName, &$errors)
 
 
 
-function getProductsFromSameCategory($catId, $tags = "", &$errors)
+function getProductsFromSameCategory($catId, $tags = '', &$errors)
 {
     $db = $GLOBALS['db'];
 
-    if ($tags == "")
+    if ($tags == '')
     {
         try
         {
@@ -326,20 +326,69 @@ function getProductsFromSameCategory($catId, $tags = "", &$errors)
     }
     else
     {
+        // if at least 1 tag is set
         try
         {
-            // if tags are set it looks through all the tags in the "productTags"-table and all
-            // product-names if the tag matches something and returns only these products
-            $sqlProductWithTags = " SELECT   p.*
-                                    FROM     producttags pt
-                                    JOIN     product p ON pt.id = p.productTags_id
-                                    WHERE    pt.tags LIKE '%{$tags}%' OR p.name LIKE '%{$tags}%'
-                                    ORDER BY p.name;";
-            $productArray = $db->query($sqlProductWithTags)->fetchAll();
+            $maxNumberOfTags = 2;
 
-            if (!empty($productArray)) return $productArray;
+            // check how many tags an user is searching for
+            if (substr_count($tags, ' ') >= $maxNumberOfTags)
+            {
+                $errors['maxTags'] = "Max. {$maxNumberOfTags} Suchbegriffe möglich.";
+            }
+            else
+            {
+                $productArray = [];
 
-            $errors['prodTags'] = "Zu dieser Suchanfrage konnte nichts gefunden werden.";
+                // put all tags into separate array indices
+                $separatedTags = explode(' ', $tags, $maxNumberOfTags);
+
+                // if searching for multiple tags you want a product that has all of them
+                // so first we get all products that fit the first tag, then we search these products for the other tag
+                $firstTag  = $separatedTags[0];
+                $secondTag = $separatedTags[1] ?? null;
+
+                // look through all tags in the "productTags"-table and all product-names and get the ones having the tags and save the prodId
+                // "category_id = $catId" is needed because e.g. if we search in fruits we don't want results from vegetables
+                $sqlProductFirstTag = " SELECT   p.*
+                                        FROM     producttags pt
+                                        JOIN     product p ON pt.id = p.productTags_id
+                                        WHERE    category_id = '{$catId}' AND (pt.tags LIKE '%{$firstTag}%' OR p.name LIKE '%{$firstTag}%');
+                                        ORDER BY p.name;";
+                // all products that fit the first tag
+                $productsFirstTag = $db->query($sqlProductFirstTag)->fetchAll();
+
+
+                // check if a second tag is set
+                if ($secondTag != null)
+                {
+                    $sqlProductSecondTag = " SELECT   p.*
+                                             FROM     producttags pt
+                                             JOIN     product p ON pt.id = p.productTags_id
+                                             WHERE    category_id = '{$catId}' AND (pt.tags LIKE '%{$secondTag}%' OR p.name LIKE '%{$secondTag}%')
+                                             ORDER BY p.name;";
+                    // all products that fit the second tag
+                    $productsSecondTag = $db->query($sqlProductSecondTag)->fetchAll();
+
+
+                    // loop through booth arrays and save products they have in common in $productArray
+                    foreach ($productsFirstTag as $firstTagProd)
+                    {
+                        foreach ($productsSecondTag as $secondTagProd)
+                        {
+                            if ($firstTagProd['name'] == $secondTagProd['name'])
+                            {
+                                array_push($productArray, $firstTagProd);
+                            }
+                        }
+                    }
+
+                }
+
+                if (!empty($productArray)) return $productArray;
+
+                $errors['prodTags'] = "Zu dieser Suchanfrage konnte nichts gefunden werden.";
+            }
         }
         catch (\PDOException $e)
         {
