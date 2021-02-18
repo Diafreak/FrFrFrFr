@@ -20,18 +20,26 @@ if (isset($_COOKIE['sessionId']))
 }
 
 
+// check if the called controller-file exists
 if (file_exists($controllerPath))
 {
+    // include the given controller-file
     require_once $controllerPath;
+    // get controller-class name
     $controllerClassName = ucfirst($controllerName).'Controller';
 
+    // check if the controller-class in the controller-file exists
     if (class_exists($controllerClassName))
     {
+        // create a new controller instanze with given action and controller
         $controllerInstance = new $controllerClassName($actionName, $controllerName);
+        // get the called action
         $actionMethodName   = 'action'.ucfirst($actionName);
 
+        // check if called action in the controller exists
         if (method_exists($controllerInstance, $actionMethodName))
         {
+            // execute the called action from the called controller
             $controllerInstance->{$actionMethodName}();
         }
         else { header('Location: ?c=errors&a=error404'); }
@@ -61,10 +69,14 @@ else { header('Location: ?c=errors&a=error404'); }
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap"> 
 
+    <!-- Icon in tab-bar -->
     <link rel="shortcut icon" href=<?=IMAGESPATH."ferret.svg"?> type="image/x-icon" />
+
+    <!-- page title -->
     <title>FrFrFrFr <?=ucfirst($actionName)?></title>
 </head>
 
+            <!-- if the shopping cart is shown scrolling is disabled -->
 <body class=<?= (isset($_GET['cart']) && $_GET['cart'] == 'show') ? 'no-scrolling' : '' ?>>
     <div class="wrapall">
         <div class="stuff">
@@ -75,6 +87,7 @@ else { header('Location: ?c=errors&a=error404'); }
                     include VIEWSPATH.'shoppingCart.php';
                 }
 
+                // remove item from shopping cart if the remove-button is pressed
                 if (isset($_GET['removeItem']))
                 {
                     removeItemFromCart($_GET['removeItem'], $_GET['currentUrl']);
@@ -85,7 +98,7 @@ else { header('Location: ?c=errors&a=error404'); }
                 $controllerInstance->render();
             ?>
         </div>
-        
+
         <footer>
             <p>Test test<br>
                 Hier wird getestet</p>
