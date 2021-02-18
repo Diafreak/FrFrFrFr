@@ -13,13 +13,13 @@ function getProductDetails($prodId, &$errors)
 
     try
     {
-        $sqlCurrentProduct = "  SELECT p.id, p.name, p.price, p.numberInStock, p.description,
-                                       i.imageUrl, i.altText,
-                                       c.name as catName
-                                FROM   product  p
-                                JOIN   image    i ON p.id = i.product_id
-                                JOIN   category c ON c.id = p.category_id
-                                WHERE  p.id = {$prodId};";
+        $sqlCurrentProduct = "  SELECT    p.id, p.name, p.price, p.numberInStock, p.description,
+                                          i.imageUrl, i.altText,
+                                          c.name as catName
+                                FROM      product  p
+                                LEFT JOIN image    i ON p.id = i.product_id
+                                JOIN      category c ON c.id = p.category_id
+                                WHERE     p.id = {$prodId};";
 
         $prodDetails = $db->query($sqlCurrentProduct)->fetchAll();
 
