@@ -18,6 +18,10 @@
 </form>
 <br>
 <form method="post">
-        <input type="string" name="address" id="address" placeholder="Addresse hinzufügen / ändern" autocapitalize="off">
+        <input type="string" name="address_street" id="address_street" placeholder="Straße hinzufügen / ändern" autocapitalize="off">
+        <br>
+        <input type="string" name="address_number" id="address_number" placeholder="Hausnummer hinzufügen / ändern" autocapitalize="off">
+        <br>
+        <input type="string" name="address_zip" id="address_zip" placeholder="Postleitzahl hinzufügen / ändern" autocapitalize="off">
         <input type="submit" name="submitAddress" value="Submit">
 </form>
