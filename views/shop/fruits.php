@@ -9,7 +9,7 @@
 
 <div class="content">
     <div class="schaufenster">
-        <ul class="produkt-tabelle"> <?= generateShopLayout($product, $errors); ?> </ul>
+        <ul class="produkt-tabelle"> <?= generateShopLayout($product, $tags, $errors); ?> </ul>
     </div>
 </div>
 
