@@ -13,13 +13,13 @@ function getProductDetails($prodId, &$errors)
 
     try
     {
-        $sqlCurrentProduct = "  SELECT    p.id, p.name, p.price, p.numberInStock, p.description,
-                                          i.imageUrl, i.altText,
-                                          c.name as catName
-                                FROM      product  p
-                                LEFT JOIN image    i ON p.id = i.product_id
-                                JOIN      category c ON c.id = p.category_id
-                                WHERE     p.id = {$prodId};";
+        $sqlCurrentProduct = "SELECT    p.id, p.name, p.price, p.numberInStock, p.description,
+                                        i.imageUrl, i.altText,
+                                        c.name as catName
+                              FROM      product  p
+                              LEFT JOIN image    i ON p.id = i.product_id
+                              JOIN      category c ON c.id = p.category_id
+                              WHERE     p.id = {$prodId};";
 
         $prodDetails = $db->query($sqlCurrentProduct)->fetchAll();
 
@@ -197,21 +197,23 @@ function updateAmountInCart($cartId, $prodId, $amount)
 // generates the HTML-Code for the given product-category
 function generateShopLayout($catName, $tags = "", &$errors = [])
 {
-    $db = $GLOBALS['db'];
+    // get the category-ID from the given category-name (fruit or vegetable)
+    $catId = getCatId($catName, $errors);
 
-    // get the category-ID from the given category-name
-    $catId = getCatId($catName, $db, $errors);
-
-
-    if ($catId !== null)
+    if ($catId != null)
     {
-        // $productsFromSameCategory: stores all products that are in the given category
-        $productsFromSameCategory = getProductsFromSameCategory($catId, $db, $errors);
+        // stores all products that are in the given category
+        // if tags are given, only products with the passed tags are returned
+        $productsFromSameCategory = getProductsFromSameCategory($catId, $tags, $errors);
 
         // store the images for the products in $imagesArray
         // only stores images from the current category so no unnecessary images are in the array
-        $imagesArray = getProductImages($catId, $db, $errors);
+        $imagesArray = getProductImages($catId, $errors);
+    }
 
+
+    if (empty($errors))
+    {
         // $itemsInRow  - counts how many items are currently in the row to prevent empty columns
         //              - loops through $position because every column in each row has a special
         //                css-format so they have to be handled separately
@@ -225,7 +227,7 @@ function generateShopLayout($catName, $tags = "", &$errors = [])
 
 
         // loop through all products of the given category and print the html on the shop page
-        foreach($productsFromSameCategory as $productData)
+        foreach ($productsFromSameCategory as $productData)
         {
             $productId   = $productData['id'];
             $productName = $productData['name'];
@@ -275,10 +277,6 @@ function generateShopLayout($catName, $tags = "", &$errors = [])
         // print the entire html for the products on the shop page
         return $productsHTMLLayout;
     }
-    else
-    {
-        $errors['catId'] = "Zu dieser Kategorie gibt es keine Produkte.";
-    }
 }
 
 
@@ -288,14 +286,19 @@ function generateShopLayout($catName, $tags = "", &$errors = [])
 // ===== EXTRACTED FUNCTIONS =====
 // ===============================
 
-function getCatId($catName, $db, &$errors)
+function getCatId($catName, &$errors)
 {
+    $db = $GLOBALS['db'];
+
     try
     {
         $sqlCategoryId = "SELECT id FROM category WHERE name = '{$catName}';";
         $catIdArray    = $db->query($sqlCategoryId)->fetchAll();
 
-        return $catIdArray[0]['id'] ?? null;
+        if (!empty($catIdArray[0]['id'])) return $catIdArray[0]['id'];
+
+        $errors['catId'] = "Zu dieser Kategorie gibt es keine Produkte.";
+        return null;
     }
     catch (\PDOException $e)
     {
@@ -305,23 +308,53 @@ function getCatId($catName, $db, &$errors)
 
 
 
-function getProductsFromSameCategory($catId, $db, &$errors)
+function getProductsFromSameCategory($catId, $tags = "", &$errors)
 {
-    try
+    $db = $GLOBALS['db'];
+
+    if ($tags == "")
     {
-        $sqlProducts = "SELECT * FROM product WHERE category_id = '{$catId}' ORDER BY name;";
-        return $db->query($sqlProducts)->fetchAll();
+        try
+        {
+            $sqlProducts = "SELECT * FROM product WHERE category_id = '{$catId}' ORDER BY name;";
+            return $db->query($sqlProducts)->fetchAll();
+        }
+        catch (\PDOException $e)
+        {
+            $errors['prodOfSameCat'] = "Zu dieser Kategorie gibt es keine Produkte.";
+        }
     }
-    catch (\PDOException $e)
+    else
     {
-        $errors['prodOfSameCat'] = "Zu dieser Kategorie gibt es keine Produkte.";
+        try
+        {
+            // if tags are set it looks through all the tags in the "productTags"-table and all
+            // product-names if the tag matches something and returns only these products
+            $sqlProductWithTags = " SELECT   p.*
+                                    FROM     producttags pt
+                                    JOIN     product p ON pt.id = p.productTags_id
+                                    WHERE    pt.tags LIKE '%{$tags}%' OR p.name LIKE '%{$tags}%'
+                                    ORDER BY p.name;";
+            $productArray = $db->query($sqlProductWithTags)->fetchAll();
+
+            if (!empty($productArray)) return $productArray;
+
+            $errors['prodTags'] = "Zu dieser Suchanfrage konnte nichts gefunden werden.";
+        }
+        catch (\PDOException $e)
+        {
+            $errors['prodTags'] = "Zu dieser Suchanfrage konnte nichts gefunden werden.";
+        }
     }
+
 }
 
 
 
-function getProductImages($catId, $db, &$errors)
+function getProductImages($catId, &$errors)
 {
+    $db = $GLOBALS['db'];
+
     try
     {
         $sqlImages   = "SELECT imageUrl, altText, product_id
