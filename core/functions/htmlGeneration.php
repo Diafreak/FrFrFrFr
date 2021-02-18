@@ -58,7 +58,7 @@ function generateCartHTML($prodId, $name, $amount, $price, $imageUrl, $altText)
     // Picture
     $html .= nTabs($start).    "<td>\n";
     $html .= nTabs($start).        "<a href='?c=shop&a=productDetails&prodId={$prodId}' type='no-hover'>\n";
-    $html .= nTabs($start).            "<img src='{$imageUrl}' alt='{$altText}' class='shoppin-cart-item-picture'>\n";        // !!! CSS !!!
+    $html .= nTabs($start).            "<img src='{$imageUrl}' alt='{$altText}' class='shoppin-cart-item-picture'>\n";
     $html .= nTabs($start).        "</a>\n";
     $html .= nTabs($start).    "</td>\n";
     // Name & Amount
