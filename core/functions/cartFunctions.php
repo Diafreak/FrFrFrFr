@@ -33,6 +33,10 @@ function generateCartItems()
         // go through all items on your shopping cart and generate html to display them in the cart
         foreach ($cartItems as $item => $prodInfo)
         {
+            if (!file_exists($prodInfo['imageUrl']))
+            {
+                $prodInfo['imageUrl'] = IMAGESPATH.'placeholder.png';
+            }
             $cartHTML .= generateCartHTML($prodInfo['product_id'], $prodInfo['name'], $prodInfo['quantity'], $prodInfo['price'],
                                           $prodInfo['imageUrl'],   $prodInfo['altText']);
         }
@@ -43,11 +47,12 @@ function generateCartItems()
 
 
 
-function removeCartItem($id, $url)
+function removeItemFromCart($id, $url)
 {
     removeItemFromDatabase($id, $_SESSION['cartId']);
     header("Location: {$url}");
 }
+
 
 
 
@@ -61,13 +66,13 @@ function getCartItems($cartId)
 
     try
     {
-        $sqlCartItems = "SELECT pisc.product_id, pisc.quantity,
-                                p.name, p.price,
-                                i.imageUrl, i.altText
-                         FROM   productinshoppingcart pisc
-                         JOIN   product p ON pisc.product_id = p.id
-                         JOIN   image   i ON i.product_id    = p.id
-                         WHERE  pisc.shoppingCart_id = '{$cartId}';";
+        $sqlCartItems = "SELECT    pisc.product_id, pisc.quantity,
+                                   p.name, p.price,
+                                   i.imageUrl, i.altText
+                         FROM      productinshoppingcart pisc
+                         JOIN      product p ON pisc.product_id = p.id
+                         LEFT JOIN image   i ON i.product_id    = p.id
+                         WHERE     pisc.shoppingCart_id = '{$cartId}';";
 
         return $db->query($sqlCartItems)->fetchAll();
     }
