@@ -13,8 +13,7 @@
                 </a>
 
                 <a href="?c=shop&a=fruits">
-                    <ul class="dropdown-menu">
-                        <li>OBST</li>
+                    <li>OBST</li>
                     <!-- <div class="dropdown-content">
                         <a href="irgendwas:)">Kernobst</a>
                         <a href="irgendwas:)">Steinobst</a>
@@ -22,12 +21,10 @@
                         <a href="irgendwas:)">Zitrusfrüchte</a>
                         <a href="irgendwas:)">Südfrüchte</a>
                     </div> -->
-                    </ul>
                 </a>
 
                 <a href="?c=shop&a=vegetables">
-                    <ul class="dropdown-menu">
-                        <li>GEMÜSE</li>
+                   <li>GEMÜSE</li>
                     <!-- <div class="dropdown-content">
                         <a href="irgendwas:)">Fruchtgemüse</a>
                         <a href="irgendwas:)">(Blatt)Salat</a>
@@ -35,7 +32,6 @@
                         <a href="irgendwas:)">Knollengemüse</a>
                         <a href="irgendwas:)">Zwiebelgewächse</a>
                     </div> -->
-                    </ul>
                 </a>
 
                 <a href="?c=pages&a=current">
