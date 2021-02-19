@@ -308,11 +308,11 @@ function getCatId($catName, &$errors)
 
 
 
-function getProductsFromSameCategory($catId, $tags = '', &$errors)
+function getProductsFromSameCategory($catId, $tags = "", &$errors)
 {
     $db = $GLOBALS['db'];
 
-    if ($tags == '')
+    if ($tags == "")
     {
         try
         {
@@ -358,7 +358,6 @@ function getProductsFromSameCategory($catId, $tags = '', &$errors)
                 // all products that fit the first tag
                 $productsFirstTag = $db->query($sqlProductFirstTag)->fetchAll();
 
-
                 // check if a second tag is set
                 if ($secondTag != null)
                 {
@@ -383,9 +382,13 @@ function getProductsFromSameCategory($catId, $tags = '', &$errors)
                         }
                     }
 
+                    if (!empty($productArray)) return $productArray;
                 }
-
-                if (!empty($productArray)) return $productArray;
+                else
+                {
+                    // if no 2. tag is set only return items from the first search
+                    if (!empty($productsFirstTag)) return $productsFirstTag;
+                }
 
                 $errors['prodTags'] = "Zu dieser Suchanfrage konnte nichts gefunden werden.";
             }
