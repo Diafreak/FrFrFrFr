@@ -128,6 +128,42 @@ nav ul .no-hover:hover
 ===Seitenmitte / Shop-Style===
 ==============================
 */
+
+/* Suchleiste & Filter */
+ul.filterleiste
+{
+    display: table;
+    position: relative;
+    list-style: none;
+    padding-inline-start: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    table-layout: fixed;
+    margin: auto;
+    margin-bottom: 5vh;
+    border-bottom: 1px solid #5331a3;
+}
+
+ul.filterleiste   li
+/* ul.filterleiste   a */
+{
+    display: table-cell;
+    padding: 0 1em 3px 1em;
+    vertical-align: middle;
+    cursor: pointer;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    border-right: 1px solid #5331a3;
+}
+
+.search-container
+{
+    display: inline-block;
+    padding-left: 2em;
+    padding-bottom: 3px;
+}
+
 .content 
 {
     padding-top: 10px;
@@ -156,7 +192,7 @@ div ul.produkt-tabelle
     border-bottom: 1px solid #5331a3;
     border-right: 1px solid #5331a3;
     float: left;
-    min-height: 514px;
+    max-height: 450px;
     margin: 0 0 -1px;
     padding: 20px;
     position: relative;
