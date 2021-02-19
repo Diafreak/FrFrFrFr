@@ -4,6 +4,10 @@
 class AccountController extends Controller
 {
 
+    // ========================================
+    // =============== REGISTER ===============
+    // ========================================
+
     public function actionRegistration()
     {
         $userInformation   = [];
@@ -39,6 +43,11 @@ class AccountController extends Controller
 
 
 
+
+    // =====================================
+    // =============== LOGIN ===============
+    // =====================================
+
     public function actionLogin()
     {
         // continue to login if user isn't logged in already
@@ -72,6 +81,11 @@ class AccountController extends Controller
 
 
 
+
+    // =======================================
+    // =============== ACCOUNT ===============
+    // =======================================
+
     public function actionAccount()
     {
         $errors = [];
@@ -86,16 +100,35 @@ class AccountController extends Controller
                 changeEmail($_POST['changeEmail'], $errors);
             }
 
+
             // check if "Password Ändern"-button is clicked
             if (isset($_POST['submitPasswordChange']))
             {
                 changePassword($_POST['oldPassword'], $_POST['newPassword'], $_POST['newPasswordConfirm'], $errors);
             }
 
+
+            // check if "Adresse Ändern/Hinzufügen"-button is clicked
+            if (isset($_POST['submitAddress']))
+            {
+                submitAddress( htmlspecialchars($_POST['address_street']),
+                               htmlspecialchars($_POST['address_number']),
+                               htmlspecialchars($_POST['address_city']),
+                               htmlspecialchars($_POST['address_zip']), $errors );
+            }
+
+
+            // check if "Abmelden"-button is pressed
+            if (isset($_POST['submitLogout']))
+            {
+                logOut();
+            }
+
+
             // if an user has an address get street, number, zip and city and push it to the view to display them
             if (userHasAddress())
             {
-                $address = getUserAddress();
+                $address = getUserAddress($userId);
 
                 foreach ($address as $key => $addressData)
                 {
@@ -103,31 +136,20 @@ class AccountController extends Controller
                 }
             }
 
-            // check if "Adresse Ändern/Hinzufügen"-button is clicked
-            if (isset($_POST['submitAddress']))
-            {
-                submitAddress($_POST['address_street'], $_POST['address_number'], $_POST['address_city'], $_POST['address_zip'], $errors);
-            }
-
 
             $user = getCurrentUser();
+
             // push all user-data to the view so it can be displayed
             foreach ($user as $key => $userData)
             {
                 $this->setParam($key, $userData);
-            }
-
-            // check if "Abmelden"-button is pressed
-            if (isset($_POST['submitLogout']))
-            {
-                logOut();
             }
         }
         else
         {
             header('Location: ?c=account&a=login');
         }
-
+        // push errors to view
         $this->setParam('errors', $errors);
     }
 
