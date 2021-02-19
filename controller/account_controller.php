@@ -41,8 +41,6 @@ class AccountController extends Controller
 
     public function actionLogin()
     {
-        $this->setParam('test', 'Login');
-
         // continue to login if user isn't logged in already
         if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false)
         {
@@ -77,6 +75,7 @@ class AccountController extends Controller
     public function actionAccount()
     {
         $errors = [];
+        $userId = $_SESSION['userId'];
 
         // page can only be accessed if the user is logged in, otherwise he is redirected to login
         if ($_SESSION['loggedIn'] === true)
@@ -91,6 +90,22 @@ class AccountController extends Controller
             if (isset($_POST['submitPasswordChange']))
             {
                 changePassword($_POST['oldPassword'], $_POST['newPassword'], $_POST['newPasswordConfirm'], $errors);
+            }
+
+            // if an user has an address get street, number, zip and city and push it to the view to display them
+            if (userHasAddress())
+            {
+                $address = getUserAddress();
+
+                foreach ($address as $key => $addressData)
+                {
+                    $this->setParam($key, $addressData);
+                }
+            }
+
+            if (isset($_POST['submitAddress']))
+            {
+                submitAddress($_POST['address_street'], $_POST['address_number'], $_POST['address_city'], $_POST['address_zip'], $errors);
             }
 
 

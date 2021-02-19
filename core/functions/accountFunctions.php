@@ -158,6 +158,56 @@ function changePassword($oldPassword, $newPassword, $newPasswordConfirm, &$error
 
 
 
+function userHasAddress()
+{
+    $db     = $GLOBALS['db'];
+    $userId = $_SESSION['userId'];
+
+    try
+    {
+        $sqlAddressId = "SELECT address_id FROM user WHERE user_id = '{$userId}';";
+        $addressId    = $db->query($sqlAddressId)->fetchAll();
+
+        return $addressId == null ? false : true;
+    }
+    catch (\PDOException $e)
+    {
+        $errors['addressId'] = "Nutzer besitzt keinen Adresse.";
+    }
+    return false;
+}
+
+
+
+function getUserAddress($userId)
+{
+    $db = $GLOBALS['db'];
+
+    try
+    {
+        $sqlUserAddress = "SELECT a.zip, a.city, a.street, a.number
+                           FROM   address a
+                           JOIN   user    u ON a.id = u.address_id
+                           WHERE  user_id = '{$userId}';";
+
+        $userAddress = $db->query($sqlAddressId)->fetchAll();
+
+        return $userAddress[0] ?? null;
+    }
+    catch (\PDOException $e)
+    {
+        $errors['addressUser'] = "Nutzer besitzt keinen Adresse.";
+    }
+    return false;
+}
+
+
+
+function submitAddress($address, $number, $city, $zip, $errors)
+{
+
+}
+
 
 // =================================================
 // =============== GENERAL FUNCTIONS ===============
