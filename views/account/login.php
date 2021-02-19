@@ -6,17 +6,9 @@
 </div>
 
 
-<? if (!isset($errors)) : ?>
-<!-- KOMMENTIEREN -->
 <div class="login-form user-form">
 
-<? else : ?>
-<!-- KOMMENTIEREN -->
-<div class="login-form user-form login-form-error">
-
-<? endif; ?>
-
-    <h1><?=$test?></h1>
+    <h1>Login</h1>
 
     <form method="post">
         <input type="string" name="email" id="email" placeholder="E-Mail" autocapitalize="off"
