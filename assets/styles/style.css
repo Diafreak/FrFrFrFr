@@ -220,6 +220,42 @@ div ul.produkt-tabelle
 
 /*
 =====================================
+========Produkt-Details Seite========
+=====================================
+*/
+div.detailwrapper
+{
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+div.pdetailspic
+{
+    height: 100%;
+    width: 33vw;
+    justify-content: center;
+    margin: auto;
+    display: inline-flex;
+}
+
+div.pdetailsdesc
+{
+    height: 100%;
+    width: 33vw;
+    margin: auto;
+    display: inline-block;
+}
+
+div.pdetailskauf
+{
+    height: 100%;
+    width: 33vw;
+    margin: auto;
+    display: inline-block;
+}
+/*
+=====================================
 ===Allgemeine Form & Login Details===
 =====================================
 */
