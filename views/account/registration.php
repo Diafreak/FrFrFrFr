@@ -5,6 +5,7 @@
 <?php else : ?>
 
 <div class="registration-form user-form">
+
     <h1>Registrierung</h1>
 
     <form method="post">
@@ -51,6 +52,7 @@
             Zurück zum Login
         </button>
     </form>
+
 </div>
 
 <?php endif; ?>
