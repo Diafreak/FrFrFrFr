@@ -165,10 +165,10 @@ function userHasAddress()
 
     try
     {
-        $sqlAddressId = "SELECT address_id FROM user WHERE user_id = '{$userId}';";
+        $sqlAddressId = "SELECT address_id FROM user WHERE id = '{$userId}';";
         $addressId    = $db->query($sqlAddressId)->fetchAll();
 
-        return $addressId == null ? false : true;
+        return $addressId[0]['address_id'] == null ? false : true;
     }
     catch (\PDOException $e)
     {
@@ -185,12 +185,12 @@ function getUserAddress($userId)
 
     try
     {
-        $sqlUserAddress = "SELECT a.zip, a.city, a.street, a.number
-                           FROM   address a
-                           JOIN   user    u ON a.id = u.address_id
-                           WHERE  user_id = '{$userId}';";
+        $sqlUserAddress = "SELECT    a.zip, a.city, a.street, a.number
+                           FROM      address a
+                           LEFT JOIN user    u ON a.id = u.address_id
+                           WHERE     a.id = '{$userId}';";
 
-        $userAddress = $db->query($sqlAddressId)->fetchAll();
+        $userAddress = $db->query($sqlUserAddress)->fetchAll();
 
         return $userAddress[0] ?? null;
     }
@@ -198,7 +198,6 @@ function getUserAddress($userId)
     {
         $errors['addressUser'] = "Nutzer besitzt keinen Adresse.";
     }
-    return false;
 }
 
 
@@ -208,41 +207,13 @@ function submitAddress($street, $number, $city, $zip, &$errors)
     $userId    = $_SESSION['userId'];
     $addressId = getAddressId($userId, $errors);
 
-    // if user has no address no fields can be empty
     if ($addressId == null)
     {
-        if ($street != null
-        ||  $number != null
-        ||  $city   != null
-        ||  $zip    != null)
-        {
-            $addressInfo = [ 'street' => $street,
-                             'number' => $number,
-                             'city'   => $city,
-                             'zip'    => $zip ];
-
-            $address = new Address();
-            $schema  = $address->getSchema();
-
-            validateAddressInfo($addressInfo, $schema, $errors);
-
-            unset($address);
-
-            if (count($errors) == 0)
-            {
-                $address = new Address($addressInfo);
-                $address->insert();
-                unset($address);
-            }
-        }
-        else
-        {
-            $errors['addressEmpty'] = "Alle Felder müssen ausgefüllt sein.";
-        }
+        addNewAddress($street, $number, $city, $zip, $errors);
     }
     else
     {
-
+        // DO STUFF
     }
 }
 
@@ -598,6 +569,41 @@ function getAddressId($userId, &$errors)
         $errors['addressIdUser'] = "Nutzer besitzt keinen Adresse.";
     }
     return false;
+}
+
+
+
+function addNewAddress($street, $number, $city, $zip, &$errors)
+{
+    // if user has no address no fields can be empty
+    if ($street != null
+    ||  $number != null
+    ||  $city   != null
+    ||  $zip    != null)
+    {
+        $addressInfo = [ 'street' => $street,
+                         'number' => $number,
+                         'city'   => $city,
+                         'zip'    => $zip ];
+
+        $address = new Address();
+        $schema  = $address->getSchema();
+
+        validateAddressInfo($addressInfo, $schema, $errors);
+
+        unset($address);
+
+        if (count($errors) == 0)
+        {
+            $address = new Address($addressInfo);
+            $address->insert();
+            unset($address);
+        }
+    }
+    else
+    {
+        $errors['addressEmpty'] = "Alle Felder müssen ausgefüllt sein.";
+    }
 }
 
 
