@@ -203,10 +203,50 @@ function getUserAddress($userId)
 
 
 
-function submitAddress($address, $number, $city, $zip, $errors)
+function submitAddress($street, $number, $city, $zip, &$errors)
 {
+    $userId    = $_SESSION['userId'];
+    $addressId = getAddressId($userId, $errors);
 
+    // if user has no address no fields can be empty
+    if ($addressId == null)
+    {
+        if ($street != null
+        ||  $number != null
+        ||  $city   != null
+        ||  $zip    != null)
+        {
+            $addressInfo = [ 'street' => $street,
+                             'number' => $number,
+                             'city'   => $city,
+                             'zip'    => $zip ];
+
+            $address = new Address();
+            $schema  = $address->getSchema();
+
+            validateAddressInfo($addressInfo, $schema, $errors);
+
+            unset($address);
+
+            if (count($errors) == 0)
+            {
+                $address = new Address($addressInfo);
+                $address->insert();
+                unset($address);
+            }
+        }
+        else
+        {
+            $errors['addressEmpty'] = "Alle Felder müssen ausgefüllt sein.";
+        }
+    }
+    else
+    {
+
+    }
 }
+
+
 
 
 // =================================================
@@ -538,6 +578,54 @@ function getUserId($email, &$error)
     }
 
     return $userData[0]['id'] ?? '';
+}
+
+
+
+function getAddressId($userId, &$errors)
+{
+    $db = $GLOBALS['db'];
+
+    try
+    {
+        $sqlUserAddressId = "SELECT address_id FROM user WHERE id = '{$userId}';";
+        $userAddressId    = $db->query($sqlUserAddressId)->fetchAll();
+
+        return $userAddressId[0]['address_id'] ?? null;
+    }
+    catch (\PDOException $e)
+    {
+        $errors['addressIdUser'] = "Nutzer besitzt keinen Adresse.";
+    }
+    return false;
+}
+
+
+
+function validateAddressInfo($addressInfo, $schema, &$errors)
+{
+    foreach ($addressInfo as $key => $info)
+    {
+        // check if a 'max'-constrait is set
+        if(isset($schema[$key]['min']))
+        {
+            $maxLength = $schema[$key]['min'];
+            if(mb_strlen($info) < $maxLength)
+            {
+                $errors["addressMinLength{$key}"] = ucfirst($key) . " muss mind. {$maxLength} Zeichen lang sein.";
+            }
+        }
+
+        // check if a 'min'-constrait is set
+        if(isset($schema[$key]['max']))
+        {
+            $maxLength = $schema[$key]['max'];
+            if(mb_strlen($info) > $maxLength)
+            {
+                $errors["addressMaxLength{$key}"] = ucfirst($key) . " darf nicht länger als {$maxLength} sein.";
+            }
+        }
+    }
 }
 
 

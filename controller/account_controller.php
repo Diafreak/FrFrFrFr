@@ -103,6 +103,7 @@ class AccountController extends Controller
                 }
             }
 
+            // check if "Adresse Ändern/Hinzufügen"-button is clicked
             if (isset($_POST['submitAddress']))
             {
                 submitAddress($_POST['address_street'], $_POST['address_number'], $_POST['address_city'], $_POST['address_zip'], $errors);
