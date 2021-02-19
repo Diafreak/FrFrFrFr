@@ -9,20 +9,25 @@
 
 <? else : ?>
 
-    <h2><?= $name; ?></h2>
+    <h1><?= $name; ?></h1>
 
+<div class="detailwrapper">
+    <div class="pdetailspic">
+        <img src=<?= $imageUrl ?> alt=<?= $altText ?> width='250em' height='250em'>
+    </div>
 
-    <img src=<?= $imageUrl ?> alt=<?= $altText ?> width='250em' height='250em'>
-    <br>
+    <div class="pdetailsdesc">
+    Beschreibung: 
+    <br><?= $description; ?>
+    </div>
 
+    
+    <div class="pdetailskauf">
     Preis: <?= $price; ?>€
     <br>
 
     Auf Lager: <?= $numberInStock; ?>
     <br>
-
-    Beschreibung: <?= $description; ?>
-
     <form method="post">
         <div class="menge_mit_submit">
             <div class="mengenauswahl">
@@ -33,6 +38,6 @@
             <button type="submit" class="submit_amount" name="submitProduct" <?= ($numberInStock <= 0) ? "disabled" : "" ?>>In den Warenkorb</button>
         </div>
     </form>
-
     </div>
+</div>
 <? endif; ?><br>
