@@ -24,6 +24,7 @@
     <input type="string" name="changeEmail" id="chemail" placeholder="E-Mail Adresse ändern" autocapitalize="off"
      value="<?= (isset($errors) && $errors != null) && isset($_POST['changeEmail']) ? strtolower(htmlspecialchars($_POST['changeEmail'])) : '' ?>">
     <input type="submit" name="submitEmailChange" value="Ändern">
+
     <!-- Errors -->
     <? isset($errors) && isset($_POST['submitEmailChange']) ? printErrors($errors) : '' ?>
 </form>
@@ -38,6 +39,7 @@
     Passwort bestätigen:
     <input type="password" name="newPasswordConfirm" id="newpasswordconfirm" placeholder="Passwort bestätigen" autocapitalize="off">
     <input type="submit" name="submitPasswordChange" value="Ändern">
+
     <!-- Errors -->
     <? isset($errors) && isset($_POST['submitPasswordChange']) ? printErrors($errors) : '' ?>
 </form>
@@ -45,10 +47,26 @@
 
 <!-- Change/Add Address -->
 <form method="post">
-    <input type="string" name="address_street" id="address_street" placeholder="Straße hinzufügen / ändern" autocapitalize="off">
+
+    <? if (userHasAddress()) : ?>
+        Aktuelle Adresse: <?= "{$Street} {$number}, {$zip} {$city}"?>
+        <? $action = "ändern" ?>
+    <? else : ?>
+        Noch keine Addresse vorhanden
+        <? $action = "hinzufügen" ?>
+    <? endif; ?>
     <br>
-    <input type="string" name="address_number" id="address_number" placeholder="Hausnummer hinzufügen / ändern" autocapitalize="off">
-    <br>
-    <input type="string" name="address_zip" id="address_zip" placeholder="Postleitzahl hinzufügen / ändern" autocapitalize="off">
-    <input type="submit" name="submitAddress" value="Submit">
+
+    Straße:
+    <input type="string" name="address_street" id="address_street" placeholder="Straße <?=$action?>" autocapitalize="off"><br>
+    Hausnummer:
+    <input type="string" name="address_number" id="address_number" placeholder="Hausnummer <?=$action?>" autocapitalize="off"><br>
+    Stadt
+    <input type="string" name="address_city" id="address_city" placeholder="Stadt <?=$action?>" autocapitalize="off"><br>
+    PLZ:
+    <input type="string" name="address_zip" id="address_zip" placeholder="Postleitzahl <?=$action?>" autocapitalize="off">
+    <input type="submit" name="submitAddress" value="<?= ucfirst($action) ?>">
+
+    <!-- Errors -->
+    <? isset($errors) && isset($_POST['submitAddress']) ? printErrors($errors) : '' ?>
 </form>
