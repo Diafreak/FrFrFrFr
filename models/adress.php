@@ -12,7 +12,7 @@ class Address extends Model
         'zip'       => [ 'type' => Model::TYPE_STRING, 'min' => 5, 'max' => 5 ],
         'city'      => [ 'type' => Model::TYPE_STRING, 'max' => 50 ],
         'street'    => [ 'type' => Model::TYPE_STRING, 'max' => 70 ],
-        'number'    => [ 'type' => Model::TYPE_STRING, 'max' => 4  ]
+        'number'    => [ 'type' => Model::TYPE_UINT,   'max' => 4  ]
     ];
 }
 
