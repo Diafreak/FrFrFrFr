@@ -15,7 +15,7 @@ class AccountController extends Controller
         $validRegistration = false;
 
 
-        // check if "Registrieren"-button is pressed
+        // ===== [ REGISTRIEREN-Button ] =====
         if(isset($_POST['submitRegistration']))
         {
             $userInformation['firstName']       = htmlspecialchars($_POST['firstname']          ) ?? null;
@@ -28,7 +28,8 @@ class AccountController extends Controller
 
             validateInputs($userInformation, $errors);
 
-            if (count($errors) === 0)
+            // register new user if there are no errors
+            if (count($errors) == 0)
             {
                 $userInformation['passwordHash'] = generatePasswordHash($userInformation['password']);
                 register($userInformation);
@@ -53,7 +54,7 @@ class AccountController extends Controller
         // continue to login if user isn't logged in already
         if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false)
         {
-            // check if "Login"-button is pressed
+            // ===== [ LOGIN-Button ] =====
             if (isset($_POST['submitLogin']))
             {
                 // check if both input-fields are not empty
@@ -61,8 +62,8 @@ class AccountController extends Controller
                 &&  !empty($_POST['password']))
                 {
                     //get input from login-form
-                    $email    = htmlspecialchars($_POST['email']);
-                    $password = htmlspecialchars($_POST['password']);
+                    $email    = strtolower(htmlspecialchars($_POST['email']));
+                    $password =            htmlspecialchars($_POST['password']);
 
                     login($email, $password, $this->params['errors']);
                 }
@@ -94,21 +95,21 @@ class AccountController extends Controller
         // page can only be accessed if the user is logged in, otherwise he is redirected to login
         if ($_SESSION['loggedIn'] === true)
         {
-            // check if "Email Ändern"-button is clicked
+            // ===== [ EMAIL Ändern ] =====
             if (isset($_POST['submitEmailChange']))
             {
                 changeEmail(strtolower(htmlspecialchars($_POST['changeEmail'])), $errors);
             }
 
 
-            // check if "Password Ändern"-button is clicked
+            // ===== [ PASSWORT Ändern ] =====
             if (isset($_POST['submitPasswordChange']))
             {
                 changePassword($_POST['oldPassword'], $_POST['newPassword'], $_POST['newPasswordConfirm'], $errors);
             }
 
 
-            // check if "Adresse Ändern/Hinzufügen"-button is clicked
+            // ===== [ ADRESSE Hinzufügen / Ändern ] =====
             if (isset($_POST['submitAddress']))
             {
                 submitAddress( htmlspecialchars($_POST['address_street']),
@@ -119,14 +120,14 @@ class AccountController extends Controller
             }
 
 
-            // check if "Abmelden"-button is pressed
+            // ===== [ ABMELDEN ] =====
             if (isset($_POST['submitLogout']))
             {
                 logOut();
             }
 
 
-            // if an user has an address get street, number, zip and city and push it to the view to display them
+            // push street, number, zip and city to view if the user has an address
             if (userHasAddress())
             {
                 $address = getUserAddress($userId);

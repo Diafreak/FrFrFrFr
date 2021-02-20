@@ -216,7 +216,6 @@ function submitAddress($street, $number, $city, $zip, $userId, &$errors)
         if ($number != null) updateAddress($addressId, 'number', $number, $errors);
         if ($city   != null) updateAddress($addressId, 'city',   $city,   $errors);
         if ($zip    != null) updateAddress($addressId, 'zip',    $zip,    $errors);
-
     }
 }
 
@@ -372,6 +371,7 @@ function validatePassword($password, &$errors)
 {
     $user        = new User();
     $minPWLength = $user->getSchema()['passwordHash']['min'];
+    $maxPWLength = $user->getSchema()['passwordHash']['max'];
 
     $uppercase    = preg_match('@[A-Z]@', $password);
     $lowercase    = preg_match('@[a-z]@', $password);
@@ -384,7 +384,11 @@ function validatePassword($password, &$errors)
     }
     else if (mb_strlen($password) < $minPWLength)
     {
-        $errors['pwLength'] = "Passwort muss mind. $minPWLength Zeichen lang sein.";
+        $errors['pwMinLength'] = "Passwort muss mind. $minPWLength Zeichen lang sein.";
+    }
+    else if (mb_strlen($password) > $maxPWLength)
+    {
+        $errors['pwMaxLength'] = "Passwort darf max. $maxPWLength Zeichen lang sein.";
     }
     else if (!$uppercase || !$lowercase || !$number || !$specialChars)
     {
