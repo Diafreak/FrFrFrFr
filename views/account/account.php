@@ -68,13 +68,13 @@
     <input type="string" name="address_street" id="address_street" placeholder="Straße <?=$action?>" autocapitalize="off"
      value="<?= (isset($errors) && $errors != null) && isset($_POST['address_street']) ? ucfirst(htmlspecialchars($_POST['address_street'])) : '' ?>"><br>
     Hausnummer:
-    <input type="string" name="address_number" id="address_number" placeholder="Hausnummer <?=$action?>" autocapitalize="off"
+    <input type="number" name="address_number" id="address_number" placeholder="Hausnummer <?=$action?>" autocapitalize="off"
      value="<?= (isset($errors) && $errors != null) && isset($_POST['address_number']) ? htmlspecialchars($_POST['address_number']) : '' ?>"><br>
     Stadt
     <input type="string" name="address_city" id="address_city" placeholder="Stadt <?=$action?>" autocapitalize="off"
      value="<?= (isset($errors) && $errors != null) && isset($_POST['address_city']) ? ucfirst(htmlspecialchars($_POST['address_city'])) : '' ?>"><br>
     PLZ:
-    <input type="string" name="address_zip" id="address_zip" placeholder="Postleitzahl <?=$action?>" autocapitalize="off"
+    <input type="number" name="address_zip" id="address_zip" placeholder="Postleitzahl <?=$action?>" autocapitalize="off"
      value="<?= (isset($errors) && $errors != null) && isset($_POST['address_zip']) ? htmlspecialchars($_POST['address_zip']) : '' ?>">
 
     <input type="submit" name="submitAddress" value="<?= ucfirst($action) ?>">
