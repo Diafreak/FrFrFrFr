@@ -22,7 +22,7 @@
 
 <!-- Change Email -->
 <form method="post">
-    Aktuelle E-Mail: <?= strtolower($email) ?> <br>
+    Aktuelle E-Mail: <?= $email ?> <br>
     Neue E-Mail:
     <input type="string" name="changeEmail" id="chemail" placeholder="E-Mail Adresse ändern" autocapitalize="off"
      value="<?= (isset($errors) && $errors != null) && isset($_POST['changeEmail']) ? strtolower(htmlspecialchars($_POST['changeEmail'])) : '' ?>">

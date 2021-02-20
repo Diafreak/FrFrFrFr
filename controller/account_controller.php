@@ -97,7 +97,7 @@ class AccountController extends Controller
             // check if "Email Ändern"-button is clicked
             if (isset($_POST['submitEmailChange']))
             {
-                changeEmail($_POST['changeEmail'], $errors);
+                changeEmail(strtolower(htmlspecialchars($_POST['changeEmail'])), $errors);
             }
 
 
