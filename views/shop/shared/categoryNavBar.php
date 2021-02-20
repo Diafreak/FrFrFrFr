@@ -1,6 +1,7 @@
 <ul class="filterleiste">
 
-    <? $currentUrl = $_SERVER['REQUEST_URI']; ?>
+    <? $currentUrl = "?c=".$_GET['c']."&a=".$_GET['a'] ?>
+    <?="" //$_SERVER['REQUEST_URI'] ?>
 
     <!-- if category = fruits -->
     <? if ($_GET['a'] == 'fruits') : ?>
@@ -42,11 +43,21 @@
 
     <? endif; ?>
 
-    <!-- Search-Bar -->
+
     <div class="search-container">
-        <form>
-            <input type="text" placeholder="Search..." name="search">
-            <button type="submit">Suchen</button>
+        <form method="get">
+
+            <input type="hidden" name="c" value="shop">
+            <input type="hidden" name="a" value="<?=$_GET['a']?>">
+
+            <!-- Search-Bar -->
+            <input type="text" placeholder="Suchen..." name="searchTags" value="<?= isset($_GET['t']) ? "{$_GET['t']}" : "" ?>">
+
+            <!-- Search Button -->
+            <button type="submit">
+                Suchen
+            </button>
+
         </form>
     </div>
 
