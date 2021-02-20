@@ -1,27 +1,11 @@
-<h1>OBST</h1>
-    <ul class="filterleiste">
-            <a href="">
-                <li>Kernobst</li>
-            </a>
-            <a href="">
-                <li>Steinobst</li>
-            </a>
-            <a href="">
-                <li>Beeren</li>
-            </a>
-            <a href="">
-                <li>Zitrusfrüchte</li>
-            </a>
-            <a href="">
-                <li>Südfrüchte</li>
-            </a>
-            <div class="search-container">
-                <form>
-                    <input type="text" placeholder="Search..." name="search">
-                    <button type="submit">Suchen</i></button>
-                </form>
-            </div>
-    </ul>
+<h1>
+    <a href="?c=shop&a=fruits">OBST</a>
+</h1>
+
+
+<? require_once VIEWSPATH.'shop/shared/categoryNavBar.php' ?>
+
+
 <!-- "Zum Warenkorb hinzugefügt"-Banner -->
 <div id="success" class="banner product-added">
     <span>Zum Warenkorb hinzugefügt</span>
