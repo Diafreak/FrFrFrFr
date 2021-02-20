@@ -114,7 +114,8 @@ class AccountController extends Controller
                 submitAddress( htmlspecialchars($_POST['address_street']),
                                htmlspecialchars($_POST['address_number']),
                                htmlspecialchars($_POST['address_city']),
-                               htmlspecialchars($_POST['address_zip']), $errors );
+                               htmlspecialchars($_POST['address_zip']),
+                               $userId, $errors );
             }
 
 

@@ -187,8 +187,8 @@ function getUserAddress($userId)
     {
         $sqlUserAddress = "SELECT    a.zip, a.city, a.street, a.number
                            FROM      address a
-                           LEFT JOIN user    u ON a.id = u.address_id
-                           WHERE     a.id = '{$userId}';";
+                           RIGHT JOIN user    u ON a.id = u.address_id
+                           WHERE     u.id = '{$userId}';";
 
         $userAddress = $db->query($sqlUserAddress)->fetchAll();
 
@@ -202,18 +202,21 @@ function getUserAddress($userId)
 
 
 
-function submitAddress($street, $number, $city, $zip, &$errors)
+function submitAddress($street, $number, $city, $zip, $userId, &$errors)
 {
-    $userId    = $_SESSION['userId'];
     $addressId = getAddressId($userId, $errors);
 
     if ($addressId == null)
     {
-        addNewAddress($street, $number, $city, $zip, $errors);
+        addNewAddress($street, $number, $city, $zip, $userId, $errors);
     }
     else
     {
-        // DO STUFF
+        if ($street != null) updateAddress($addressId, 'street', $street, $errors);
+        if ($number != null) updateAddress($addressId, 'number', $number, $errors);
+        if ($city   != null) updateAddress($addressId, 'city',   $city,   $errors);
+        if ($zip    != null) updateAddress($addressId, 'zip',    $zip,    $errors);
+
     }
 }
 
@@ -573,7 +576,7 @@ function getAddressId($userId, &$errors)
 
 
 
-function addNewAddress($street, $number, $city, $zip, &$errors)
+function addNewAddress($street, $number, $city, $zip, $userId, &$errors)
 {
     // if user has no address no fields can be empty
     if ($street != null
@@ -595,8 +598,15 @@ function addNewAddress($street, $number, $city, $zip, &$errors)
 
         if (count($errors) == 0)
         {
+            $db = $GLOBALS['db'];
+
             $address = new Address($addressInfo);
             $address->insert();
+
+            // get id of inserted address and set it in the adddress_id-row of the user
+            $addressId = $db->lastInsertId();
+            updateUserAddressId($addressId, $userId, $errors);
+
             unset($address);
         }
     }
@@ -631,6 +641,42 @@ function validateAddressInfo($addressInfo, $schema, &$errors)
                 $errors["addressMaxLength{$key}"] = ucfirst($key) . " darf nicht länger als {$maxLength} sein.";
             }
         }
+    }
+}
+
+
+
+function updateUserAddressId($addressId, $userId, &$errors)
+{
+    $db = $GLOBALS['db'];
+
+    try
+    {
+        $sqlUpdateAddressId = "UPDATE user SET address_id = '{$addressId}' WHERE id = '{$userId}';";
+        $updateStatement    = $db->prepare($sqlUpdateAddressId);
+        $updateStatement->execute();
+    }
+    catch (\PDOException $e)
+    {
+        $errors['addressIdUser'] = "Adresse konnte nicht geupdatet werden.";
+    }
+}
+
+
+
+function updateAddress($addressId, $column, $value, &$errors)
+{
+    $db = $GLOBALS['db'];
+
+    try
+    {
+        $sqlUpdateAddress = "UPDATE address SET {$column} = '{$value}' WHERE id = '{$addressId}';";
+        $updateStatement  = $db->prepare($sqlUpdateAddress);
+        $updateStatement->execute();
+    }
+    catch (\PDOException $e)
+    {
+        $errors['addressUpdate'] = ucfirst($column)." in Address konnte nicht geupdatet werden.";
     }
 }
 
