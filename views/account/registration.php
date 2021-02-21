@@ -27,15 +27,17 @@
             <input type="string" name="email" id="email" placeholder="E-Mail" autocapitalize="off"
                    value="<?= (isset($errors) && $errors !== '') && isset($_POST['email']) ? strtolower(htmlspecialchars($_POST['email'])) : '' ?>">
 
+
             <!-- ERRORS JS -->
             <span id="errorFirstName" class="error-message"></span>
             <span id="errorLastName"  class="error-message"></span>
             <span id="errorEmail"     class="error-message"></span>
-
+            <br>
 
             <!-- Password -->
             <input type="password" name="password" id="password" placeholder="Passwort" autocapitalize="off">
             <input type="password" name="passwordconfirm" id="passwordconfirm" placeholder="Passwort wiederholen" autocapitalize="off">
+
 
             <!-- ERRORS JS -->
             <span id="errorPW"        class="error-message"></span>
