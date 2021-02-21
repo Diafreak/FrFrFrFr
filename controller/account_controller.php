@@ -18,11 +18,11 @@ class AccountController extends Controller
         // ===== [ REGISTRIEREN-Button ] =====
         if(isset($_POST['submitRegistration']))
         {
-            $userInformation['firstName']       = htmlspecialchars($_POST['firstname']          ) ?? null;
-            $userInformation['lastName']        = htmlspecialchars($_POST['lastname']           ) ?? null;
-            $userInformation['email']           = strtolower( htmlspecialchars($_POST['email']) ) ?? null;
-            $userInformation['password']        = htmlspecialchars($_POST['password']           ) ?? null;
-            $userInformation['passwordConfirm'] = htmlspecialchars($_POST['passwordconfirm']    ) ?? null;
+            $userInformation['firstName']       = strtolower( htmlspecialchars($_POST['firstname'])     ) ?? null;
+            $userInformation['lastName']        = strtolower( htmlspecialchars($_POST['lastname'] )     ) ?? null;
+            $userInformation['email']           = strtolower( htmlspecialchars($_POST['email'])         ) ?? null;
+            $userInformation['password']        =             htmlspecialchars($_POST['password']       ) ?? null;
+            $userInformation['passwordConfirm'] =             htmlspecialchars($_POST['passwordconfirm']) ?? null;
             // every new registered user gets the role "customer"
             $userInformation['role_id']         = getRoleId('customer', $errors);
 
@@ -51,6 +51,8 @@ class AccountController extends Controller
 
     public function actionLogin()
     {
+        $errors = [];
+
         // continue to login if user isn't logged in already
         if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false)
         {
@@ -62,14 +64,14 @@ class AccountController extends Controller
                 &&  !empty($_POST['password']))
                 {
                     //get input from login-form
-                    $email    = strtolower(htmlspecialchars($_POST['email']));
+                    $email    = strtolower(htmlspecialchars($_POST['email'])  );
                     $password =            htmlspecialchars($_POST['password']);
 
-                    login($email, $password, $this->params['errors']);
+                    login($email, $password, $errors);
                 }
                 else
                 {
-                    $this->setParam('errors', 'Alle Felder müssen ausgefüllt sein!');
+                    $errors['invalidInput'] = 'Alle Felder müssen ausgefüllt sein!';
                 }
             }
         }
@@ -78,6 +80,8 @@ class AccountController extends Controller
             // if user is logged in already he is redirected to his account
             header('Location: ?c=account&a=account');
         }
+
+        $this->setParam('errors', $errors);
     }
 
 

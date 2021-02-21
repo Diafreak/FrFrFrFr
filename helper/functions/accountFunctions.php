@@ -58,17 +58,17 @@ function loginWithCookie()
     }
     catch (\PDOException $e)
     {
-        $error = "Nutzername oder Password falsch!";
+        $error = "Automatische Anmeldung fehlgeschlagen.";
     }
 }
 
 
 
-function login($email, $password, &$error)
+function login($email, $password, &$errors)
 {
     $db       = $GLOBALS['db'];
     $userData = [];
-    $userId   = getUserId($email, $error);
+    $userId   = getUserId($email, $errors);
 
     try
     {
@@ -100,12 +100,12 @@ function login($email, $password, &$error)
         }
         else
         {
-            $error = "Nutzername oder Password falsch!";
+            $errors['invalidLogin'] = "Nutzername oder Password falsch!";
         }
     }
     catch (\PDOException $e)
     {
-        $error = "Nutzername oder Password falsch!";
+        $errors['invalidLogin'] = "Nutzername oder Password falsch!";
     }
 }
 
@@ -566,7 +566,7 @@ function updatePassword($newPassword, &$errors)
 
 
 // gets an email and returns the userId from the database if the email is in the database
-function getUserId($email, &$error)
+function getUserId($email, &$errors)
 {
     $db = $GLOBALS['db'];
 
@@ -577,7 +577,7 @@ function getUserId($email, &$error)
     }
     catch (\PDOException $e)
     {
-        $error = "Die angegebene Email existiert nicht.";
+        $errors['invalidEmail'] = "Die angegebene Email existiert nicht.";
     }
 
     return $userData[0]['id'] ?? '';
