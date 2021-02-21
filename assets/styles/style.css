@@ -443,6 +443,12 @@ img.shoplink
     margin-left: 5vw;
 }
 
+div.homepage p
+{
+    font-size: 18px;
+    text-align: center;
+}
+
 /*
 ============================================
 ================Bilder Größen===============
