@@ -6,7 +6,7 @@ class PagesController extends Controller
 
     public function actionHome()
     {
-        if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true)
+        if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) /*Brauchen wir das überhaupt noch?*/
         {
             $test = "Home - Eingeloggt!";
         }
