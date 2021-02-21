@@ -32,10 +32,20 @@
             <span id="errorLastName"  class="error-message"></span>
             <span id="errorEmail"     class="error-message"></span>
 
+<<<<<<< HEAD
 
             <!-- Password -->
             <input type="password" name="password" id="password" placeholder="Passwort" autocapitalize="off">
             <input type="password" name="passwordconfirm" id="passwordconfirm" placeholder="Passwort wiederholen" autocapitalize="off">
+=======
+    <!-- First Name -->
+        <input type="string" name="firstname" id="firstname" placeholder="Vorname" autocapitalize="on"
+            value="<?= (isset($errors) && $errors !== '') && isset($_POST['firstname']) ? htmlspecialchars($_POST['firstname']) : '' ?>">
+
+        <!-- Last Name -->
+        <input type="string" name="lastname" id="lastname" placeholder="Nachname" autocapitalize="on"
+            value="<?= (isset($errors) && $errors !== '') && isset($_POST['lastname']) ? htmlspecialchars($_POST['lastname']) : '' ?>">
+>>>>>>> 2bf1661b0300836f3b325fbc1102de01bfd3f447
 
             <!-- ERRORS JS -->
             <span id="errorPW"        class="error-message"></span>

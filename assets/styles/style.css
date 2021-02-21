@@ -256,6 +256,122 @@ div.pdetailskauf
 
 /*
 ============================================
+=============== Account ====================
+============================================
+*/
+div.accountfield
+{
+    position: relative;
+    margin-top: 10vh;
+    width: 100vw;
+    height: 100vh;
+}
+
+div.profilefield
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0 0 5vh 20vw;
+    display: inline-block;
+}
+
+div.profilefield > div
+{
+    text-align: center;
+}
+
+div.profilesettingfield
+{
+    width: 44vw;
+    max-width: 400px;
+    min-width: 327px;
+    position: absolute;
+    margin: 0 0 0 40vw;
+    display: inline-block;
+}
+
+div.profilesettingfield form
+{
+    margin-bottom: 2vh;
+}
+
+div.profilesettingfield input[type= "string"],
+div.profilesettingfield input[type= "password"],
+div.profilesettingfield input[type= "number"]
+{
+    position: absolute;
+    display: inline-block;
+    right: 0;
+}
+
+div.profilesettingfield input[type= "submit"]
+{
+    position: absolute;
+    display: block;
+    margin-top: 0.5vh;
+    right: 0;
+}
+
+.accountfield input[type= "submit"]
+{
+    background-color: #4361ee;
+    color: white;
+    border-style: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.accountfield input[type="submit" i]:hover
+{
+    background-color: #6780ec;
+}
+.adminoptions
+{
+    position: absolute;
+    margin-left: auto;
+    display: block;
+    margin-top: 40vh;
+    margin-left: 40vw;
+}
+
+.adminoptions *
+{
+    display: block;
+}
+
+/*
+============================================
+=============== Homepage ===================
+============================================
+*/
+
+
+div.homepage > img.welcoming-field
+{
+    height: 50vw;
+    width: 100vw;
+    z-index: -1;
+}
+
+img.shoplink
+{
+    height: 20vw;
+    width: 30vw;
+    padding: 0 5vw;
+    /* opacity: 0.90; */
+    margin-left: 5vw;
+}
+
+div.homepage p
+{
+    font-size: 18px;
+    text-align: center;
+}
+
+/*
+============================================
 ================Bilder Größen===============
 ============================================
 */
@@ -276,7 +392,6 @@ img.logo
 img.product-picture
 {
     width: 80%;
-    height: 55%;
 }
 
 img.user-picture
@@ -285,7 +400,11 @@ img.user-picture
     width: 150px;
 }
 
-
+img.addtocartpicture
+{
+    height: 2em;
+    width: 2em;
+}
 
 /*
 =================================================================

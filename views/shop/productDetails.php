@@ -36,7 +36,9 @@
                     <?= generateAmountHTML($numberInStock) ?>
                 </div>
                 <!-- "In den Warenkorb"-Button -->
-                <button type="submit" class="submit_amount" name="submitProduct" <?= ($numberInStock <= 0) ? "disabled" : "" ?>>In den Warenkorb</button>
+                <button type="submit" class="submit_amount" name="submitProduct" <?= ($numberInStock <= 0) ? "disabled" : "" ?>>
+                    <img src=<?=IMAGESPATH . 'addtoshoppingcart.png'?> alt="Stylised shopping cart" class="addtocartpicture">
+                </button>
             </div>
         </form>
 

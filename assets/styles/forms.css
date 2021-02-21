@@ -135,8 +135,12 @@ label
 input#lastname 
 {
     display: inline-block;
-    width: 37.9%;
+    width: 38.4%;
     margin-bottom: 0px;
+}
+input#lastname 
+{
+    margin-left: -5px;
 }
 
 .registration-form input#email
