@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function()
 
     function validateInputs()
     {
-        var errors = [];
         var validInputs = true;
 
         var firstName       = document.getElementById('firstname');
@@ -174,14 +173,17 @@ document.addEventListener('DOMContentLoaded', function()
 
 
         // validatePasswordConfirm
+        document.getElementById('errorPWConfirm').style.display = "block";
+        passwordConfirm.className = "errorinput";
+
         if (password.value != passwordConfirm.value || passwordConfirm.value == "")
         {
-            passwordConfirm.className += " errorinput";
             validInputs = false;
-            errors['passwordMatch'] = 'Passwörter stimmen nicht überein.';
+            document.getElementById('errorPWConfirm').textContent = "Passwörter stimmen nicht überein.";
         }
         else
         {
+            document.getElementById('errorPWConfirm').style.display = "none";
             passwordConfirm.className = passwordConfirm.className.replace('errorinput', '');
         }
 
