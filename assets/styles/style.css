@@ -3,9 +3,25 @@
 =========Allgemeines==========
 ==============================
 */
+
+@font-face
+{
+    font-family: Averia;
+    src: url("../fonts/AveriaSerifLibre-Regular.ttf");
+    font-weight: normal;
+}
+
+@font-face
+{
+    font-family: Averia;
+    src: url("../fonts/AveriaSerifLibre-Bold.ttf");
+    font-weight: bold;
+}
+
 body
 {
-    font-family: 'Averia Serif Libre', 'Times New Roman';
+    /* font-family: 'Averia Serif Libre', 'Times New Roman'; */
+    font-family: 'Averia', 'Times New Roman';
     min-height: 100vh;
     margin: 0;
     clear: both;
