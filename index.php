@@ -57,7 +57,7 @@ else { header('Location: ?c=errors&a=error404'); }
 
 
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,10 +70,6 @@ else { header('Location: ?c=errors&a=error404'); }
     <? if (isset($_GET['cart']) && $_GET['cart'] == 'show') : ?>
         <link rel="stylesheet" href=<?=STYLESPATH."cart.css"?>>
     <? endif; ?>
-
-    <!-- load page-font from GoogleFonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap"> 
 
     <!-- Icon in tab-bar -->
     <link rel="shortcut icon" href="<?=IMAGESPATH."ferret.svg"?>" type="image/x-icon" />
