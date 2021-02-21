@@ -364,9 +364,8 @@ img.shoplink
 {
     height: 20vw;
     width: 30vw;
-    padding: 0 5vw;
     /* opacity: 0.90; */
-    margin-left: 5vw;
+    margin-left: 10vw;
 }
 
 div.homepage p
