@@ -8,6 +8,14 @@ document.addEventListener('DOMContentLoaded', function()
         return validateInputs();
     };
 
+    // document.getElementById('submitLogin').addEventListener('click', function(event)
+    // {
+    //     event.preventDefault();
+    //     event.stopPropagation();
+
+    //     validateInputs();
+    // });
+
 
 
     function validateInputs()
