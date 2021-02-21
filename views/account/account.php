@@ -82,4 +82,32 @@
             <? isset($errors) && isset($_POST['submitAddress']) ? printErrors($errors) : '' ?>
         </form>
     </div>
+
+    <div class="adminoptions">
+        Neues Produkt in das Sortiment einfügen:
+        <br>
+        <form method="post">
+            Produktname:
+            <input type="string" name="product_name" id="product_name" placeholder="Produktname" autocapitalize="off">
+            Preis:
+            <input type="number" name="product_price" id="product_price" placeholder="Preis" autocapitalize="off">
+            Anzahl im Vorratslager:
+            <input type="number" name="product_stock" id="product_stock" placeholder="In Stock" autocapitalize="off">
+            Produktbeschreibung:
+            <input type="string" name="product_description" id="product_description" placeholder="Produktbeschreibung" autocapitalize="off">
+            Kategorie:
+            <select name="categorie" id="categorie">
+                <option value="fruit">Obst</option>
+                <option value="vegetable">Gemüse</option>
+            </select>
+            Produkttags:
+            <input type="string" name="product_tags" id="product_tags" placeholder="Tags" autocapitalize="off">
+            Produktbild:
+            <form action="/action_page.php">
+                <input type="file" id="productImage" name="filename">
+            </form>
+            <br>
+            <input type="submit">
+        </form>
+    </div>
 </div>

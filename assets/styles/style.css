@@ -263,6 +263,8 @@ div.accountfield
 {
     position: relative;
     margin-top: 10vh;
+    width: 100vw;
+    height: 100vh;
 }
 
 div.profilefield
@@ -325,6 +327,20 @@ div.profilesettingfield input[type= "submit"]
 {
     background-color: #6780ec;
 }
+.adminoptions
+{
+    position: absolute;
+    margin-left: auto;
+    display: block;
+    margin-top: 40vh;
+    margin-left: 40vw;
+}
+
+.adminoptions *
+{
+    display: block;
+}
+
 /*
 ============================================
 =============== Homepage ===================
