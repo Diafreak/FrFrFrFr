@@ -422,6 +422,75 @@ input#lastname
 
 /*
 ============================================
+=============== Account ====================
+============================================
+*/
+div.accountfield
+{
+    position: relative;
+    margin-top: 10vh;
+}
+
+div.profilefield
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0 0 5vh 20vw;
+    display: inline-block;
+}
+
+div.profilefield > div
+{
+    text-align: center;
+}
+
+div.profilesettingfield
+{
+    width: 25%;
+    position: absolute;
+    margin: 0 0 0 40vw;
+    display: inline-block;
+}
+
+div.profilesettingfield form
+{
+    margin-bottom: 2vh;
+}
+
+div.profilesettingfield input[type= "string"],
+div.profilesettingfield input[type= "password"],
+div.profilesettingfield input[type= "number"]
+{
+    position: absolute;
+    display: inline-block;
+    right: 0;
+}
+
+div.profilesettingfield input[type= "submit"]
+{
+    position: absolute;
+    display: block;
+    margin-top: 0.5vh;
+    right: 0;
+}
+
+.accountfield input[type= "submit"]
+{
+    background-color: #4361ee;
+    color: white;
+    border-style: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.accountfield input[type="submit" i]:hover
+{
+    background-color: #6780ec;
+}
+/*
+============================================
 =============== Homepage ===================
 ============================================
 */
@@ -471,7 +540,6 @@ img.logo
 img.product-picture
 {
     width: 80%;
-    height: 55%;
 }
 
 img.user-picture
