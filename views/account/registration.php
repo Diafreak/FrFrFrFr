@@ -10,13 +10,13 @@
 
     <form method="post">
 
-        <!-- First Name -->
+    <!-- First Name -->
         <input type="string" name="firstname" id="firstname" placeholder="Vorname" autocapitalize="on"
-               value="<?= (isset($errors) && $errors !== '') && isset($_POST['firstname']) ? htmlspecialchars($_POST['firstname']) : '' ?>">
+            value="<?= (isset($errors) && $errors !== '') && isset($_POST['firstname']) ? htmlspecialchars($_POST['firstname']) : '' ?>">
 
         <!-- Last Name -->
         <input type="string" name="lastname" id="lastname" placeholder="Nachname" autocapitalize="on"
-               value="<?= (isset($errors) && $errors !== '') && isset($_POST['lastname']) ? htmlspecialchars($_POST['lastname']) : '' ?>">
+            value="<?= (isset($errors) && $errors !== '') && isset($_POST['lastname']) ? htmlspecialchars($_POST['lastname']) : '' ?>">
 
         <!-- Email -->
         <input type="string" name="email" id="email" placeholder="E-Mail" autocapitalize="off"
