@@ -254,6 +254,22 @@ div.pdetailskauf
     margin: auto;
     display: inline-block;
 }
+
+div.mengenauswahl
+{
+    display: inline-block;
+}
+
+button.submit_amount
+{
+    display: inline-block;
+}
+
+/* button.submit_amount:hover
+{
+    background-color: #5331a3;
+} */
+
 /*
 =====================================
 ===Allgemeine Form & Login Details===
@@ -436,7 +452,11 @@ img.user-picture
     width: 150px;
 }
 
-
+img.addtocartpicture
+{
+    height: 2em;
+    width: 2em;
+}
 
 /*
 =================================================================
