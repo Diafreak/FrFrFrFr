@@ -188,6 +188,13 @@ document.addEventListener('DOMContentLoaded', function()
         }
 
 
+        // red border for "Registrieren"-Button
+        if (!validInputs)
+        {
+            document.getElementById('submitRegistration').style.border = "1px solid red";
+        }
+
+
         return validInputs;
     }
 })
