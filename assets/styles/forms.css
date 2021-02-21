@@ -1,0 +1,151 @@
+/*
+=====================================
+===Allgemeine Form & Login Details===
+=====================================
+*/
+.user-form
+{
+    margin: 15vh auto;
+    color: white;
+    text-align: center;
+    background-color: #5331a3; /*3a0ca3*/
+    width: 363px;
+    padding: 50px 0 70px;
+    border-radius: 6px;
+}
+
+.user-form input#email, input#password
+{
+    border-radius: 4px 4px 0px 0px;
+}
+
+.login-form input#password,
+.registration-form input#passwordconfirm,
+.registration-form input#email
+{
+    margin-bottom: 5px;
+    border-radius: 0 0 4px 4px;
+}
+
+.user-form input[type="submit" i],
+.button
+{
+    margin: 10px 0 0;
+    background-color: #4361ee;
+    color: white;
+    border-style: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.user-form input:not([type="checkbox" i]),
+.button
+{
+    border: 1px solid #8a8a8a;
+    border-radius: 4px;
+    padding: 0 0 0 10px;
+    width: 290px;
+    height: 35px;
+}
+
+.login-form input[type="checkbox" i]
+{
+    text-align: left;
+    margin: 10px;
+}
+
+.user-form input[type="submit" i]:hover, 
+button:hover
+{
+    background-color: #6780ec;
+}
+
+    /*Entfernt die stadardmäßige Umrandung in Eingabefeldern*/
+:focus {
+    outline: none;
+}
+
+    /*Für die Schrift der "Zurück zum Login" und "Registrierungs" Knöpfe*/
+.button a 
+{
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+button:disabled
+{
+    background-color:gray;
+    border-color: gray;
+}
+button:disabled:hover
+{
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+div.rememberMe 
+{
+    display: inline-block;
+    text-align: left;
+}
+
+label 
+{
+    color: white;
+}
+
+
+/*  Bei einem Fehler werden die Eingabefelder rot umrandet, aber nicht der submit button oder das checkbox feld  */
+/* .login-form-error input:not([type="checkbox" i]) :not([type="submit" i])
+{
+    border: 1px solid red;
+    border-radius: 4px;
+    padding: 0 0 0 10px;
+    width: 290px;
+    height: 35px;
+} */
+
+
+
+/*
+==============================
+=====Registration Details=====
+==============================
+*/
+.registration-form input#firstname
+{
+    border-radius: 4px 0 0 0;
+}
+
+.registration-form input#lastname
+{
+    border-radius: 0 4px 0 0;
+}
+
+.registration-form input
+{
+    border: 1px solid #dfebf2;
+    border-radius: 4px;
+    padding: 0 0 0 10px;
+    width: 290px;
+    height: 35px;
+}
+
+.registration-form input#firstname,
+input#lastname 
+{
+    display: inline-block;
+    width: 37.9%;
+    margin-bottom: 0px;
+}
+
+.registration-form input#email
+{
+    margin-bottom: 10px;
+}
+
+.registration-form input#passwordconfirm
+{
+    margin-bottom: 5px;
+}

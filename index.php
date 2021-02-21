@@ -63,21 +63,25 @@ else { header('Location: ?c=errors&a=error404'); }
     <!-- CSS -->
     <link rel="stylesheet" href=<?=STYLESPATH."style.css"?>>
     <link rel="stylesheet" href=<?=STYLESPATH."banner.css"?>>
-    <link rel="stylesheet" href=<?=STYLESPATH."cart.css"?>>
+    <link rel="stylesheet" href=<?=STYLESPATH."forms.css"?>>
+    <!-- only load cart-css when cart is visible -->
+    <? if (isset($_GET['cart']) && $_GET['cart'] == 'show') : ?>
+        <link rel="stylesheet" href=<?=STYLESPATH."cart.css"?>>
+    <? endif; ?>
 
     <!-- load page-font from GoogleFonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap"> 
 
     <!-- Icon in tab-bar -->
-    <link rel="shortcut icon" href=<?=IMAGESPATH."ferret.svg"?> type="image/x-icon" />
+    <link rel="shortcut icon" href="<?=IMAGESPATH."ferret.svg"?>" type="image/x-icon" />
 
     <!-- page title -->
     <title>FrFrFrFr <?=ucfirst($actionName)?></title>
 </head>
 
             <!-- if the shopping cart is shown scrolling is disabled -->
-<body class=<?= (isset($_GET['cart']) && $_GET['cart'] == 'show') ? 'no-scrolling' : '' ?>>
+<body class="<?= (isset($_GET['cart']) && $_GET['cart'] == 'show') ? 'no-scrolling' : '' ?>">
     <div class="wrapall">
         <div class="stuff">
             <?php
