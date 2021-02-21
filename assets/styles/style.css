@@ -420,6 +420,28 @@ input#lastname
     margin-bottom: 5px;
 }
 
+/*
+============================================
+=============== Homepage ===================
+============================================
+*/
+
+
+div.homepage > img.welcoming-field
+{
+    height: 50vw;
+    width: 100vw;
+    z-index: -1;
+}
+
+img.shoplink
+{
+    height: 20vw;
+    width: 30vw;
+    padding: 0 5vw;
+    /* opacity: 0.90; */
+    margin-left: 5vw;
+}
 
 /*
 ============================================
