@@ -281,7 +281,9 @@ div.profilefield > div
 
 div.profilesettingfield
 {
-    width: 25%;
+    width: 44vw;
+    max-width: 400px;
+    min-width: 327px;
     position: absolute;
     margin: 0 0 0 40vw;
     display: inline-block;
