@@ -30,13 +30,36 @@ function register($userInformation)
 // =============== LOGIN ===============
 // =====================================
 
-function loginWithSessionId()
+function loginWithCookie()
 {
-    session_destroy();
-    session_id($_COOKIE['sessionId']);
-    session_start();
+    $pwHash = $_COOKIE['pwHash'];
+    $userId = $_COOKIE['userId'];
 
-    $_SESSION['loggedIn'] = true;
+    $db       = $GLOBALS['db'];
+    $userData = [];
+
+    try
+    {
+        // get the user-information for the entered email from the database
+        $sqlUserData = "SELECT * FROM user WHERE id = {$userId};";
+        $userData    = $db->query($sqlUserData)->fetchAll()[0];
+
+        $userId_DB       = $userData['id']           ?? '';
+        $passwordHash_DB = $userData['passwordHash'] ?? '';
+
+        // check if email and password match
+        if ($userId == $userId_DB
+        &&  $pwHash == $passwordHash_DB)
+        {
+            $_SESSION['loggedIn'] = true;
+            $_SESSION['userId']   = $userId;
+            $_SESSION['cartId']   = getCartId($userId);
+        }
+    }
+    catch (\PDOException $e)
+    {
+        $error = "Nutzername oder Password falsch!";
+    }
 }
 
 
@@ -45,36 +68,35 @@ function login($email, $password, &$error)
 {
     $db       = $GLOBALS['db'];
     $userData = [];
-    $userID   = getUserId($email, $error);
+    $userId   = getUserId($email, $error);
 
     try
     {
         // get the user-information for the entered email from the database
-        $sqlUserData = "SELECT * FROM user WHERE id = {$userID};";
+        $sqlUserData = "SELECT * FROM user WHERE id = {$userId};";
         $userData    = $db->query($sqlUserData)->fetchAll()[0];
 
-        $userID_DB       = $userData['id']           ?? '';
+        $userId_DB       = $userData['id']           ?? '';
         $passwordHash_DB = $userData['passwordHash'] ?? '';
 
         // check if email and password match
-        if ($userID == $userID_DB
+        if ($userId == $userId_DB
         &&  password_verify($password, $passwordHash_DB)
         // this is just a "helper" so we can insert an admin-role with the "demo-data.sql"
         ||  $userData['email'] == 'admin' && $password == $passwordHash_DB)
         {
             $_SESSION['loggedIn'] = true;
-            $_SESSION['userId']   = $userID;
-            $_SESSION['cartId']   = getCartId($userID);
-
-            // redirect to the front page and show the "Anmeldung Erfolgreich"-banner
-            header('Location: index.php#success');
+            $_SESSION['userId']   = $userId;
+            $_SESSION['cartId']   = getCartId($userId);
 
             // check if "Angemeldet bleiben?" is selected
             if (isset($_POST['rememberMe']) && $_POST['rememberMe'] == 'remember')
             {
-                $sessionID = session_id();
-                rememberMe($sessionID);
+                rememberMe($userId, $passwordHash_DB);
             }
+
+            // redirect to the front page and show the "Anmeldung Erfolgreich"-banner
+            header('Location: index.php#success');
         }
         else
         {
@@ -89,6 +111,15 @@ function login($email, $password, &$error)
 
 
 
+function rememberMe($userId, $pwHash)
+{
+    $duration = time() + 3600 * 24 * 30;
+    setcookie('userId', $userId, $duration, '/');
+    setcookie('pwHash', $pwHash, $duration, '/');
+}
+
+
+
 
 // ======================================
 // =============== LOGOUT ===============
@@ -96,7 +127,8 @@ function login($email, $password, &$error)
 
 function logOut()
 {
-    setcookie('sessionId', '', -1, '/');
+    setcookie('userId', '', -1, '/');
+    setcookie('pwHash', '', -1, '/');
     session_destroy();
     header('Location: index.php#logout');
 }
@@ -249,13 +281,6 @@ function validateInputs($userInformation, &$errors)
     validatePasswordConfirm($password, $passwordConfirm, $errors);
 }
 
-
-
-function rememberMe($sessionId)
-{
-    $duration = time() + 3600 * 24 * 30;
-    setcookie('sessionId', $sessionId, $duration, '/');
-}
 
 
 
@@ -499,10 +524,10 @@ function updateEmail($email, &$errors)
 // check for the registration if the given email is already in the database
 function doesEmailExist($email, &$error)
 {
-    $userID = getUserId($email, $error);
+    $userId = getUserId($email, $error);
 
     // if there is no user-id the email doesn't exist in the database
-    if (empty($userID))
+    if (empty($userId))
     {
         return false;
     }
@@ -540,7 +565,7 @@ function updatePassword($newPassword, &$errors)
 }
 
 
-// gets an email and returns the userID from the database if the email is in the database
+// gets an email and returns the userId from the database if the email is in the database
 function getUserId($email, &$error)
 {
     $db = $GLOBALS['db'];

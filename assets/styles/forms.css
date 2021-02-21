@@ -107,7 +107,6 @@ label
 } */
 
 
-
 /*
 ==============================
 =====Registration Details=====
@@ -152,4 +151,16 @@ input#lastname
 .registration-form input#passwordconfirm
 {
     margin-bottom: 5px;
+}
+
+
+.errorinput
+{
+    border: 1px solid red !important;
+}
+
+.error-message
+{
+    color: red;
+    display: none;
 }
