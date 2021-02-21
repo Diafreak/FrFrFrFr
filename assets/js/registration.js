@@ -20,6 +20,12 @@ document.addEventListener('DOMContentLoaded', function()
         var password        = document.getElementById('password');
         var passwordConfirm = document.getElementById('passwordconfirm');
 
+        var errorSpanFName     = document.getElementById('errorFirstName');
+        var errorSpanLName     = document.getElementById('errorLastName');
+        var errorSpanEmail     = document.getElementById('errorEmail');
+        var errorSpanPW        = document.getElementById('errorPW');
+        var errorSpanPWConfirm = document.getElementById('errorPWConfirm');
+
         // validateFirstName(firstName);
         // validateLastName( lastName);
         // validateEmail(email);
@@ -28,81 +34,81 @@ document.addEventListener('DOMContentLoaded', function()
 
 
         // validateFirstName
-        document.getElementById('errorFirstName').style.display = "block";
+        errorSpanFName.style.display = "block";
         firstName.className = "errorinput";
 
         if (firstName.value == null || firstName.value == "")
         {
             validInputs = false;
-            document.getElementById('errorFirstName').textContent = "Vorname darf nicht leer sein.";
+            errorSpanFName.textContent = "Vorname darf nicht leer sein.";
         }
         else if (firstName.value.length < 2)
         {
             validInputs = false;
-            document.getElementById('errorFirstName').textContent = "Vorname muss mind. 2 Zeichen lang sein.";
+            errorSpanFName.textContent = "Vorname muss mind. 2 Zeichen lang sein.";
         }
         else if (firstName.value.length > 50)
         {
             validInputs = false;
-            document.getElementById('errorFirstName').textContent = "Vorname darf max. 50 Zeichen lang sein.";
+            errorSpanFName.textContent = "Vorname darf max. 50 Zeichen lang sein.";
         }
         else
         {
-            document.getElementById('errorFirstName').style.display = "none";
+            errorSpanFName.style.display = "none";
             firstName.className = firstName.className.replace('errorinput', '');
         }
 
 
 
         // validateLastName
-        document.getElementById('errorLastName').style.display = "block";
+        errorSpanLName.style.display = "block";
         lastName.className = "errorinput";
 
         if (lastName.value == null || lastName.value == "")
         {
             validInputs = false;
-            document.getElementById('errorLastName').textContent = "Nachname darf nicht leer sein.";
+            errorSpanLName.textContent = "Nachname darf nicht leer sein.";
         }
         else if (lastName.value.length < 2)
         {
             validInputs = false;
-            document.getElementById('errorLastName').textContent = "Nachname muss mind. 2 Zeichen lang sein.";
+            errorSpanLName.textContent = "Nachname muss mind. 2 Zeichen lang sein.";
         }
         else if (lastName.value.length > 50)
         {
             validInputs = false;
-            document.getElementById('errorLastName').textContent = "Nachname darf max. 50 Zeichen lang sein.";
+            errorSpanLName.textContent = "Nachname darf max. 50 Zeichen lang sein.";
         }
         else
         {
-            document.getElementById('errorLastName').style.display = "none";
+            errorSpanLName.style.display = "none";
             lastName.className = lastName.className.replace('errorinput', '');
         }
 
 
 
         // validateEmail
-        document.getElementById('errorEmail').style.display = "block";
+        errorSpanEmail.style.display = "block";
         email.className = "errorinput";
 
         if (email.value == null || email.value == "")
         {
             validInputs = false;
-            document.getElementById('errorEmail').textContent = "E-Mail darf nicht leer sein.";
+            errorSpanEmail.textContent = "E-Mail darf nicht leer sein.";
         }
         else if (email.value.length > 120)
         {
             validInputs = false;
-            document.getElementById('errorEmail').textContent = "E-Mail darf max. 120 Zeichen lang sein.";
+            errorSpanEmail.textContent = "E-Mail darf max. 120 Zeichen lang sein.";
         }
         else if (invalidEmail())
         {
             validInputs = false;
-            document.getElementById('errorEmail').textContent = "Bitte eine valide E-Mail angeben.";
+            errorSpanEmail.textContent = "Bitte eine valide E-Mail angeben.";
         }
         else
         {
-            document.getElementById('errorEmail').style.display = "none";
+            errorSpanEmail.style.display = "none";
             email.className = email.className.replace('errorinput', '');
         }
 
@@ -126,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function()
 
 
         // validatePassword
-        document.getElementById('errorPW').style.display = "block";
+        errorSpanPW.style.display = "block";
         password.className = "errorinput";
 
         var uppercase    = password.value.match('[A-Z]+');
@@ -137,17 +143,17 @@ document.addEventListener('DOMContentLoaded', function()
         if (password.value == null || password.value == "")
         {
             validInputs = false;
-            document.getElementById('errorPW').textContent = "Passwort darf nicht leer sein.";
+            errorSpanPW.textContent = "Passwort darf nicht leer sein.";
         }
         else if (password.value.length < 8)
         {
             validInputs = false;
-            document.getElementById('errorPW').textContent = "Passwort muss mind. 8 Zeichen lang sein.";
+            errorSpanPW.textContent = "Passwort muss mind. 8 Zeichen lang sein.";
         }
         else if (password.value.length > 255)
         {
             validInputs = false;
-            document.getElementById('errorPW').textContent = "Passwort darf max. 255 Zeichen lang sein.";
+            errorSpanPW.textContent = "Passwort darf max. 255 Zeichen lang sein.";
         }
         else if (!uppercase || !lowercase || !number || !specialChars)
         {
@@ -162,30 +168,31 @@ document.addEventListener('DOMContentLoaded', function()
             // remove last comma
             errorMessage = errorMessage.replace(/,\s*$/, " ");
             errorMessage += "entahlten.";
-            document.getElementById('errorPW').textContent = errorMessage;
+            errorSpanPW.textContent = errorMessage;
         }
         else
         {
-            document.getElementById('errorPW').style.display = "none";
+            errorSpanPW.style.display = "none";
             password.className = password.className.replace('errorinput', '');
         }
 
 
 
         // validatePasswordConfirm
-        document.getElementById('errorPWConfirm').style.display = "block";
+        errorSpanPWConfirm.style.display = "block";
         passwordConfirm.className = "errorinput";
 
         if (password.value != passwordConfirm.value || passwordConfirm.value == "")
         {
             validInputs = false;
-            document.getElementById('errorPWConfirm').textContent = "Passwörter stimmen nicht überein.";
+            errorSpanPWConfirm.textContent = "Passwörter stimmen nicht überein.";
         }
         else
         {
-            document.getElementById('errorPWConfirm').style.display = "none";
+            errorSpanPWConfirm.style.display = "none";
             passwordConfirm.className = passwordConfirm.className.replace('errorinput', '');
         }
+
 
 
         // red border for "Registrieren"-Button
