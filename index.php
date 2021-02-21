@@ -2,6 +2,7 @@
 
 require_once 'config/imports.php';
 
+
 session_start();
 
 
@@ -14,9 +15,10 @@ $controllerPath = CONTROLLERSPATH.$controllerName.'_controller.php';
 
 
 //if a cookie is set: log in user automatically
-if (isset($_COOKIE['sessionId']))
+if (isset($_COOKIE['userId']) && $_COOKIE['userId'] != "" && $_COOKIE['userId'] != null
+&&  isset($_COOKIE['pwHash']) && $_COOKIE['pwHash'] != "" && $_COOKIE['pwHash'] != null)
 {
-    loginWithSessionId();
+    loginWithCookie();
 }
 
 
