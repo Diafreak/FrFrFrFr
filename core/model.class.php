@@ -45,10 +45,9 @@ abstract class Model
                 }
             }
         }
-        catch(\Exception $error)                                            //!!! CHANGE !!!
+        catch(\Exception $e)
         {
-            print_r($error);
-            exit(1);
+            $errors['construct'] = self::tablename . " konnte nicht erstellt werden.";
         }
     }
 
@@ -121,7 +120,7 @@ abstract class Model
         }
         catch (\PDOException $e)
         {
-            echo('Error inserting new ' . SELF::tablename() . ': ' . $e->GetMessage() );              //!!! CHANGE-Redirect to 404? !!!
+            $errors['insert'] = 'Error inserting new ' . SELF::tablename();
         }
 
     }

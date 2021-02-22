@@ -36,12 +36,12 @@ function addItemToCart($prodId, $productDetails)
         }
 
         $action = $productDetails['catName'] . 's';
-        header("Location: ?c=shop&a={$action}#success");             // !!! CHANGE DYNAMIC URL !!!
+        header("Location: ?c=shop&a={$action}#success");
     }
     else
     {
         // redirect to login if the user wants to add an item to their cart
-        header('Location: ?c=account&a=login');                         //!!! CHANGE !!!
+        header('Location: ?c=account&a=login');
     }
 }
 
