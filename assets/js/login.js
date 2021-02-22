@@ -15,8 +15,6 @@ document.addEventListener('DOMContentLoaded', function()
             event.preventDefault();
             event.stopPropagation();
         }
-
-        validateInputs();
     });
 
 
