@@ -14,7 +14,7 @@
 
             <!-- "Abmelden"-Button -->
             <form method="post">
-                <input type="submit" name="submitLogout" value="Abmelden">
+                <input type="submit" name="submitLogout" value="Abmelden" class="adminbutton">
             </form>
         </div>
     </div>
