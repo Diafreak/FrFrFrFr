@@ -211,7 +211,6 @@ function getSearchTags()
 
 
 
-
 // generates the HTML-Code for the given product-category
 function generateShopLayout($catName, $tags = "", &$errors = [])
 {
@@ -360,8 +359,7 @@ function getProductsFromSameCategory($catId, $tags = "", &$errors)
             try
             {
                 // generate a where-statement for the sql-search
-                // multiple tags are connected with an AND, because usually if searching for multiple tags you want
-                // results that fit all tags
+                // multiple tags are connected with an AND, because usually if searching for multiple tags you want results that fit all tags
                 $sqlWhereString = "";
                 foreach ($separatedTags as $tag)
                 {
