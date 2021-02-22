@@ -67,6 +67,19 @@ class ShopController extends Controller
         }
     }
 
+
+
+    public function actionCheckout()
+    {
+        //$errors = [];
+    }
+
+
+    public function actionRedirect()
+    {
+        //$errors = [];
+    }
+
 }
 
 
