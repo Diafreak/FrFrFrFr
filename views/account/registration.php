@@ -47,7 +47,7 @@
             <span id="errorPWConfirm" class="error-message"></span>
 
             <!-- Errors PHP -->
-            <? isset($errors) && isset($_POST['submitRegistration']) ? printErrors($errors) : '' ?><br>
+            <span id="errorsPHP"><? isset($errors) && isset($_POST['submitRegistration']) ? printErrors($errors) : '' ?></span><br>
 
 
             <!-- "Register"-Button -->

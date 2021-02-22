@@ -44,7 +44,7 @@ class ShopController extends Controller
         $prodId = $_GET['prodId'];
 
         // get all product-details from the product that has been clicked on
-        $productDetails = getProductDetails($prodId, $errors)[0];
+        $productDetails = getProductDetails($prodId, $errors)[0] ?? null;
 
         if ($productDetails == null)
         {
@@ -65,6 +65,19 @@ class ShopController extends Controller
         {
             addItemToCart($prodId, $productDetails);
         }
+    }
+
+
+
+    public function actionCheckout()
+    {
+        //$errors = [];
+    }
+
+
+    public function actionRedirect()
+    {
+        //$errors = [];
     }
 
 }

@@ -12,4 +12,7 @@ define('VIEWSPATH',       'views'      .DIRECTORY_SEPARATOR);
 
 define('MAX_NUMBER_OF_SEARCH_TAGS', 5);
 
+define('KB', 1024);
+define('MAX_IMAGE_SIZE_IN_KB', 200*KB);
+
 ?>

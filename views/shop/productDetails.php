@@ -19,7 +19,7 @@
         </button>
     </form>
 
-    <h1><?= $name; ?></h1>
+    <h1><?= ucfirst($name); ?></h1>
 
     <div class="detailwrapper">
 

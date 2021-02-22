@@ -26,7 +26,7 @@ class AccountController extends Controller
             // every new registered user gets the role "customer"
             $userInformation['role_id']         = getRoleId('customer', $errors);
 
-            validateInputs($userInformation, $errors);
+            validateRegisterInputs($userInformation, $errors);
 
             // register new user if there are no errors
             if (count($errors) == 0)
@@ -116,11 +116,24 @@ class AccountController extends Controller
             // ===== [ ADRESSE Hinzufügen / Ändern ] =====
             if (isset($_POST['submitAddress']))
             {
-                submitAddress( htmlspecialchars($_POST['address_street']),
-                               htmlspecialchars($_POST['address_number']),
-                               htmlspecialchars($_POST['address_city']),
-                               htmlspecialchars($_POST['address_zip']),
+                submitAddress( strtolower( htmlspecialchars($_POST['address_street']) ),
+                               strtolower( htmlspecialchars($_POST['address_number']) ),
+                               strtolower( htmlspecialchars($_POST['address_city'])   ),
+                               strtolower( htmlspecialchars($_POST['address_zip'])    ),
                                $userId, $errors );
+            }
+
+
+            // ===== [ PRODUKT Hinzufügen ] =====
+            if (isset($_POST['submitNewProduct']))
+            {
+                addNewProduct( strtolower( htmlspecialchars($_POST['product_name'])       ),
+                                           htmlspecialchars($_POST['product_price']       ),
+                                           htmlspecialchars($_POST['product_stock']       ),
+                                           htmlspecialchars($_POST['product_description'] ),
+                               strtolower( htmlspecialchars($_POST['categorie'])          ),
+                               strtolower( htmlspecialchars($_POST['product_tags'])       ),
+                               $errors );
             }
 
 
@@ -150,9 +163,11 @@ class AccountController extends Controller
             {
                 $this->setParam($key, $userData);
             }
+
         }
         else
         {
+            // redirect to login if user who isn't singed in tried to access the account page
             header('Location: ?c=account&a=login');
         }
         // push errors to view

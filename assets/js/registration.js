@@ -15,8 +15,6 @@ document.addEventListener('DOMContentLoaded', function()
             event.preventDefault();
             event.stopPropagation();
         }
-
-        validateInputs();
     });
 
 
@@ -209,6 +207,7 @@ document.addEventListener('DOMContentLoaded', function()
         // red border for "Registrieren"-Button
         if (!validInputs)
         {
+            document.getElementById('errorsPHP').style.display = "none";
             document.getElementById('submitRegistration').style.border = "1px solid red";
         }
 
