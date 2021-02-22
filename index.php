@@ -72,7 +72,7 @@ else { header('Location: ?c=errors&a=error404'); }
     <? endif; ?>
 
     <!-- Icon in tab-bar -->
-    <link rel="shortcut icon" href="<?=IMAGESPATH."ferret.svg"?>" type="image/x-icon" />
+    <link rel="shortcut icon" href="<?=IMAGESPATH."/navBar/ferret.svg"?>" type="image/x-icon" />
 
     <!-- page title -->
     <title>FrFrFrFr <?=ucfirst($actionName)?></title>
