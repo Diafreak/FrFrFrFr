@@ -1,3 +1,8 @@
+
+<!-- load js -->
+<script src="<?=JSPATH?>account.js"></script>
+
+
 <h1>Mein Account</h1>
 
 <div class="accountfield">
@@ -19,6 +24,7 @@
         </div>
     </div>
     <div class="profilesettingfield">
+
         <!-- Change Email -->
         <form method="post">
             Aktuelle E-Mail: <?= $email ?> <br>
@@ -26,10 +32,14 @@
             <input type="string" name="changeEmail" id="chemail" placeholder="E-Mail Adresse ändern" autocapitalize="off"
                    value="<?= (isset($errors) && $errors != null) && isset($_POST['changeEmail']) ? strtolower(htmlspecialchars($_POST['changeEmail'])) : '' ?>">
 
-            <input type="submit" name="submitEmailChange" value="Ändern">
+            <!-- Button -->
+            <input type="submit" name="submitEmailChange" id="submitEmailChange" value="Ändern">
 
-            <!-- Errors -->
-            <? isset($errors) && isset($_POST['submitEmailChange']) ? printErrors($errors) : '' ?>
+            <!-- ERRORS JS -->
+            <span id="errorEmail" class="error-message"></span>
+
+            <!-- Errors PHP -->
+            <span id="errorPHPemail"><? isset($errors) && isset($_POST['submitEmailChange']) ? printErrors($errors) : '' ?></span>
         </form>
         <br>
 
@@ -43,10 +53,14 @@
             Passwort bestätigen:
             <input type="password" name="newPasswordConfirm" id="newpasswordconfirm" placeholder="Passwort bestätigen" autocapitalize="off">
 
-            <input type="submit" name="submitPasswordChange" value="Ändern">
+            <!-- Button -->
+            <input type="submit" name="submitPasswordChange" id="submitPasswordChange" value="Ändern">
 
-            <!-- Errors -->
-            <? isset($errors) && isset($_POST['submitPasswordChange']) ? printErrors($errors) : '' ?>
+            <!-- ERRORS JS -->
+            <span id="errorPW" class="error-message"></span>
+
+            <!-- Errors PHP -->
+            <span id="errorPHPpassword"><? isset($errors) && isset($_POST['submitPasswordChange']) ? printErrors($errors) : '' ?></span>
         </form>
         <br>
 
@@ -55,7 +69,7 @@
         <form method="post">
 
             <? if (userHasAddress()) : ?>
-                Aktuelle Adresse: <?= "{$street} {$number}, {$zip} {$city}"?>
+                Aktuelle Adresse: <? echo(ucfirst($street). " {$number}, {$zip} ".ucfirst($city))?>
                 <? $action = "ändern" ?>
             <? else : ?>
                 Noch keine Addresse vorhanden
@@ -76,10 +90,14 @@
             <input type="number" name="address_zip" id="address_zip" placeholder="Postleitzahl <?=$action?>" autocapitalize="off"
                    value="<?= (isset($errors) && $errors != null) && isset($_POST['address_zip']) ? htmlspecialchars($_POST['address_zip']) : '' ?>">
 
-            <input type="submit" name="submitAddress" value="<?= ucfirst($action) ?>">
+            <!-- Buttton -->
+            <input type="submit" name="submitAddress" id="submitAddress" value="<?= ucfirst($action) ?>">
 
-            <!-- Errors -->
-            <? isset($errors) && isset($_POST['submitAddress']) ? printErrors($errors) : '' ?>
+            <!-- ERRORS JS -->
+            <span id="errorPW" class="error-message"></span>
+
+            <!-- Errors PHP -->
+            <span id="errorPHPaddress"><? isset($errors) && isset($_POST['submitAddress']) ? printErrors($errors) : '' ?></span>
         </form>
     </div>
 
@@ -121,9 +139,13 @@
                 <input type="hidden" name="MAX_FILE_SIZE" value="<?MAX_IMAGE_SIZE_IN_KB?>" />
                 <input type="file" id="productImage" name="productImage">
 
-                <!-- Errors PHP -->
-                <? isset($errors) && isset($_POST['submitNewProduct']) ? printErrors($errors) : '' ?>
+                <!-- ERRORS JS -->
+                <span id="errorPW" class="error-message"></span>
 
+                <!-- Errors PHP -->
+                <span id="errorPHPnewProduct"><? isset($errors) && isset($_POST['submitNewProduct']) ? printErrors($errors) : '' ?></span>
+
+                <!-- Button -->
                 <button type="submit" name="submitNewProduct" id="submitNewProduct">
                     Produkt hinzufügen
                 </button>
