@@ -76,25 +76,25 @@ function generateCartHTML($prodId, $name, $amount, $price, $imageUrl, $altText)
 
     $html .= nTabs($start)."<tr>\n";
     // Picture
-    $html .= nTabs($start).    "<td>\n";
-    $html .= nTabs($start).        "<a href='?c=shop&a=productDetails&prodId={$prodId}' type='no-hover'>\n";
-    $html .= nTabs($start).            "<img src='{$imageUrl}' alt='{$altText}' class='shoppin-cart-item-picture'>\n";
-    $html .= nTabs($start).        "</a>\n";
-    $html .= nTabs($start).    "</td>\n";
+    $html .= nTabs($start).nTabs(1)."<td>\n";
+    $html .= nTabs($start).nTabs(2).    "<a href='?c=shop&a=productDetails&prodId={$prodId}' type='no-hover'>\n";
+    $html .= nTabs($start).nTabs(3).        "<img src='{$imageUrl}' alt='{$altText}' class='shoppin-cart-item-picture'>\n";
+    $html .= nTabs($start).nTabs(2).    "</a>\n";
+    $html .= nTabs($start).nTabs(1)."</td>\n";
     // Name & Amount
-    $html .= nTabs($start).    "<td>\n";
-    $html .= nTabs($start).        "<h3 class='produktname'>{$name}</h3>\n";
-    $html .= nTabs($start).        "<p>{$amount} x {$price}€/kg</p>\n";
-    $html .= nTabs($start).    "</td>\n";
+    $html .= nTabs($start).nTabs(1)."<td>\n";
+    $html .= nTabs($start).nTabs(2).    "<h3 class='produktname'>{$name}</h3>\n";
+    $html .= nTabs($start).nTabs(2).    "<p>{$amount} x {$price}€/kg</p>\n";
+    $html .= nTabs($start).nTabs(1)."</td>\n";
     // Price
-    $html .= nTabs($start).    "<td>\n";
-    $html .= nTabs($start).        "<form method='get'>\n";
-    $html .= nTabs($start).            "<input type='hidden' name='removeItem' value='{$prodId}'>\n";
-    $html .= nTabs($start).            "<input type='hidden' name='currentUrl' value='{$currentUrl}'>\n";
-    $html .= nTabs($start).            "<button type='submit' class='shopping-cart-remove-item-btn noHover'><b>[entfernen]</b></button>\n";
-    $html .= nTabs($start).        "</form>\n";
-    $html .= nTabs($start).        "<p>{$total}€</p>\n";
-    $html .= nTabs($start).    "</td>\n";
+    $html .= nTabs($start).nTabs(1)."<td>\n";
+    $html .= nTabs($start).nTabs(2).    "<form method='get'>\n";
+    $html .= nTabs($start).nTabs(3).        "<input type='hidden' name='removeItem' value='{$prodId}'>\n";
+    $html .= nTabs($start).nTabs(3).        "<input type='hidden' name='currentUrl' value='{$currentUrl}'>\n";
+    $html .= nTabs($start).nTabs(3).        "<button type='submit' class='shopping-cart-remove-item-btn noHover'><b>[entfernen]</b></button>\n";
+    $html .= nTabs($start).nTabs(2).    "</form>\n";
+    $html .= nTabs($start).nTabs(2).    "<p>{$total}€</p>\n";
+    $html .= nTabs($start).nTabs(1)."</td>\n";
 
     $html .= nTabs($start)."</tr>\n";
 
