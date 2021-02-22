@@ -1,4 +1,5 @@
 <h1>Mein Account</h1>
+
 <div class="accountfield">
 
     <div class="profilefield">
@@ -23,7 +24,7 @@
             Aktuelle E-Mail: <?= $email ?> <br>
             Neue E-Mail:
             <input type="string" name="changeEmail" id="chemail" placeholder="E-Mail Adresse ändern" autocapitalize="off"
-            value="<?= (isset($errors) && $errors != null) && isset($_POST['changeEmail']) ? strtolower(htmlspecialchars($_POST['changeEmail'])) : '' ?>">
+                   value="<?= (isset($errors) && $errors != null) && isset($_POST['changeEmail']) ? strtolower(htmlspecialchars($_POST['changeEmail'])) : '' ?>">
 
             <input type="submit" name="submitEmailChange" value="Ändern">
 
@@ -64,16 +65,16 @@
 
             Straße:
             <input type="string" name="address_street" id="address_street" placeholder="Straße <?=$action?>" autocapitalize="off"
-            value="<?= (isset($errors) && $errors != null) && isset($_POST['address_street']) ? ucfirst(htmlspecialchars($_POST['address_street'])) : '' ?>"><br>
+                   value="<?= (isset($errors) && $errors != null) && isset($_POST['address_street']) ? ucfirst(htmlspecialchars($_POST['address_street'])) : '' ?>"><br>
             Hausnummer:
             <input type="number" name="address_number" id="address_number" placeholder="Hausnummer <?=$action?>" autocapitalize="off"
-            value="<?= (isset($errors) && $errors != null) && isset($_POST['address_number']) ? htmlspecialchars($_POST['address_number']) : '' ?>"><br>
+                   value="<?= (isset($errors) && $errors != null) && isset($_POST['address_number']) ? htmlspecialchars($_POST['address_number']) : '' ?>"><br>
             Stadt
             <input type="string" name="address_city" id="address_city" placeholder="Stadt <?=$action?>" autocapitalize="off"
-            value="<?= (isset($errors) && $errors != null) && isset($_POST['address_city']) ? ucfirst(htmlspecialchars($_POST['address_city'])) : '' ?>"><br>
+                   value="<?= (isset($errors) && $errors != null) && isset($_POST['address_city']) ? ucfirst(htmlspecialchars($_POST['address_city'])) : '' ?>"><br>
             PLZ:
             <input type="number" name="address_zip" id="address_zip" placeholder="Postleitzahl <?=$action?>" autocapitalize="off"
-            value="<?= (isset($errors) && $errors != null) && isset($_POST['address_zip']) ? htmlspecialchars($_POST['address_zip']) : '' ?>">
+                   value="<?= (isset($errors) && $errors != null) && isset($_POST['address_zip']) ? htmlspecialchars($_POST['address_zip']) : '' ?>">
 
             <input type="submit" name="submitAddress" value="<?= ucfirst($action) ?>">
 
@@ -82,31 +83,54 @@
         </form>
     </div>
 
-    <div class="adminoptions">
-        Neues Produkt in das Sortiment einfügen:
-        <br>
-        <form method="post">
-            Produktname:
-            <input type="string" name="product_name" id="product_name" placeholder="Produktname" autocapitalize="off">
-            Preis:
-            <input type="number" name="product_price" id="product_price" placeholder="Preis" autocapitalize="off">
-            Anzahl im Vorratslager:
-            <input type="number" name="product_stock" id="product_stock" placeholder="In Stock" autocapitalize="off">
-            Produktbeschreibung:
-            <input type="string" name="product_description" id="product_description" placeholder="Produktbeschreibung" autocapitalize="off">
-            Kategorie:
-            <select name="categorie" id="categorie">
-                <option value="fruit">Obst</option>
-                <option value="vegetable">Gemüse</option>
-            </select>
-            Produkttags:
-            <input type="string" name="product_tags" id="product_tags" placeholder="Tags" autocapitalize="off">
-            Produktbild:
-            <form action="/action_page.php">
-                <input type="file" id="productImage" name="filename">
+
+    <!-- Add new product -->
+    <? if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] === true) : ?>
+
+        <div class="adminoptions">
+            Neues Produkt in das Sortiment einfügen<br>
+
+            <form method="post" enctype="multipart/form-data">
+                Produktname
+                <input type="string" name="product_name" id="product_name" placeholder="Produktname" autocapitalize="off"
+                       value="<?= (isset($errors) && $errors != null) && isset($_POST['product_name']) ? htmlspecialchars($_POST['product_name']) : '' ?>">
+
+                Preis (€/kg)
+                <input type="string" name="product_price" id="product_price" placeholder="Preis" autocapitalize="off"
+                       value="<?= (isset($errors) && $errors != null) && isset($_POST['product_price']) ? htmlspecialchars($_POST['product_price']) : '' ?>">
+
+                Anzahl im Vorratslager
+                <input type="number" name="product_stock" id="product_stock" placeholder="In Stock" autocapitalize="off"
+                       value="<?= (isset($errors) && $errors != null) && isset($_POST['product_stock']) ? htmlspecialchars($_POST['product_stock']) : '' ?>">
+
+                Produktbeschreibung
+                <input type="string" name="product_description" id="product_description" placeholder="Produktbeschreibung" autocapitalize="off"
+                       value="<?= (isset($errors) && $errors != null) && isset($_POST['product_description']) ? htmlspecialchars($_POST['product_description']) : '' ?>">
+
+                Kategorie
+                <select name="categorie" id="categorie">
+                    <option value="fruit">Obst</option>
+                    <option value="vegetable">Gemüse</option>
+                </select>
+
+                Produkttags (mit Komma getrennt)
+                <input type="string" name="product_tags" id="product_tags" placeholder="Tags" autocapitalize="off"
+                       value="<?= (isset($errors) && $errors != null) && isset($_POST['product_tags']) ? htmlspecialchars($_POST['product_tags']) : '' ?>">
+
+                Produktbild (MUSS quadratisch sein)
+                <input type="hidden" name="MAX_FILE_SIZE" value="<?MAX_IMAGE_SIZE_IN_KB?>" />
+                <input type="file" id="productImage" name="productImage">
+
+                <!-- Errors PHP -->
+                <? isset($errors) && isset($_POST['submitNewProduct']) ? printErrors($errors) : '' ?>
+
+                <button type="submit" name="submitNewProduct" id="submitNewProduct">
+                    Produkt hinzufügen
+                </button>
             </form>
-            <br>
-            <input type="submit">
-        </form>
-    </div>
+
+        </div>
+
+    <? endif; ?>
+
 </div>
