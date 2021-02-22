@@ -108,10 +108,3 @@ else { header('Location: ?c=errors&a=error404'); }
     </div>
 </body>
 </html>
-
-
-<!--
-    echo("<pre>");
-    var_dump($productDetails);
-    echo("</pre>");
--->
