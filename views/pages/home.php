@@ -17,10 +17,10 @@
 
     <div class="piclinks">
         <a href="?c=shop&a=fruits">
-            <img src=<?=IMAGESPATH . 'fruit.jpg'?> alt="Obstlink" class="shoplink fruits">
+            <img src=<?=IMAGESPATH.'home/fruit.jpg'?> alt="Obstlink" class="shoplink fruits">
         </a>
         <a href="?c=shop&a=vegetables">
-            <img src=<?=IMAGESPATH . 'vegetables.jpg'?> alt="Gemüselink" class="shoplink vegetables">
+            <img src=<?=IMAGESPATH.'home/vegetables.jpg'?> alt="Gemüselink" class="shoplink vegetables">
         </a>
     </div>
 
@@ -30,6 +30,6 @@
     </div>
     
 
-    <img src=<?=IMAGESPATH . 'dayumgrape.jpg'?> alt="Willkommensfeld" class="welcoming-field"> 
+    <img src=<?=IMAGESPATH.'home/dayumgrape.jpg'?> alt="Willkommensfeld" class="welcoming-field"> 
 
 </div>
