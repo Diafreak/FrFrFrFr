@@ -35,8 +35,7 @@
 
 
         <!-- Errors PHP -->
-            <!-- Errors PHP -->
-            <? isset($errors) && isset($_POST['submitLogin']) ? printErrors($errors) : '' ?><br>
+        <span id="errorPHP"><? isset($errors) && isset($_POST['submitLogin']) ? printErrors($errors) : '' ?></span><br>
 
 
         <!-- "Login"-Button -->

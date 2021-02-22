@@ -3,18 +3,21 @@
 document.addEventListener('DOMContentLoaded', function()
 {
     // "Login"-Button
-    document.getElementById('submitLogin').onclick = function()
-    {
-        return validateInputs();
-    };
-
-    // document.getElementById('submitLogin').addEventListener('click', function(event)
+    // document.getElementById('submitLogin').onclick = function()
     // {
-    //     event.preventDefault();
-    //     event.stopPropagation();
+    //     return validateInputs();
+    // };
 
-    //     validateInputs();
-    // });
+    document.getElementById('submitLogin').addEventListener('click', function(event)
+    {
+        if (!validateInputs())
+        {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        validateInputs();
+    });
 
 
 
@@ -25,7 +28,8 @@ document.addEventListener('DOMContentLoaded', function()
         var email     = document.getElementById('email');
         var password  = document.getElementById('password');
 
-        var errorSpan = document.getElementById('errorEmptyFields');
+        var errorSpan    = document.getElementById('errorEmptyFields');
+        var errorSpanPHP = document.getElementById('errorPHP');
 
 
         // check if fields are empty
@@ -34,8 +38,8 @@ document.addEventListener('DOMContentLoaded', function()
         email.className    = "errorinput";
         password.className = "errorinput";
 
-        if (email.value    == null || email.value    == ""
-        &&  password.value == null || password.value == "")
+        if ((email.value    == null || email.value    == "")
+        &&  (password.value == null || password.value == "") )
         {
             validInputs = false;
         }
@@ -62,6 +66,13 @@ document.addEventListener('DOMContentLoaded', function()
         if (!validInputs)
         {
             document.getElementById('submitLogin').style.border = "1px solid red";
+            // hide php errors when showing JS errors
+            errorSpanPHP.style.display = "none";
+        }
+        // green border for "Login"-Button
+        else
+        {
+            document.getElementById('submitLogin').style.border = "1px solid green";
         }
 
 
