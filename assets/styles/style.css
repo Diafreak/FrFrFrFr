@@ -74,72 +74,180 @@ h1
 
 
 /*
-==============================
-===Navigationsleisten Style===
-==============================
+========================================
+=== Navigationsleisten Style Desktop ===
+========================================
 */
 
+@media only screen and (min-width:800px) {
+    nav.desktop
+    {
+        display:table;
+    }
+    nav.tablet
+    {
+        display: none;
+    }
+    
+    header > nav
+    {
+        width: 100%;
+        height: 8vh; 
+    }
 
-header > nav
-{
-    width: 100%;
-    height: 8vh; 
+
+    header > nav > ul
+    {
+        width: 100%;
+        display: table;
+        list-style: none;
+        padding-inline-start: 0;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        table-layout: fixed;
+        background-color: #5331a3; /*#7209B7 | 3a0ca3*/
+    }
+
+
+    header > nav > ul > li,
+    header > nav > ul > a
+    {
+        display: table-cell;
+        vertical-align: middle;
+        cursor: pointer;
+        color: #FFF;
+        text-align: center;
+        text-decoration: none;
+        height: 100%;
+    }
+
+
+
+    nav ul a:hover:not([type="no-hover" i]),
+    nav ul .dropdown-menu:hover:not([type="no-hover" i])
+    {
+        background-color: #4361ee; /*#f72585*/
+    }
+
+
+    nav ul .no-hover 
+    {
+        cursor: context-menu;
+    }
+
+
+    nav ul .no-hover a 
+    {
+        text-decoration: none;
+    }
+
+
+    nav ul .no-hover:hover 
+    {
+        background-color: #5331a3; /*#7209B7 | 3a0ca3*/
+    }
+
+
 }
 
-
-header > nav > ul
+@media only screen and (max-width:800px) 
 {
-    width: 100%;
-    display: table;
-    list-style: none;
-    padding-inline-start: 0;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    table-layout: fixed;
-    background-color: #5331a3; /*#7209B7 | 3a0ca3*/
+    nav.desktop
+    {
+        display:none;
+    }
+    nav.tablet
+    {
+        display: table;
+    }
+
+    div.navbartrigger a.menubutton img
+    {
+        margin: 5px;
+        height: 20px;
+    }
+
+    div.navbartrigger a.menubutton
+    {
+        margin-top: -17px;
+        margin-left: 10px;
+    }
+
+    div.navbartrigger a.icon
+    {
+        position: absolute;
+        top: 50%;
+    }
+
+    div.navbartrigger a.ferret
+    {
+        margin-top: -15px;
+        margin-right: -34.5px;
+        right: 50%;
+    }
+
+    div.navbartrigger a.account
+    {
+        margin-top: -15px;
+        right: 20px;
+    }
+
+    div.navbartrigger a.cart
+    {
+        margin-top: -15px;
+        right: 50px;
+    }
+
+    div.navbartrigger
+    {
+        display: flex;
+        position: relative;
+        width: 100vw;
+        height: 50px;
+        background-color: #5331a3;
+    }
+
+    #nav
+    {
+        position: fixed;
+        top: 0;
+        height: 100%;
+        width: 30%;
+        max-width: 400px;
+        background: #5331a3;
+        box-shadow: 3px 0 10px rgb(0 0 0 / 20%);
+        z-index: 2;
+    }
+
+    #nav ul  li,
+    #nav  ul  a
+    {
+        display: block;
+        cursor: pointer;
+        color: #FFF;
+        text-align: center;
+        text-decoration: none;
+        height: 100%;
+        margin-bottom: 2vw;
+    }
+
+    #nav .closenav
+    {
+        font-size: 3vw;
+    }
+    
+    #nav:not(:target) 
+    {
+        left: -100%;
+        transition: left 1.5s;
+    }
+    
+    #nav:target 
+    {
+        left: 0;
+        transition: left 1s;
+    }
 }
-
-
-header > nav > ul > li,
-header > nav > ul > a
-{
-    display: table-cell;
-    vertical-align: middle;
-    cursor: pointer;
-    color: #FFF;
-    text-align: center;
-    text-decoration: none;
-    height: 100%;
-}
-
-
-
-nav ul a:hover:not([type="no-hover" i]),
-nav ul .dropdown-menu:hover:not([type="no-hover" i])
-{
-    background-color: #4361ee; /*#f72585*/
-}
-
-
-nav ul .no-hover 
-{
-    cursor: context-menu;
-}
-
-
-nav ul .no-hover a 
-{
-    text-decoration: none;
-}
-
-
-nav ul .no-hover:hover 
-{
-    background-color: #5331a3; /*#7209B7 | 3a0ca3*/
-}
-
-
-
 /*
 ==============================
 ===Seitenmitte / Shop-Style===
@@ -402,15 +510,15 @@ img.nav-icon
 {
     height: 1.84vw;
     width: 1.84vw;
-    min-height: 20px;
-    min-width: 20px;
+    min-height: 30px;
+    min-width: 30px;
 }
 img.logo
 {
     height: 2.36vw;
     width: 5.26vw;
-    min-height: 25px;
-    min-width: 56px;
+    min-height: 30px;
+    min-width: 69px;
 }
 img.product-picture
 {
@@ -429,6 +537,36 @@ img.addtocartpicture
     width: 2em;
 }
 
+/*
+=================================================================
+========================= Aktuelles =============================
+=================================================================
+*/
+.aktuelles .saison
+{
+    margin-top: 2vw;
+}
+
+.aktuelles .upcoming
+{
+    margin-top: 7vw;
+}
+.aktuelles p
+{
+    text-align: center;
+}
+.aktuelles span
+{
+    color: #f72585;
+}
+span.obst
+{
+    color: red;
+}
+span.gemüse
+{
+    color: green;
+}
 /*
 =================================================================
 ================ Remove arrows from number-inputs ===============
