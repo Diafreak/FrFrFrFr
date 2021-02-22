@@ -10,6 +10,15 @@
 
 <? else : ?>
 
+    <!-- "Zurück"-Button -->
+    <form method="get">
+        <input type="hidden" name="c" value="shop" />
+        <input type="hidden" name="a" value="<?=$catName?>s" />
+        <button type="submit" class="">
+            < Zurück
+        </button>
+    </form>
+
     <h1><?= $name; ?></h1>
 
     <div class="detailwrapper">
