@@ -194,6 +194,24 @@ function updateAmountInCart($cartId, $prodId, $amount)
 // ========== SHOP ==========
 // ==========================
 
+// puts search-tag(s) as querry parameter in url
+// should be called before the shop-html-generation so it redirects to products that fit the
+// search tag(s) before generating the html for the shop
+function getSearchTags()
+{
+    if (isset($_GET['searchTags']) && $_GET['searchTags'] != "")
+    {
+        $controller = $_GET['c'];
+        $action     = $_GET['a'];
+        $tags       = htmlspecialchars( str_replace(" ", "+", $_GET['searchTags']) );
+
+        header("Location: ?c={$controller}&a={$action}&t={$tags} ");
+    }
+}
+
+
+
+
 // generates the HTML-Code for the given product-category
 function generateShopLayout($catName, $tags = "", &$errors = [])
 {
@@ -324,78 +342,56 @@ function getProductsFromSameCategory($catId, $tags = "", &$errors)
             $errors['prodOfSameCat'] = "Zu dieser Kategorie gibt es keine Produkte.";
         }
     }
+    // if at least 1 tag is set
     else
     {
-        // if at least 1 tag is set
-        try
+        // check how many tags an user is searching for
+        if (substr_count($tags, ' ') >= MAX_NUMBER_OF_SEARCH_TAGS)
         {
-            $maxNumberOfTags = 2;
+            $errors['maxTags'] = "Max. ".MAX_NUMBER_OF_SEARCH_TAGS." Suchbegriffe möglich.";
+        }
+        else
+        {
+            $productArray = [];
 
-            // check how many tags an user is searching for
-            if (substr_count($tags, ' ') >= $maxNumberOfTags)
+            // put all tags into separate array indices
+            $separatedTags = explode(' ', $tags, MAX_NUMBER_OF_SEARCH_TAGS);
+
+            try
             {
-                $errors['maxTags'] = "Max. {$maxNumberOfTags} Suchbegriffe möglich.";
-            }
-            else
-            {
-                $productArray = [];
-
-                // put all tags into separate array indices
-                $separatedTags = explode(' ', $tags, $maxNumberOfTags);
-
-                // if searching for multiple tags you want a product that has all of them
-                // so first we get all products that fit the first tag, then we search these products for the other tag
-                $firstTag  = $separatedTags[0];
-                $secondTag = $separatedTags[1] ?? null;
+                // generate a where-statement for the sql-search
+                // multiple tags are connected with an AND, because usually if searching for multiple tags you want
+                // results that fit all tags
+                $sqlWhereString = "";
+                foreach ($separatedTags as $tag)
+                {
+                    $sqlWhereString .= "AND (pt.tags LIKE '%{$tag}%' OR p.name LIKE '%{$tag}%')";
+                }
 
                 // look through all tags in the "productTags"-table and all product-names and get the ones having the tags and save the prodId
                 // "category_id = $catId" is needed because e.g. if we search in fruits we don't want results from vegetables
-                $sqlProductFirstTag = " SELECT   p.*
-                                        FROM     producttags pt
-                                        JOIN     product p ON pt.id = p.productTags_id
-                                        WHERE    category_id = '{$catId}' AND (pt.tags LIKE '%{$firstTag}%' OR p.name LIKE '%{$firstTag}%');
-                                        ORDER BY p.name;";
-                // all products that fit the first tag
-                $productsFirstTag = $db->query($sqlProductFirstTag)->fetchAll();
+                $sqlProductFittingTags = " SELECT   p.*
+                                           FROM     producttags pt
+                                           JOIN     product p ON pt.id = p.productTags_id
+                                           WHERE    category_id = '{$catId}' {$sqlWhereString}
+                                           ORDER BY p.name;";
 
-                // check if a second tag is set
-                if ($secondTag != null)
+                // all products that fit the tag(s)
+                $productFittingTags = $db->query($sqlProductFittingTags)->fetchAll();
+
+                if (empty($productFittingTags))
                 {
-                    $sqlProductSecondTag = " SELECT   p.*
-                                             FROM     producttags pt
-                                             JOIN     product p ON pt.id = p.productTags_id
-                                             WHERE    category_id = '{$catId}' AND (pt.tags LIKE '%{$secondTag}%' OR p.name LIKE '%{$secondTag}%')
-                                             ORDER BY p.name;";
-                    // all products that fit the second tag
-                    $productsSecondTag = $db->query($sqlProductSecondTag)->fetchAll();
-
-
-                    // loop through booth arrays and save products they have in common in $productArray
-                    foreach ($productsFirstTag as $firstTagProd)
-                    {
-                        foreach ($productsSecondTag as $secondTagProd)
-                        {
-                            if ($firstTagProd['name'] == $secondTagProd['name'])
-                            {
-                                array_push($productArray, $firstTagProd);
-                            }
-                        }
-                    }
-
-                    if (!empty($productArray)) return $productArray;
+                    $errors['prodTags'] = "Zu dieser Suchanfrage konnte nichts gefunden werden.";
+                    return null;
                 }
-                else
-                {
-                    // if no 2. tag is set only return items from the first search
-                    if (!empty($productsFirstTag)) return $productsFirstTag;
-                }
-
-                $errors['prodTags'] = "Zu dieser Suchanfrage konnte nichts gefunden werden.";
+                
+                return $productFittingTags;
             }
-        }
-        catch (\PDOException $e)
-        {
-            $errors['prodTags'] = "Zu dieser Suchanfrage konnte nichts gefunden werden.";
+            catch (\PDOException $e)
+            {
+                $errors['prodTags'] = "Zu dieser Suchanfrage konnte nichts gefunden werden.";
+                return null;
+            }
         }
     }
 

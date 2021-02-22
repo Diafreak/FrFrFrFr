@@ -10,4 +10,6 @@ define('MODELSPATH',      'models'     .DIRECTORY_SEPARATOR);
 define('STYLESPATH',      'assets'     .DIRECTORY_SEPARATOR . 'styles'    .DIRECTORY_SEPARATOR);
 define('VIEWSPATH',       'views'      .DIRECTORY_SEPARATOR);
 
+define('MAX_NUMBER_OF_SEARCH_TAGS', 5);
+
 ?>
