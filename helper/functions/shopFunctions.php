@@ -195,7 +195,7 @@ function generateShopLayout($catName, $tags = "", &$errors = [])
                     break;
 
                 default:
-                    echo("This direction does not exist.");
+                    $errors['direction'] = "This direction does not exist.";
                     break;
             }
         }
