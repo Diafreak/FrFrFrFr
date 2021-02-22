@@ -2,11 +2,22 @@
 // load js after the dom content is loaded
 document.addEventListener('DOMContentLoaded', function()
 {
+    // document.getElementById('submitRegistration').onclick = function()
+    // {
+    //     return validateInputs();
+    // };
+
     // "Registrieren"-Button
-    document.getElementById('submitRegistration').onclick = function()
+    document.getElementById('submitRegistration').addEventListener('click', function(event)
     {
-        return validateInputs();
-    };
+        if (!validateInputs())
+        {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        validateInputs();
+    });
 
 
 

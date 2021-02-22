@@ -2,12 +2,12 @@
 // load js after the dom content is loaded
 document.addEventListener('DOMContentLoaded', function()
 {
-    // "Login"-Button
     // document.getElementById('submitLogin').onclick = function()
     // {
     //     return validateInputs();
     // };
 
+    // "Login"-Button
     document.getElementById('submitLogin').addEventListener('click', function(event)
     {
         if (!validateInputs())
