@@ -310,6 +310,8 @@ div.profilesettingfield
     position: absolute;
     margin: 0 0 0 40vw;
     display: inline-block;
+    background-color: rgb(240, 240, 240);
+    padding: 20px;
 }
 
 div.profilesettingfield form
@@ -323,7 +325,7 @@ div.profilesettingfield input[type= "number"]
 {
     position: absolute;
     display: inline-block;
-    right: 0;
+    right: 20px;
 }
 
 div.profilesettingfield input[type= "submit"]
@@ -331,7 +333,7 @@ div.profilesettingfield input[type= "submit"]
     position: absolute;
     display: block;
     margin-top: 0.5vh;
-    right: 0;
+    right: 20px;
 }
 
 .accountfield input[type= "submit"]
@@ -353,8 +355,8 @@ div.profilesettingfield input[type= "submit"]
     position: absolute;
     margin-left: auto;
     display: block;
-    margin-top: 40vh;
-    margin-left: 40vw;
+    margin-top: 60vh;
+    margin-left: calc(40vw + 20px);
 }
 
 .adminoptions *
