@@ -167,20 +167,43 @@ h1
         height: 20px;
     }
 
-    div.navbartrigger a.navbar-icon
+    div.navbartrigger a.menubutton
+    {
+        margin-top: -17px;
+        margin-left: 10px;
+    }
+
+    div.navbartrigger a.icon
     {
         position: absolute;
-        margin-top: -12.5px;
-        margin-right: -28px;
         top: 50%;
+    }
+
+    div.navbartrigger a.ferret
+    {
+        margin-top: -15px;
+        margin-right: -34.5px;
         right: 50%;
     }
+
+    div.navbartrigger a.account
+    {
+        margin-top: -15px;
+        right: 20px;
+    }
+
+    div.navbartrigger a.cart
+    {
+        margin-top: -15px;
+        right: 50px;
+    }
+
     div.navbartrigger
     {
         display: flex;
         position: relative;
         width: 100vw;
-        height: 34px;
+        height: 50px;
         background-color: #5331a3;
     }
 
@@ -194,6 +217,23 @@ h1
         background: #5331a3;
         box-shadow: 3px 0 10px rgb(0 0 0 / 20%);
         z-index: 2;
+    }
+
+    #nav ul  li,
+    #nav  ul  a
+    {
+        display: block;
+        cursor: pointer;
+        color: #FFF;
+        text-align: center;
+        text-decoration: none;
+        height: 100%;
+        margin-bottom: 2vw;
+    }
+
+    #nav .closenav
+    {
+        font-size: 3vw;
     }
     
     #nav:not(:target) 
@@ -470,15 +510,15 @@ img.nav-icon
 {
     height: 1.84vw;
     width: 1.84vw;
-    min-height: 20px;
-    min-width: 20px;
+    min-height: 30px;
+    min-width: 30px;
 }
 img.logo
 {
     height: 2.36vw;
     width: 5.26vw;
-    min-height: 25px;
-    min-width: 56px;
+    min-height: 30px;
+    min-width: 69px;
 }
 img.product-picture
 {

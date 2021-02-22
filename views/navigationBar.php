@@ -38,24 +38,25 @@
 
         <nav class="tablet">
             <div class="navbartrigger">
-                <a href="#nav" class="menubutton">
+                <a href="#nav" class="menubutton icon">
                     <img src=<?=IMAGESPATH.'hamburgerbutton.png'?> alt="menu-icon">
                 </a>
 
-                <a href="?c=pages&a=home" type="no-hover" class="navbar-icon">
+                <a href="?c=pages&a=home" type="no-hover" class="ferret icon">
                     <img src=<?=IMAGESPATH.'navBar/ferret.svg'?> alt="Logo" class="logo">
                 </a>
 
-                <a href=<?= "{$currentURL}&cart=show" ?> type="no-hover">
+                <a href=<?= "{$currentURL}&cart=show" ?> type="no-hover" class="cart icon">
                     <img src=<?=IMAGESPATH.'navBar/basket.svg'?> alt="Warenkorb" class="nav-icon">
                 </a>
 
-                <a href="?c=account&a=login" type="no-hover">
+                <a href="?c=account&a=login" type="no-hover" class="account icon">
                     <img src=<?=IMAGESPATH.'navBar/user.svg'?> alt="Login" class="nav-icon">
                 </a>
             </div>
             <div id="nav">
                 <ul>
+                    <a href="#" aria-label="Close Navigation" class="closenav">x</a>
                     <a href="?c=pages&a=home">
                         <li>HOME</li>
                     </a>
