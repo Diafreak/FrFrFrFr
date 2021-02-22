@@ -24,7 +24,7 @@ function generateCartItems()
 
     if (empty($cartItems))
     {
-        echo("Noch keine Produkte im Warenkorb");
+        echo("Keine Produkte im Warenkorb");
     }
     else
     {
@@ -35,6 +35,7 @@ function generateCartItems()
         {
             if (!file_exists($prodInfo['imageUrl']))
             {
+                // if image is missing display a placeholder
                 $prodInfo['imageUrl'] = IMAGESPATH.'placeholder.png';
             }
             $cartHTML .= generateCartHTML($prodInfo['product_id'], $prodInfo['name'], $prodInfo['quantity'], $prodInfo['price'],
@@ -44,6 +45,31 @@ function generateCartItems()
         return $cartHTML;
     }
 }
+
+
+function getTotalAmount()
+{
+    $cartId = $_SESSION['cartId'] ?? null;
+
+    $cartItems = getCartItems($cartId);
+
+    if (empty($cartItems))
+    {
+        return '0';
+    }
+    else
+    {
+        $cartTotal = 0;
+        foreach ($cartItems as $item => $prodInfo)
+        {
+            $quantity  = (int)  $prodInfo['quantity'];
+            $price     = (float)$prodInfo['price'];
+            $cartTotal += $quantity * $price;
+        }
+        return number_format_drop_zero_decimals($cartTotal, 2);
+    }
+}
+
 
 
 
