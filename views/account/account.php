@@ -1,6 +1,5 @@
 <h1>Mein Account</h1>
 <div class="accountfield">
-    <? require_once FUNCTIONSPATH.'htmlGeneration.php' ?>
 
     <div class="profilefield">
         <!-- User-Image -->
