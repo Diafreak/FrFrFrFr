@@ -51,7 +51,7 @@
             <input type="hidden" name="a" value="<?=$_GET['a']?>">
 
             <!-- Search-Bar -->
-            <input type="text" placeholder="Suchen..." name="searchTags" value="<?= isset($_GET['t']) ? "{$_GET['t']}" : "" ?>">
+            <input type="text" placeholder="Suchen..." name="searchTags" value="<?= isset($_GET['t']) ? htmlspecialchars("{$_GET['t']}") : "" ?>">
 
             <!-- Search Button -->
             <button type="submit">

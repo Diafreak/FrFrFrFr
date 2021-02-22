@@ -15,7 +15,7 @@ class ShopController extends Controller
 
         // get search-tags if they are set and push them to the view so only products
         // that fit the tags are displayed
-        $tags =  $_GET['t'] ?? "";
+        $tags = htmlspecialchars($_GET['t']) ?? "";
         $this->setParam('tags', $tags);
     }
 
@@ -32,7 +32,7 @@ class ShopController extends Controller
 
         // get search-tags if they are set and push them to the view so only products
         // that fit the tags are displayed
-        $tags =  $_GET['t'] ?? "";
+        $tags = $_GET['t'] ?? "";
         $this->setParam('tags', $tags);
     }
 
