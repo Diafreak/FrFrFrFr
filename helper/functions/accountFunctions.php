@@ -58,7 +58,7 @@ function loginWithCookie()
     }
     catch (\PDOException $e)
     {
-        $error = "Automatische Anmeldung fehlgeschlagen.";
+        $errors["automaticLogin"] = "Automatische Anmeldung fehlgeschlagen.";
     }
 }
 
