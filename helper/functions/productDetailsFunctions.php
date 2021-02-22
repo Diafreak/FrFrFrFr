@@ -60,7 +60,7 @@ function generateAmountHTML($numberInStock)
     else
     {
         // if there are 0 items in stock it will display an error instead of a selection
-        $html  = "<div class='' style='color:red'>";                                        // !!! CLASS RED !!!
+        $html  = "<div class='' style='color:red'>";
         $html .= "Keine Produkte auf Lager.";
         $html .= "</div>";
     }
