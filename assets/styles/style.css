@@ -481,10 +481,18 @@ button[type= "submit"]
     position: absolute;
     margin-left: auto;
     display: block;
-    margin-top: 37vh;
+    margin-top: 45vh;
     margin-left: calc(40vw + 20px);
     background-color: rgb(240, 240, 240);
     padding: 20px;
+}
+
+@media only screen and (max-height:700px)
+{
+    .adminoptions
+    {
+        margin-top: 60vh;
+    }
 }
 
 .adminoptions *

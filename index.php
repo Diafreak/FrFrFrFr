@@ -66,6 +66,10 @@ else { header('Location: ?c=errors&a=error404'); }
     <link rel="stylesheet" href=<?=STYLESPATH."style.css"?>>
     <link rel="stylesheet" href=<?=STYLESPATH."banner.css"?>>
     <link rel="stylesheet" href=<?=STYLESPATH."forms.css"?>>
+    <!-- only load cart-css when cart is visible -->
+    <? if (isset($_GET['cart']) && $_GET['cart'] == 'show') : ?>
+        <link rel="stylesheet" href=<?=STYLESPATH."cart.css"?>>
+    <? endif; ?>
 
     <!-- Icon in tab-bar -->
     <link rel="shortcut icon" href="<?=IMAGESPATH."/navBar/ferret.svg"?>" type="image/x-icon" />
