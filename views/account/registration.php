@@ -32,9 +32,10 @@
 
 
             <!-- ERRORS JS -->
-            <span id="errorFirstName" class="error-message"></span>
-            <span id="errorLastName"  class="error-message"></span>
-            <span id="errorEmail"     class="error-message"></span>
+            <span id="errorFirstName"   class="error-message"></span>
+            <span id="errorLastName"    class="error-message"></span>
+            <span id="errorEmail"       class="error-message"></span>
+            <span id="errorEmailExists"></span>
             <br>
 
             <!-- Password -->
