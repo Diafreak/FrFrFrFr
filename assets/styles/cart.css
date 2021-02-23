@@ -39,15 +39,15 @@ div a
     box-shadow: -3px 0 10px rgba(0,0,0,0.5);
 }
 
-/* #w:not(:target) {
-	right: -100%;
-	transition: right 1.5s;
+.warenkorb-header
+{
+    display: block;
+    margin: 0 2vw;
 }
-
-#w:target {
-	right: 0;
-	transition: right 1s;
-} */
+.warenkorb-header > p
+{
+    text-align: center;
+}
 
 .warenkorbinhalt
 {
@@ -95,4 +95,13 @@ table
 .noHover:hover
 {
     background-color: #eee;
+}
+
+.aktiv > p
+{
+    text-align:center;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 }
