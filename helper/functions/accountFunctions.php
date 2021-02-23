@@ -328,6 +328,9 @@ function insertNewProduct($prodName, $price, $quantity, $description, $category,
     unset($tags);
     unset($product);
     unset($image);
+
+    $_SESSION['successMessage'] = "Produkt erfolgreich hinzugefügt!";
+    header('Location: ?c=account&a=account#success');
 }
 
 
@@ -724,6 +727,9 @@ function addNewAddress($street, $number, $city, $zip, $userId, &$errors)
             updateUserAddressId($addressId, $userId, $errors);
 
             unset($address);
+
+            $_SESSION['successMessage'] = "Adresse erfolgreich hinzugefügt!";
+            header('Location: ?c=account&a=account#success');
         }
     }
     else
@@ -789,6 +795,8 @@ function updateAddress($addressId, $column, $value, &$errors)
         $sqlUpdateAddress = "UPDATE address SET {$column} = '{$value}' WHERE id = '{$addressId}';";
         $updateStatement  = $db->prepare($sqlUpdateAddress);
         $updateStatement->execute();
+        $_SESSION['successMessage'] = "Adresse erfolgreich geändert!";
+        header('Location: ?c=account&a=account#success');
     }
     catch (\PDOException $e)
     {
@@ -840,6 +848,8 @@ function updateEmail($email, &$errors)
         $sqlUpdateEmail  = "UPDATE user SET email = '{$email}' WHERE id = '{$userId}';";
         $updateStatement = $db->prepare($sqlUpdateEmail);
         $updateStatement->execute();
+        $_SESSION['successMessage'] = "Email erfolgreich geändert!";
+        header('Location: ?c=account&a=account#success');
     }
     catch (\PDOException $e)
     {
@@ -890,6 +900,8 @@ function updatePassword($newPassword, &$errors)
         $sqlUpdateEmail  = "UPDATE user SET passwordHash = '{$newPasswordHash}' WHERE id = '{$userId}';";
         $updateStatement = $db->prepare($sqlUpdateEmail);
         $updateStatement->execute();
+        $_SESSION['successMessage'] = "Passwort erfolgreich geändert!";
+        header('Location: ?c=account&a=account#success');
     }
     catch (\PDOException $e)
     {

@@ -3,6 +3,22 @@
 <script src="<?=JSPATH?>account.js"></script>
 
 
+<!-- Success-Banner -->
+<div id="success" class="banner registration-success">
+    <span>
+        <? if (isset($_SESSION['successMessage']) && $_SESSION['successMessage'] != "") : ?>
+            <?= $_SESSION['successMessage'] ?>
+        <? else : ?>
+            <?="-" ?>
+        <? endif; ?>
+    </span>
+    <a href="#" class="close">[schließen]</a>
+</div>
+
+
+
+
+
 <h1>Mein Account</h1>
 
 <div class="accountfield">
