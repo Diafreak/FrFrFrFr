@@ -267,13 +267,14 @@ ul.filterleiste
     margin: auto;
     margin-bottom: 5vh;
     border-bottom: 1px solid #5331a3;
+    font-size: 1.5vw;
 }
 
-ul.filterleiste   li
+ul.filterleiste li
 /* ul.filterleiste   a */
 {
     display: table-cell;
-    padding: 0 1em 3px 1em;
+    padding: 0 0.5em 3px 0.5em;
     vertical-align: middle;
     cursor: pointer;
     color: black;
@@ -508,6 +509,42 @@ div.homepage p
 
 /*
 ============================================
+=============== Contact Page ===============
+============================================
+*/
+
+div.contact
+{
+    position: relative;
+}
+
+div.contact img
+{
+    width: 35vw;
+    min-width: 300px;
+}
+
+div.contacttext
+{
+    margin-right: 20px;
+    position: absolute;
+    left: 30vw;
+    top: 50px;
+    text-align: center;
+    font-size: 1.2vw;
+}
+
+@media only screen and (max-width:850px)
+{
+    div.contacttext
+    {
+        left: 250px;
+        font-size: 1.5vw;
+    }
+}
+
+/*
+============================================
 ================Bilder Größen===============
 ============================================
 */
@@ -551,6 +588,20 @@ img.addtocartpicture
 {
     margin-top: 2vw;
 }
+.saison .links
+{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+.saison a.green
+{
+    color: green;
+}
+.saison a.current img
+{
+    width: 250px;
+}
 
 .aktuelles .upcoming
 {
@@ -560,6 +611,7 @@ img.addtocartpicture
 {
     text-align: center;
 }
+
 .aktuelles span
 {
     color: #f72585;
