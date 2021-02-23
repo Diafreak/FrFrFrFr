@@ -267,13 +267,14 @@ ul.filterleiste
     margin: auto;
     margin-bottom: 5vh;
     border-bottom: 1px solid #5331a3;
+    font-size: 1.5vw;
 }
 
-ul.filterleiste   li
+ul.filterleiste li
 /* ul.filterleiste   a */
 {
     display: table-cell;
-    padding: 0 1em 3px 1em;
+    padding: 0 0.5em 3px 0.5em;
     vertical-align: middle;
     cursor: pointer;
     color: black;
