@@ -58,7 +58,6 @@ footer
     bottom: 0;
     background-color: grey;
     text-align: center;
-    z-index: -1;
 }
 
 h1
@@ -660,7 +659,7 @@ img.addtocartpicture
 */
 .checkoutcontainer
 {
-
+    text-align: center;
 }
 
 .checkout-header
