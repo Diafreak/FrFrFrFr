@@ -2,11 +2,6 @@
 // load js after the dom content is loaded
 document.addEventListener('DOMContentLoaded', function()
 {
-    // document.getElementById('submitRegistration').onclick = function()
-    // {
-    //     return validateInputs();
-    // };
-
     // "Registrieren"-Button
     document.getElementById('submitRegistration').addEventListener('click', function(event)
     {
@@ -18,43 +13,10 @@ document.addEventListener('DOMContentLoaded', function()
     });
 
 
-
-    function validateInputs()
+    document.getElementById('email').addEventListener('keyup', function()
     {
-        var validInputs = true;
-
-        // input fields
-        var firstName       = document.getElementById('firstname');
-        var lastName        = document.getElementById('lastname');
-        var email           = document.getElementById('email');
-        var password        = document.getElementById('password');
-        var passwordConfirm = document.getElementById('passwordconfirm');
-
-        // error spans that display the errors
-        var errorSpanFName     = document.getElementById('errorFirstName');
-        var errorSpanLName     = document.getElementById('errorLastName');
-        var errorSpanEmail     = document.getElementById('errorEmail');
-        var errorSpanPW        = document.getElementById('errorPW');
-        var errorSpanPWConfirm = document.getElementById('errorPWConfirm');
-
-        // validate each input, if just one of them fails this function returns false
-        validInputs = validFirstName(      errorSpanFName,     firstName,       validInputs);
-        validInputs = validLastName(       errorSpanLName,     lastName,        validInputs);
-        validInputs = validEmail(          errorSpanEmail,     email,           validInputs);
-        validInputs = validPassword(       errorSpanPW,        password,        validInputs);
-        validInputs = validPasswordConfirm(errorSpanPWConfirm, passwordConfirm, validInputs);
-
-
-        if (!validInputs)
-        {
-            // hide PhP Errors so only JS Errors are displayed
-            document.getElementById('errorsPHP').style.display = "none";
-            // red border for "Registrieren"-Button
-            document.getElementById('submitRegistration').style.border = "1px solid red";
-        }
-
-        return validInputs;
-    }
+        checkEmailExistence();
+    });
 })
 
 
@@ -62,6 +24,94 @@ document.addEventListener('DOMContentLoaded', function()
 // =========================================
 // =============== FUNCTIONS ===============
 // =========================================
+
+function validateInputs()
+{
+    var validInputs = true;
+
+    // input fields
+    var firstName       = document.getElementById('firstname');
+    var lastName        = document.getElementById('lastname');
+    var email           = document.getElementById('email');
+    var password        = document.getElementById('password');
+    var passwordConfirm = document.getElementById('passwordconfirm');
+
+    // error spans that display the errors
+    var errorSpanFName     = document.getElementById('errorFirstName');
+    var errorSpanLName     = document.getElementById('errorLastName');
+    var errorSpanEmail     = document.getElementById('errorEmail');
+    var errorSpanPW        = document.getElementById('errorPW');
+    var errorSpanPWConfirm = document.getElementById('errorPWConfirm');
+
+    // validate each input, if just one of them fails this function returns false
+    validInputs = validFirstName(      errorSpanFName,     firstName,       validInputs);
+    validInputs = validLastName(       errorSpanLName,     lastName,        validInputs);
+    validInputs = validEmail(          errorSpanEmail,     email,           validInputs);
+    validInputs = validPassword(       errorSpanPW,        password,        validInputs);
+    validInputs = validPasswordConfirm(errorSpanPWConfirm, passwordConfirm, validInputs);
+
+
+    if (!validInputs)
+    {
+        // hide PhP Errors so only JS Errors are displayed
+        document.getElementById('errorsPHP').style.display = "none";
+        // red border for "Registrieren"-Button
+        document.getElementById('submitRegistration').style.border = "1px solid red";
+    }
+
+    return validInputs;
+}
+
+
+function checkEmailExistence()
+{
+    validInputs = true;
+
+    var email          = document.getElementById('email');
+    var errorSpan      = document.getElementById('errorEmailExists');
+
+    // only check for email-existence if the entered email is valid
+    if (validEmailInputs(email))
+    {
+        // create a new xhttp-request
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function()
+        {
+            // check if the response is done and no error happened
+            if (this.readyState == 4 && this.status == 200)
+            {
+                // responseText is false if the email is not in the database
+                if (this.responseText == "false")
+                {
+                    email.style.border = "1px solid green";
+                    errorSpan.style.color   = "green";
+                    errorSpan.style.display = "block";
+                    errorSpan.textContent   = "Email noch nicht vorhanden.";
+                }
+                // responseText is true if the email is already in the database
+                else if (this.responseText == "true")
+                {
+                    email.style.border = "1px solid red";
+                    errorSpan.style.color   = "red";
+                    errorSpan.style.display = "block";
+                    errorSpan.textContent   = "Email bereits vorhanden!";
+                }
+            }
+        }
+
+        // asynchronous POST request
+        xhttp.open("POST", "helper/ajaxValidation/emailExists.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("e="+email.value);
+    }
+}
+
+
+
+// ===================================================
+// =============== EXTRACTED FUNCTIONS ===============
+// ===================================================
 
 function validFirstName(errorSpanFName, firstName, validInputs)
 {
@@ -150,6 +200,21 @@ function validEmail(errorSpanEmail, email, validInputs)
     }
 
     return validInputs;
+}
+
+
+// function for the ajax-validation of the email, since we only want to know
+// if it is valid and do not want to output any errors
+function validEmailInputs(email)
+{
+    if (email.value == null || email.value == ""
+    ||  email.value.length > 120
+    || invalidEmailPattern())
+    {
+        return false;
+    }
+
+    return true;
 }
 
 
