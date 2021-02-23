@@ -32,17 +32,6 @@ document.addEventListener('DOMContentLoaded', function()
             event.stopPropagation();
         }
     });
-
-
-    // "Produkt hinzufügen"-Button
-    document.getElementById('submitNewProduct').addEventListener('click', function(event)
-    {
-        if (!validateNewProductInputs())
-        {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-    });
 })
 
 
@@ -60,7 +49,7 @@ function validateEmailInput()
     var errorSpan    = document.getElementById('errorEmail');
     var errorSpanPHP = document.getElementById('errorPHPemail');
 
-    validInput = validEmail(errorSpan, email, validInputs);
+    validInput = validEmail(errorSpan, email, validInput);
 
     if (!validInput)
     {
@@ -75,35 +64,27 @@ function validateEmailInput()
 
 function validatePasswortInputs()
 {
-    validInput = true;
+    validInputs = true;
 
-    var password = document.getElementById('chemail');
-    var password = document.getElementById('chemail');
+    var oldPW        = document.getElementById('oldPassword');
+    var newPW        = document.getElementById('newPassword');
+    var newPWConfirm = document.getElementById('newPasswordConfirm');
 
-    var errorSpan    = document.getElementById('errorEmail');
-    var errorSpanPHP = document.getElementById('errorPHPemail');
+    var errorSpan          = document.getElementById('errorPW');
+    var errorSpanPWConfirm = document.getElementById('errorPWConfirm');
+    var errorSpanPHP       = document.getElementById('errorPHPpassword');
 
-    validInput = validPassword(errorSpan, password, validInputs);
 
-    if (!validInput)
+    validInputs = validPassword(errorSpan, oldPW, newPW, validInputs);
+    validInputs = validPasswordConfirm(errorSpanPWConfirm, newPW, newPWConfirm, validInputs);
+
+    if (!validInputs)
     {
         errorSpanPHP.style.display = "none";
-        document.getElementById('submitEmailChange').style.border = "1px solid red";
+        document.getElementById('submitPasswordChange').style.border = "1px solid red";
     }
 
-    return validInput;
-}
-
-
-function validateAddressInputs()
-{
-
-}
-
-
-function validateNewProductInputs()
-{
-
+    return validInputs;
 }
 
 
@@ -159,37 +140,51 @@ function invalidEmail(email)
 
 
 
-function validPassword(errorSpanPW, password, validInputs)
+function validPassword(errorSpanPW, oldPw, newPw, validInputs)
 {
     errorSpanPW.style.display = "block";
-    password.className        = "errorinput";
+    newPw.className           = "errorinput";
 
-    var uppercase    = password.value.match('[A-Z]+');
-    var lowercase    = password.value.match('[a-z]+');
-    var number       = password.value.match('[0-9]+');
-    var specialChars = password.value.match('[^a-zA-Z0-9]+');
+    if (newPw != null && newPw.value != null && newPw.value != "")
+    {
+        var uppercase    = newPw.value.match('[A-Z]+');
+        var lowercase    = newPw.value.match('[a-z]+');
+        var number       = newPw.value.match('[0-9]+');
+        var specialChars = newPw.value.match('[^a-zA-Z0-9]+');
+    }
 
-    if (password.value == null || password.value == "")
+    if (oldPw == null || oldPw.value == null || oldPw.value == "")
+    {
+        oldPw.className         = "errorinput";
+        validInputs = false;
+        errorSpanPW.textContent = "Bitte altes Passwort angeben.";
+    }
+    // if new password is empty
+    else if (newPw == null || newPw.value == null || newPw.value == "")
     {
         validInputs = false;
-        errorSpanPW.textContent = "Passwort darf nicht leer sein.";
+        errorSpanPW.textContent = "Neues Passwort darf nicht leer sein.";
     }
-    else if (password.value.length < 8)
+    // if new password has less chars than 8
+    else if (newPw.value.length < 8)
     {
         validInputs = false;
         errorSpanPW.textContent = "Passwort muss mind. 8 Zeichen lang sein.";
     }
-    else if (password.value.length > 255)
+    // if new password is longer than 255
+    else if (newPw.value.length > 255)
     {
         validInputs = false;
         errorSpanPW.textContent = "Passwort darf max. 255 Zeichen lang sein.";
     }
+    // if password does not have at least: 1 Upper-, 1 lowercase letter, 1 number and 1 specialChar
     else if (!uppercase || !lowercase || !number || !specialChars)
     {
         validInputs = false;
 
         // create error message with what the password is missing
         var errorMessage = "Passwort muss noch mind. ";
+
         if (!uppercase)    errorMessage += "1 Großbuchstaben, ";
         if (!lowercase)    errorMessage += "1 Kleinbuchstaben, ";
         if (!number)       errorMessage += "1 Zahl, ";
@@ -201,10 +196,36 @@ function validPassword(errorSpanPW, password, validInputs)
         errorMessage += "entahlten.";
         errorSpanPW.textContent = errorMessage;
     }
+    // password is valid
     else
     {
         errorSpanPW.style.display = "none";
-        password.className = password.className.replace('errorinput', '');
+        newPs.className = newPw.className.replace('errorinput', '');
+    }
+
+    if (oldPw.value != null && oldPw.value != "")
+    {
+        oldPw.className = oldPw.className.replace('errorinput', '');
+    }
+
+    return validInputs;
+}
+
+
+function validPasswordConfirm(errorSpanPWConfirm, newPW, pwConfirm, validInputs)
+{
+    errorSpanPWConfirm.style.display = "block";
+    pwConfirm.className              = "errorinput";
+
+    if (newPW.value != pwConfirm.value || pwConfirm.value == "")
+    {
+        validInputs = false;
+        errorSpanPWConfirm.textContent = "Passwörter stimmen nicht überein.";
+    }
+    else
+    {
+        errorSpanPWConfirm.style.display = "none";
+        pwConfirm.className = pwConfirm.className.replace('errorinput', '');
     }
 
     return validInputs;

@@ -3,6 +3,22 @@
 <script src="<?=JSPATH?>account.js"></script>
 
 
+<!-- Success-Banner -->
+<div id="success" class="banner registration-success">
+    <span>
+        <? if (isset($_SESSION['successMessage']) && $_SESSION['successMessage'] != "") : ?>
+            <?= $_SESSION['successMessage'] ?>
+        <? else : ?>
+            <?="-" ?>
+        <? endif; ?>
+    </span>
+    <a href="#" class="close">[schließen]</a>
+</div>
+
+
+
+
+
 <h1>Mein Account</h1>
 
 <div class="accountfield">
@@ -47,17 +63,18 @@
         <!-- Change Password -->
         <form method="post">
             Altes Passwort:
-            <input type="password" name="oldPassword" id="oldpassword" placeholder="Altes Passwort" autocapitalize="off"><br>
+            <input type="password" name="oldPassword" id="oldPassword" placeholder="Altes Passwort" autocapitalize="off"><br>
             Neues Passwort:
-            <input type="password" name="newPassword" id="newpassword" placeholder="Neues Passwort" autocapitalize="off"><br>
+            <input type="password" name="newPassword" id="newPassword" placeholder="Neues Passwort" autocapitalize="off"><br>
             Passwort bestätigen:
-            <input type="password" name="newPasswordConfirm" id="newpasswordconfirm" placeholder="Passwort bestätigen" autocapitalize="off">
+            <input type="password" name="newPasswordConfirm" id="newPasswordConfirm" placeholder="Passwort bestätigen" autocapitalize="off">
 
             <!-- Button -->
             <input type="submit" name="submitPasswordChange" id="submitPasswordChange" value="Ändern">
 
             <!-- ERRORS JS -->
-            <span id="errorPW" class="error-message"></span>
+            <span id="errorPW"        class="error-message"></span>
+            <span id="errorPWConfirm" class="error-message"></span>
 
             <!-- Errors PHP -->
             <span id="errorPHPpassword"><? isset($errors) && isset($_POST['submitPasswordChange']) ? printErrors($errors) : '' ?></span>
