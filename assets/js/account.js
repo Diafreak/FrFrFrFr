@@ -32,17 +32,6 @@ document.addEventListener('DOMContentLoaded', function()
             event.stopPropagation();
         }
     });
-
-
-    // "Produkt hinzufügen"-Button
-    // document.getElementById('submitNewProduct').addEventListener('click', function(event)
-    // {
-    //     if (!validateNewProductInputs())
-    //     {
-    //         event.preventDefault();
-    //         event.stopPropagation();
-    //     }
-    // });
 })
 
 
@@ -96,18 +85,6 @@ function validatePasswortInputs()
     }
 
     return validInputs;
-}
-
-
-function validateAddressInputs()
-{
-
-}
-
-
-function validateNewProductInputs()
-{
-
 }
 
 
@@ -182,27 +159,32 @@ function validPassword(errorSpanPW, oldPw, newPw, validInputs)
         validInputs = false;
         errorSpanPW.textContent = "Bitte altes Passwort angeben.";
     }
+    // if new password is empty
     else if (newPw == null || newPw.value == null || newPw.value == "")
     {
         validInputs = false;
         errorSpanPW.textContent = "Neues Passwort darf nicht leer sein.";
     }
+    // if new password has less chars than 8
     else if (newPw.value.length < 8)
     {
         validInputs = false;
         errorSpanPW.textContent = "Passwort muss mind. 8 Zeichen lang sein.";
     }
+    // if new password is longer than 255
     else if (newPw.value.length > 255)
     {
         validInputs = false;
         errorSpanPW.textContent = "Passwort darf max. 255 Zeichen lang sein.";
     }
+    // if password does not have at least: 1 Upper-, 1 lowercase letter, 1 number and 1 specialChar
     else if (!uppercase || !lowercase || !number || !specialChars)
     {
         validInputs = false;
 
         // create error message with what the password is missing
         var errorMessage = "Passwort muss noch mind. ";
+
         if (!uppercase)    errorMessage += "1 Großbuchstaben, ";
         if (!lowercase)    errorMessage += "1 Kleinbuchstaben, ";
         if (!number)       errorMessage += "1 Zahl, ";
@@ -214,6 +196,7 @@ function validPassword(errorSpanPW, oldPw, newPw, validInputs)
         errorMessage += "entahlten.";
         errorSpanPW.textContent = errorMessage;
     }
+    // password is valid
     else
     {
         errorSpanPW.style.display = "none";
