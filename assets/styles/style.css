@@ -508,6 +508,42 @@ div.homepage p
 
 /*
 ============================================
+=============== Contact Page ===============
+============================================
+*/
+
+div.contact
+{
+    position: relative;
+}
+
+div.contact img
+{
+    width: 35vw;
+    min-width: 300px;
+}
+
+div.contacttext
+{
+    margin-right: 20px;
+    position: absolute;
+    left: 30vw;
+    top: 50px;
+    text-align: center;
+    font-size: 1.2vw;
+}
+
+@media only screen and (max-width:850px)
+{
+    div.contacttext
+    {
+        left: 250px;
+        font-size: 1.5vw;
+    }
+}
+
+/*
+============================================
 ================Bilder Größen===============
 ============================================
 */
