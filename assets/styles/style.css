@@ -587,6 +587,20 @@ img.addtocartpicture
 {
     margin-top: 2vw;
 }
+.saison .links
+{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+.saison a.green
+{
+    color: green;
+}
+.saison a.current img
+{
+    width: 250px;
+}
 
 .aktuelles .upcoming
 {
@@ -596,6 +610,7 @@ img.addtocartpicture
 {
     text-align: center;
 }
+
 .aktuelles span
 {
     color: #f72585;

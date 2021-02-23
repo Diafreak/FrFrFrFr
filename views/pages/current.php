@@ -5,7 +5,23 @@
         <p>Hier finden Sie Obst und Gemüse der Saison sowie regionale Lagerware, die jederzeit genießbar ist.</p>
         <p>Momentan ist <span>Februar</span>, es warten diese Früchte auf ihre Auslese:</p>
 
-        <p><span class="gemüse">Kartoffel, Karotte, Lauch</span></p>
+        <p>
+        <a href="?c=shop&a=productDetails&prodId=35" class="current green">Kartoffel</a>, 
+        <a href="?c=shop&a=productDetails&prodId=44" class="current green">Karotte</a>, 
+        <a href="?c=shop&a=productDetails&prodId=41" class="current green">Lauch</a>
+        </p>
+        
+        <div class="links">
+            <a href="?c=shop&a=productDetails&prodId=35" class="current">
+            <img src="<?= IMAGESPATH ?>products/potato.jpg" alt="Kartoffel">
+            </a>
+            <a href="?c=shop&a=productDetails&prodId=44" class="current">
+            <img src="<?= IMAGESPATH ?>products/carrot.jpg" alt="Karotte">
+            </a>
+            <a href="?c=shop&a=productDetails&prodId=41" class="current">
+            <img src="<?= IMAGESPATH ?>products/leek.jpg" alt="Lauch">
+            </a>
+        </div>
     </div>
 
 
