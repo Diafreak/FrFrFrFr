@@ -17,8 +17,7 @@
             </div>
         </div>
 
-        Total: <?= getTotalAmount(); ?>€
-        <br>
+        <p>Total: <?= getTotalAmount(); ?>€</p>
         <!-- only show "Zur Kass"-Button if cart is not empty -->
         <? if (getTotalAmount() != '0') : ?>
         <form method="get">
