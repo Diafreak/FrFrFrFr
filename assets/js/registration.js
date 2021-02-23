@@ -67,8 +67,9 @@ function checkEmailExistence()
 {
     validInputs = true;
 
-    var email          = document.getElementById('email');
-    var errorSpan      = document.getElementById('errorEmailExists');
+    var email     = document.getElementById('email');
+    var errorSpan = document.getElementById('errorEmailExists');
+    var errorSpanEmail     = document.getElementById('errorEmail');
 
     // only check for email-existence if the entered email is valid
     if (validEmailInputs(email))
@@ -81,6 +82,7 @@ function checkEmailExistence()
             // check if the response is done and no error happened
             if (this.readyState == 4 && this.status == 200)
             {
+                errorSpanEmail.style.display = "none";
                 // responseText is false if the email is not in the database
                 if (this.responseText == "false")
                 {
@@ -104,6 +106,11 @@ function checkEmailExistence()
         xhttp.open("POST", "helper/ajaxValidation/emailExists.php", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("e="+email.value);
+    }
+    else
+    {
+        email.style.border = "1px solid red";
+        errorSpan.style.display = "none";
     }
 }
 
