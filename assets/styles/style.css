@@ -25,6 +25,8 @@ body
     min-height: 100vh;
     margin: 0;
     clear: both;
+    overflow-x: hidden;
+    list-style: none;
 }
 
 a
@@ -458,7 +460,9 @@ div.profilesettingfield input[type= "submit"]
 {
     padding: 5px;
 }
-.accountfield input[type= "submit"]
+
+input[type= "submit"],
+button[type= "submit"]
 {
     background-color: #4361ee;
     color: white;
@@ -477,8 +481,10 @@ div.profilesettingfield input[type= "submit"]
     position: absolute;
     margin-left: auto;
     display: block;
-    margin-top: 60vh;
+    margin-top: 37vh;
     margin-left: calc(40vw + 20px);
+    background-color: rgb(240, 240, 240);
+    padding: 20px;
 }
 
 .adminoptions *
