@@ -109,7 +109,6 @@ function checkEmailExistence()
     }
     else
     {
-        email.style.border = "1px solid red";
         errorSpan.style.display = "none";
     }
 }
