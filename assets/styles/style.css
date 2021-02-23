@@ -270,6 +270,14 @@ ul.filterleiste
     font-size: 1.5vw;
 }
 
+@media only screen and (min-width:1300px)
+{
+    ul.filterleiste
+    {
+        font-size: 19px;
+    }
+}
+
 ul.filterleiste li
 /* ul.filterleiste   a */
 {
@@ -544,42 +552,6 @@ div.contacttext
 }
 
 /*
-============================================
-================Bilder Größen===============
-============================================
-*/
-img.nav-icon
-{
-    height: 1.84vw;
-    width: 1.84vw;
-    min-height: 30px;
-    min-width: 30px;
-}
-img.logo
-{
-    height: 2.36vw;
-    width: 5.26vw;
-    min-height: 30px;
-    min-width: 69px;
-}
-img.product-picture
-{
-    width: 80%;
-}
-
-img.user-picture
-{
-    height: 150px;
-    width: 150px;
-}
-
-img.addtocartpicture
-{
-    height: 2em;
-    width: 2em;
-}
-
-/*
 =================================================================
 ========================= Aktuelles =============================
 =================================================================
@@ -624,6 +596,122 @@ span.gemüse
 {
     color: green;
 }
+
+/*
+============================================
+================Bilder Größen===============
+============================================
+*/
+img.nav-icon
+{
+    height: 1.84vw;
+    width: 1.84vw;
+    min-height: 30px;
+    min-width: 30px;
+}
+img.logo
+{
+    height: 2.36vw;
+    width: 5.26vw;
+    min-height: 30px;
+    min-width: 69px;
+}
+img.product-picture
+{
+    width: 80%;
+}
+
+img.user-picture
+{
+    height: 150px;
+    width: 150px;
+}
+
+img.addtocartpicture
+{
+    height: 2em;
+    width: 2em;
+}
+
+/*
+=================================================================
+======================== Checkout Page ==========================
+=================================================================
+*/
+.checkoutcontainer
+{
+
+}
+
+.checkout-header
+{
+    display: block;
+    margin: 0 2vw;
+}
+.checkout-header > p
+{
+    font-size: 20px;
+    color: #5331a3;
+    text-align: center;
+}
+
+.checkoutinhalt
+{
+    padding: 1rem 2rem;
+}
+
+.checkout-header
+{
+    display: block;
+    margin: 0 2vw;
+}
+.checkout-header > p
+{
+    font-size: 20px;
+    color: #5331a3;
+    text-align: center;
+}
+
+.checkoutinhalt
+{
+    padding: 1rem 2rem;
+}
+
+.checkoutreihe
+{
+    width: 30%;
+    margin: 0 auto;
+}
+
+table.checkoutreihe tr
+{
+    text-align: center;
+}
+
+.checkoutreihe img
+{
+    max-width: none;
+    height: 50px;
+    width: 50px;
+}
+
+.checkoutliste .produktname
+{
+    margin: 0;
+}
+
+.checkoutreihe img
+{
+    max-width: none;
+    height: 50px;
+    width: 50px;
+}
+
+.checkoutliste .produktname
+{
+    margin: 0;
+}
+
 /*
 =================================================================
 ================ Remove arrows from number-inputs ===============

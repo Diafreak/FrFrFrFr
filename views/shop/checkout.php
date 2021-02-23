@@ -1,16 +1,11 @@
 <h1>KASSE</h1>
 
 
-<div class="warenkorbcontainer">
-    <aside class="warenkorb aktiv" id="w">
-
-        <div class="warenkorb-header">
-            <p>Mein Warenkorb</p>
-        </div>
-
-        <div class="warenkorbliste">
-            <div class="warenkorbinhalt">
-                <table class="warenreihe">
+<div class="checkoutcontainer">
+    <aside class="checkout">
+        <div class="checkoutliste">
+            <div class="checkoutinhalt">
+                <table class="checkoutreihe">
                     <tbody>
                         <?= generateCartItems(); ?>
                     </tbody>
