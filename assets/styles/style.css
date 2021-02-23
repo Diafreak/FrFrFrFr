@@ -444,6 +444,11 @@ div.profilesettingfield input[type= "submit"]
     right: 20px;
 }
 
+.profilesettingfield form > input[type= "submit"],
+.adminbutton
+{
+    padding: 5px;
+}
 .accountfield input[type= "submit"]
 {
     background-color: #4361ee;
