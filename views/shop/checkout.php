@@ -19,8 +19,10 @@
     <!-- Errors -->
     <span><? isset($errors) && isset($_POST['submitCheckout']) ? printErrors($errors) : '' ?></span><br>
 
-    <form method="POST">
-        <button type="submit" name="submitCheckout">Kaufen</button>
-    </form>
+    <? if (getTotalAmount() > 0) : ?>
+        <form method="POST">
+            <button type="submit" name="submitCheckout">Kaufen</button>
+        </form>
+    <? endif; ?>
 
 </div>
