@@ -6,10 +6,10 @@ class Order extends Model
 
     protected $schema =
     [
-        'id'        => [ 'type' => BaseModel::TYPE_UINT   ],
-        'createdAt' => [ 'type' => BaseModel::TYPE_STRING ],
-        'updatedAt' => [ 'type' => BaseModel::TYPE_STRING ],
-        'user_id'   => [ 'type' => BaseModel::TYPE_UINT   ]
+        'id'        => [ 'type' => Model::TYPE_UINT   ],
+        'createdAt' => [ 'type' => Model::TYPE_STRING ],
+        'updatedAt' => [ 'type' => Model::TYPE_STRING ],
+        'user_id'   => [ 'type' => Model::TYPE_UINT   ]
     ];
 }
 

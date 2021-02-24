@@ -207,6 +207,41 @@ function generateShopLayout($catName, $tags = "", &$errors = [])
 
 
 
+// ==========================
+// ========== CART ==========
+// ==========================
+
+function createOrder()
+{
+    $db     = $GLOBALS['db'];
+    $userId = $_SESSION['userId'];
+
+    $order   = new Order($orderDetails = ['user_id' => $userId]);
+    $order->insert();
+
+    $orderId = $db->lastInsertId();
+
+    unset($order);
+
+    return $orderId;
+}
+
+
+
+function removeCartItems()
+{
+    $db     = $GLOBALS['db'];
+    $cartId = $_SESSION['cartId'];
+
+    // clear your cart
+    $sqlCartItem = "DELETE FROM productinshoppingcart WHERE shoppingCart_id = '{$cartId}';";
+    $deleteSatement = $db->prepare($sqlCartItem);
+    $deleteSatement->execute();
+}
+
+
+
+
 // =========================================
 // ========== EXTRACTED FUNCTIONS ==========
 // =========================================

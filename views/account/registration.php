@@ -1,15 +1,15 @@
 
-<!-- load js -->
-<script src="<?=JSPATH?>registration.js"></script>
-
-
 <!-- redirect to login after successful registration -->
 <?php if($validRegistration === true) : ?>
 
-    <!-- redirect to Login-page and show "Registrierung Erfolgreich"-banner -->
-    <?= header('Location: ?c=account&a=login#success'); ?>
+<!-- redirect to Login-page and show "Registrierung Erfolgreich"-banner -->
+<?= header('Location: ?c=account&a=login#success'); ?>
 
 <?php else : ?>
+
+<!-- load js -->
+<script src="<?=JSPATH?>registration.js"></script>
+
 
     <div class="registration-form user-form">
 

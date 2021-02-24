@@ -2,24 +2,27 @@
 
 
 <div class="checkoutcontainer">
-    <aside class="checkout">
-        <div class="checkoutliste">
-            <div class="checkoutinhalt">
-                <table class="checkoutreihe">
-                    <tbody>
-                        <?= generateCartItems(); ?>
-                    </tbody>
-                </table>
-            </div>
+
+    <div class="checkoutliste">
+        <div class="checkoutinhalt">
+            <table class="checkoutreihe">
+                <tbody>
+                    <?= generateCartItems(); ?>
+                </tbody>
+            </table>
         </div>
+    </div>
 
-        Total: <?= getTotalAmount(); ?>€
-        <br>
-        <form method="get">
-            <!-- <input type="hidden" name="c" value="shop">
-            <input type="hidden" name="a" value="checkout"> -->
-            <button type="submit" class="checkoutbuy">Kaufen</button>
+    Total: <?= getTotalAmount(); ?>€
+    <br>
+
+    <!-- Errors -->
+    <span><? isset($errors) && isset($_POST['submitCheckout']) ? printErrors($errors) : '' ?></span><br>
+
+    <? if (getTotalAmount() > 0) : ?>
+        <form method="POST">
+            <button type="submit" name="submitCheckout">Kaufen</button>
         </form>
+    <? endif; ?>
 
-    </aside>
 </div>

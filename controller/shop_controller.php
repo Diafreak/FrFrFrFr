@@ -71,13 +71,34 @@ class ShopController extends Controller
 
     public function actionCheckout()
     {
-        //$errors = [];
+        $errors = [];
+
+        // only allow checkout if user pressed "Kaufen"-button and has an address
+        if (isset($_POST['submitCheckout']) && getAddressId($_SESSION['userId']) != null && getAddressId($_SESSION['userId']) != "")
+        {
+            $_SESSION['validCheckout'] = true;
+            header("Location: ?c=shop&a=redirect");
+        }
+        else
+        {
+            $errors['noAddress'] = "Bitte zuerst eine Adresse im Konto hinzufügen.";
+            $this->setParam('errors', $errors);
+        }
     }
+
 
 
     public function actionRedirect()
     {
-        //$errors = [];
+        if (isset($_SESSION['validCheckout']) && $_SESSION['validCheckout'] === true)
+        {
+            // create a new order
+            $orderId = createOrder();
+            // remove all items from your shopping cart
+            removeCartItems();
+
+            $this->setParam('orderId', $orderId);
+        }
     }
 
 }
