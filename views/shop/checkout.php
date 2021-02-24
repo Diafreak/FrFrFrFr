@@ -18,7 +18,7 @@
         <form method="get">
             <!-- <input type="hidden" name="c" value="shop">
             <input type="hidden" name="a" value="checkout"> -->
-            <button type="submit">Kaufen</button>
+            <button type="submit" class="checkoutbuy">Kaufen</button>
         </form>
 
     </aside>

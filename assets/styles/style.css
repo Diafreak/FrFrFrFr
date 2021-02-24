@@ -725,6 +725,21 @@ table.checkoutreihe tr
     margin: 0;
 }
 
+form > .shopping-cart-remove-item-btn
+{
+    /* kein */
+    padding: 0; 
+    border: none; 
+    background: none; 
+    cursor: pointer;
+}
+
+.shopping-cart-remove-item-btn b
+{
+    color: red; 
+    background-color: white;   
+}
+
 /*
 =================================================================
 ================ Remove arrows from number-inputs ===============
