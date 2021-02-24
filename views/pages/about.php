@@ -1,6 +1,8 @@
-<h1><?=$test?></h1>
+<h1>ÜBER UNS</h1>
+
 <div class="contact">
-<img src=<?=IMAGESPATH.'Freddie.png'?> alt="Freddie Faulig">
+    <img src=<?=IMAGESPATH.'Freddie.png'?> alt="Freddie Faulig">
+
     <div class="contacttext">
         <p>Hier bei <span style="color:#f72585">Freddie Frettchens Frechen Früchten</span> achten <span style="color:blue">WIR</span> auf <span style="color:green">IHRE</span> Gesundheit!</p>
 
@@ -16,4 +18,5 @@
             Jedoch ist es zurzeit nicht empfehlenswert, dieses zu besuchen. Um anderen aber trotzdem mit ihrer Gesundheit helfen zu können, habe ich den Obst- und Gemüseladen „<span style="color:#f72585">Freddie Frettchens Freche Früchte</span>“ eröffnet.<br>
             Gemeinsam mit meinem Frettchen <span style="color:#f72585">Freddie</span> sorge ich dafür, dass Sie auch in diesen schweren Zeiten auf sich und <span style="color:green">Ihre</span> Gesundheit achten.</p>
     </div>
+
 </div>
