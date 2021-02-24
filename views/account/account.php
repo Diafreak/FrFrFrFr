@@ -17,8 +17,6 @@
 
 
 
-
-
 <h1>Mein Account</h1>
 
 <div class="accountfield">

@@ -1,5 +1,6 @@
 <div class="aktuelles">
-    <h1><?=$test?></h1>
+
+    <h1>AKTUELLES</h1>
 
     <div class="saison">
         <p>Hier finden Sie Obst und Gemüse der Saison sowie regionale Lagerware, die jederzeit genießbar ist.</p>
