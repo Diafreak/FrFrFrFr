@@ -71,10 +71,18 @@ class ShopController extends Controller
 
     public function actionCheckout()
     {
-        if (isset($_POST['submitCheckout']))
+        $errors = [];
+
+        // only allow checkout if user pressed "Kaufen"-button and has an address
+        if (isset($_POST['submitCheckout']) && getAddressId($_SESSION['userId']) != null && getAddressId($_SESSION['userId']) != "")
         {
             $_SESSION['validCheckout'] = true;
             header("Location: ?c=shop&a=redirect");
+        }
+        else
+        {
+            $errors['noAddress'] = "Bitte zuerst eine Adresse im Konto hinzufügen.";
+            $this->setParam('errors', $errors);
         }
     }
 
