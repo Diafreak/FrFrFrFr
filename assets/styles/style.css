@@ -740,6 +740,11 @@ form > .shopping-cart-remove-item-btn
     background-color: white;   
 }
 
+.checkoutbuy 
+{
+    margin-bottom: 20px;
+}
+
 /*
 =================================================================
 ================ Remove arrows from number-inputs ===============
