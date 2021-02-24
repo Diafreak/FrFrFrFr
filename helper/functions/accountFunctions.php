@@ -699,9 +699,9 @@ function addNewAddress($street, $number, $city, $zip, $userId, &$errors)
 {
     // if user has no address no fields can be empty
     if ($street != null
-    ||  $number != null
-    ||  $city   != null
-    ||  $zip    != null)
+    &&  $number != null
+    &&  $city   != null
+    &&  $zip    != null)
     {
         $addressInfo = [ 'street' => $street,
                          'number' => $number,
