@@ -72,7 +72,7 @@ else { header('Location: ?c=errors&a=error404'); }
     <? endif; ?>
 
     <!-- Icon in tab-bar -->
-    <link rel="shortcut icon" href="<?=IMAGESPATH."/navBar/ferret.svg"?>" type="image/x-icon" />
+    <link rel="shortcut icon" href="<?=IMAGESPATH."navBar/ferret.svg"?>" type="image/x-icon" />
 
     <!-- page title -->
     <title>FrFrFrFr <?=ucfirst($actionName)?></title>
@@ -80,7 +80,9 @@ else { header('Location: ?c=errors&a=error404'); }
 
             <!-- if the shopping cart is shown scrolling is disabled -->
 <body class="<?= (isset($_GET['cart']) && $_GET['cart'] == 'show') ? 'no-scrolling' : '' ?>">
+
     <div class="wrapall">
+
         <div class="stuff">
             <?php
                 // show shopping cart if the icon is clicked
@@ -102,9 +104,11 @@ else { header('Location: ?c=errors&a=error404'); }
         </div>
 
         <footer>
-            <p>Test test<br>
-                Hier wird getestet</p>
+            <p>&#169 Freddie Faulig<br>
+               Kontakt: freddie.frettchen@faulig.de</p>
         </footer>
+
     </div>
+
 </body>
 </html>
