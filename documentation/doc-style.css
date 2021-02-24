@@ -7,6 +7,7 @@ body
     list-style: none;
     overflow-x: hidden;
     overflow-y: scroll;
+    font-size: 27px;
 }
 
 a
@@ -25,6 +26,19 @@ margin: 5vw 10vw;
 position: relative;
 height: 100vh;
 width: 80vw;
+}
+
+.wrapall img
+{
+    text-align: center;
+}
+
+.wrapall > a
+{
+    font-size: 20px; 
+    color:blueviolet;
+    display: block;
+    text-align:center;
 }
 
 img.logo
