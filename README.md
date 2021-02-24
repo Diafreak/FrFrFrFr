@@ -3,7 +3,7 @@ Im Rahmen des Moduls Dynamische Webprogrammierung wir, <br>
 **[Lucas Hengelhaupt](https://github.com/Diafreak)** <br>
 **[Annkathrin Hirt](https://github.com/AnkaMulm)**   <br>
 **[Leon Müller](https://github.com/DerNoobzockt)**   <br>
-den Online-Fruchtshop „Freddie Frettchens Freche Früchte“ ins Leben gerufen. <br>
+den Online-Fruchtshop „Freddie Frettchens Freche Früchte“ ins Leben gerufen.
 <br><br>
 
 
@@ -23,7 +23,7 @@ den Online-Fruchtshop „Freddie Frettchens Freche Früchte“ ins Leben gerufen
 
 7. In XAMPP **"Apache"** starten und über **"Admin"** zum Projektordner **"FrFrFrFr"** navigieren und diesen öffnen
 
-8. Fertig! Nun kann die Website benutzt werden
+8. **Fertig!** Nun kann die Website benutzt werden
 <br><br>
 
 
@@ -32,7 +32,7 @@ den Online-Fruchtshop „Freddie Frettchens Freche Früchte“ ins Leben gerufen
 E-Mail: admin   <br>
 Passwort: 12345 <br>
 
-Alle neu erstellten Accounts haben keinen Admin-Rang und können keine Produkte zum Shop hinzufügen.
+Alle neu erstellten Accounts haben **keinen** Admin-Rang und können keine Produkte zum Shop hinzufügen.
 <br><br>
 
 
@@ -43,6 +43,6 @@ Alle neu erstellten Accounts haben keinen Admin-Rang und können keine Produkte 
 
 3. Hochgeladene Bilder **müssen** quadratisch sein, da ansonsten das Shoplayout verschoben wird
 
-4. Bilder dürfen höchstens 200kb groß sein
+4. Bilder dürfen höchstens **200kb** groß sein
 
-4. Im Ordner "documentation/_testPictures" sind vorgefertigte Testbilder zum hochladen
+5. Im Ordner "documentation/_testPictures" sind **vorgefertigte Testbilder** zum hochladen
