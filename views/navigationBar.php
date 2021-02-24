@@ -20,7 +20,7 @@
                     <li>AKTUELLES</li>
                 </a>
                 <a href="?c=pages&a=contact">
-                    <li>KONTAKT</li>
+                    <li>ÜBER UNS</li>
                 </a>
 
                 <li class="no-hover">
@@ -70,7 +70,7 @@
                         <li>AKTUELLES</li>
                     </a>
                     <a href="?c=pages&a=contact">
-                        <li>KONTAKT</li>
+                        <li>ÜBER UNS</li>
                     </a>
                 </ul>
             </div>
