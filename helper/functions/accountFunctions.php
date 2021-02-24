@@ -675,7 +675,7 @@ function validateOldPassword($oldPassword, &$errors)
 // =============== ADDRESS FUNCTIONS ===============
 // =================================================
 
-function getAddressId($userId, &$errors)
+function getAddressId($userId, &$errors = [])
 {
     $db = $GLOBALS['db'];
 
@@ -690,7 +690,7 @@ function getAddressId($userId, &$errors)
     {
         $errors['addressIdUser'] = "Nutzer besitzt keinen Adresse.";
     }
-    return false;
+    return null;
 }
 
 
