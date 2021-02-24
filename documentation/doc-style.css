@@ -2,10 +2,11 @@ body
 {
     font-family: 'Averia', 'Times New Roman';
     min-height: 100vh;
-    margin: 0;
     clear: both;
-    overflow-x: hidden;
+    margin: 0;
     list-style: none;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 a
@@ -20,10 +21,10 @@ h1
 
 .wrapall
 {
-overflow:auto;
+margin: 5vw 10vw;
 position: relative;
-height: 100%;
-width: 100vw;
+height: 100vh;
+width: 80vw;
 }
 
 img.logo
@@ -42,10 +43,10 @@ div.navbartrigger a.icon
 
 div.navbartrigger a.ferret
 {
-    height: 2.36vw;
-    width: 5.26vw;
-    margin-top: -1.18vw;
-    margin-right: -2.63vw;
+    height: 2vw;
+    width: 5vw;
+    margin-top: -1vw;
+    margin-right: -2.5vw;
     right: 50%;
 }
 
