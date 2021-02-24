@@ -28,6 +28,8 @@ function printErrors($errors)
 // generates the HTML for the given position
 function generateProductHTML($position, $productId, $imageSrc, $altText, $productName, $price)
 {
+    $productName = ucfirst($productName);
+
     // number of tabs that are used until "<ul class="produkt-tabelle">"
     // $start, nTabs(x) & \n are only for better readability of the shop-code when inspecting the page
     $start = 3;
@@ -66,6 +68,8 @@ function generateProductHTML($position, $productId, $imageSrc, $altText, $produc
 
 function generateCartHTML($prodId, $name, $amount, $price, $imageUrl, $altText)
 {
+    $name = ucfirst($name);
+
     $start = 7;
     $html  = "\n";
 
