@@ -182,43 +182,6 @@ abstract class Model
         return $this->schema;
     }
 
-    /*
-    public static function find($whereStr = '1')
-    {
-        $db = $GLOBALS['db'];
-        $sqlStr = 'SELECT * FROM `'.self::tablename().'` WHERE '.$whereStr.';';
-        $results = [];
-        try
-        {
-            $results = $db->query($sqlStr)->fetchAll();
-            $count = count($results);
-            for ($i=0; $i < $count; ++$i)
-            { 
-                $class = get_called_class();
-                $results[$i] = new $class($results[$i]);
-            }
-        }
-        catch(\PDOException $error)
-        {
-            print_r($error);
-        }
-
-        return $results;
-    }
-
-
-    public static function findOne($whereStr = '1')
-    {
-        $results = self::find($whereStr);
-
-        if(count($results) > 0)
-        {
-            return $results[0];
-        }
-
-        return null;
-    }
-    */
 }
 
 

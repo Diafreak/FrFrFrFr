@@ -47,6 +47,7 @@ function generateCartItems()
 }
 
 
+
 function getTotalAmount()
 {
     $cartId = $_SESSION['cartId'] ?? null;
@@ -69,7 +70,6 @@ function getTotalAmount()
         return number_format_drop_zero_decimals($cartTotal, 2);
     }
 }
-
 
 
 
@@ -126,5 +126,6 @@ function removeItemFromDatabase($prodId, $cartId)
         $errors['cartItems'] = "Dieses Item befindet sich nicht in Ihrem Warenkorb.";
     }
 }
+
 
 ?>
