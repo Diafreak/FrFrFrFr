@@ -45,4 +45,4 @@ Alle neu erstellten Accounts haben **keinen** Admin-Rang und können keine Produ
 
 4. Bilder dürfen höchstens **200kb** groß sein
 
-5. Im Ordner "documentation/_testPictures" sind **vorgefertigte Testbilder** zum hochladen
+5. Im Ordner "documentation/testPictures" sind **vorgefertigte Testbilder** zum hochladen
