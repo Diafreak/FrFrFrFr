@@ -1,10 +1,12 @@
 <body>
-    <header>    
+    <header>
+
         <nav class="desktop">
             <ul>
                 <li class="no-hover">
                     <a href="?c=pages&a=home" type="no-hover" class="navbar-icon">
-                        <img src=<?=IMAGESPATH.'navBar/ferret.svg'?> alt="Logo" class="logo"></a>
+                        <img src=<?=IMAGESPATH.'navBar/ferret.svg'?> alt="Logo" class="logo">
+                    </a>
                 </li>
 
                 <a href="?c=pages&a=home">
@@ -19,8 +21,8 @@
                 <a href="?c=pages&a=current">
                     <li>AKTUELLES</li>
                 </a>
-                <a href="?c=pages&a=contact">
-                    <li>KONTAKT</li>
+                <a href="?c=pages&a=about">
+                    <li>ÜBER UNS</li>
                 </a>
 
                 <li class="no-hover">
@@ -36,6 +38,8 @@
             </ul>
         </nav>
 
+
+        <!-- Mobile View -->
         <nav class="tablet">
             <div class="navbartrigger">
                 <a href="#nav" class="menubutton icon">
@@ -70,7 +74,7 @@
                         <li>AKTUELLES</li>
                     </a>
                     <a href="?c=pages&a=contact">
-                        <li>KONTAKT</li>
+                        <li>ÜBER UNS</li>
                     </a>
                 </ul>
             </div>
