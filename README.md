@@ -1,5 +1,5 @@
 # FrFrFrFr <br> Freddie Frettchens Freche Früchte
-Im Rahmen des Moduls Dynamische Webprogrammierung wir, <br>
+Im Rahmen des Moduls Dynamische Webprogrammierung haben wir, <br>
 **[Lucas Hengelhaupt](https://github.com/Diafreak)** <br>
 **[Annkathrin Hirt](https://github.com/AnkaMulm)**   <br>
 **[Leon Müller](https://github.com/DerNoobzockt)**   <br>
