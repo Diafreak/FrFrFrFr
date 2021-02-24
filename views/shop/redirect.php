@@ -1,9 +1,17 @@
-<!DOCTYPE html>
-<html>
-   <head>
-      <meta http-equiv = "refresh" content = "3; url = index.php" />
-   </head>
-   <body>
-      <p>Kauf wurde erfolgreich abgeschlossen. Sie werden in 5 Sekunden weitergeleitet</p>
-   </body>
-</html>
+
+<? if (isset($_SESSION['validCheckout']) && $_SESSION['validCheckout'] === true) : ?>
+
+    <head>
+        <meta http-equiv = "refresh" content = "3; url = index.php" />
+    </head>
+    <body>
+        <br>
+        <p>Bestellung (ID: <?=$orderId?>) erfolgreich abgeschlossen. Sie werden in 5 Sekunden weitergeleitet</p>
+        <? $_SESSION['validCheckout'] = false ?>
+    </body>
+
+<? else : ?>
+
+    <? header("Location: index.php"); ?>
+
+<? endif; ?>
