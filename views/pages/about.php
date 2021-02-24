@@ -1,5 +1,9 @@
 <h1>ÜBER UNS</h1>
-<a href="documentation/documentation.html" style="font-size: 25px;left: 36vw; position: relative;">Hier FrFrFrFr Dokumentation!</a>
+
+<div style="text-align: center;">
+    <a href="documentation/documentation.html" style="font-size: 25px;left: 36vw;">>>> Hier FrFrFrFr Dokumentation! <<<</a>
+</div>
+
 <div class="contact">
     <img src=<?=IMAGESPATH.'Freddie.png'?> alt="Freddie Faulig">
 
