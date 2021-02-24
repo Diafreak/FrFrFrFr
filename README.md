@@ -41,8 +41,10 @@ Alle neu erstellten Accounts haben **keinen** Admin-Rang und können keine Produ
 
 2. Nur ein **Admin** kann über sein Profil ein Produkt hinzufügen
 
-3. Hochgeladene Bilder **müssen** quadratisch sein, da ansonsten das Shoplayout verschoben wird
+3. Hochgeladene Bilder **müssen** quadratisch sein, da ansonsten das Shoplayout verschoben wird (wird **nicht** geprüft)
 
-4. Bilder dürfen höchstens **200kb** groß sein
+4. Bilder dürfen höchstens **200kb** groß sein (wird geprüft)
 
-5. Im Ordner "documentation/testPictures" sind **vorgefertigte Testbilder** zum hochladen
+5. Bilder müssen **JPG/JPEG**-Format sein (wird geprüft)
+
+6. Im Ordner "documentation/testPictures" sind **vorgefertigte Testbilder** zum hochladen
