@@ -1,5 +1,5 @@
 <h1>ÜBER UNS</h1>
-<a href="http://localhost:8085/Projekt_FrFrFrFr/FrFrFrFr/documentation/documentation.html" style="font-size: 25px;left: 36vw; position: relative;">Hier FrFrFrFr Dokumentation!</a>
+<a href="documentation/documentation.html" style="font-size: 25px;left: 36vw; position: relative;">Hier FrFrFrFr Dokumentation!</a>
 <div class="contact">
     <img src=<?=IMAGESPATH.'Freddie.png'?> alt="Freddie Faulig">
 
