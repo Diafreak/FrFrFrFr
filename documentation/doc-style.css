@@ -27,9 +27,9 @@ width: 100vw;
 }
 
 img.logo
-{
-    height: 2.36vw;
-    width: 5.26vw;
+{   
+    height: inherit;
+    width: inherit;
     min-height: 30px;
     min-width: 69px;
 }
@@ -42,8 +42,10 @@ div.navbartrigger a.icon
 
 div.navbartrigger a.ferret
 {
-    margin-top: -15px;
-    margin-right: -34.5px;
+    height: 2.36vw;
+    width: 5.26vw;
+    margin-top: -1.18vw;
+    margin-right: -2.63vw;
     right: 50%;
 }
 
